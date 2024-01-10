@@ -1,8 +1,18 @@
 defmodule OpenTripPlannerClientTest do
-  use ExUnit.Case
-  doctest OpenTripPlannerClient
+  use ExUnit.Case, async: true
+  import OpenTripPlannerClient
+  alias OpenTripPlannerClient.NamedPosition
 
-  test "greets the world" do
-    assert OpenTripPlannerClient.hello() == :world
+  describe "plan/3" do
+    test "bad options returns an error" do
+      expected = {:error, {:bad_param, {:bad, :arg}}}
+
+      actual =
+        plan(%NamedPosition{latitude: 1, longitude: 1}, %NamedPosition{latitude: 2, longitude: 2},
+          bad: :arg
+        )
+
+      assert expected == actual
+    end
   end
 end
