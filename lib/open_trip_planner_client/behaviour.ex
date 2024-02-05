@@ -5,13 +5,16 @@ defmodule OpenTripPlannerClient.Behaviour do
   May be useful for testing with libraries like [Mox](https://hex.pm/packages/mox).
   """
 
-  alias OpenTripPlannerClient.{Itinerary, ItineraryTag, NamedPosition}
+  alias OpenTripPlannerClient.ItineraryTag
+
+  @type place ::
+          [{:name, String.t()}, {:stop_id, String.t()}]
+          | [{:name, String.t()}, {:lat_lon, {float, float}}]
 
   @type plan_opt ::
           {:arrive_by, DateTime.t()}
           | {:depart_at, DateTime.t()}
-          | {:wheelchair_accessible?, boolean}
-          | {:optimize_for, :less_walking | :fewest_transfers}
+          | {:wheelchair, boolean}
           | {:tags, [ItineraryTag.t()]}
 
   @typedoc """
@@ -140,6 +143,6 @@ defmodule OpenTripPlannerClient.Behaviour do
           | planner_error_code
           | :unknown
 
-  @callback plan(from :: NamedPosition.t(), to :: NamedPosition.t(), opts :: [plan_opt()]) ::
-              {:ok, Itinerary.t()} | {:error, error()}
+  @callback plan(from :: place, to :: place, opts :: [plan_opt()]) ::
+              {:ok, %{itineraries: [map()]}} | {:error, error()}
 end

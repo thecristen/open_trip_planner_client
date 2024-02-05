@@ -13,35 +13,62 @@ defmodule OpenTripPlannerClient do
 
   require Logger
 
-  alias OpenTripPlannerClient.{Itinerary, ItineraryTag, NamedPosition, ParamsBuilder, Parser}
+  alias OpenTripPlannerClient.{Itinerary, ItineraryTag, ParamsBuilder, Parser}
 
   @behaviour OpenTripPlannerClient.Behaviour
 
   @type error :: OpenTripPlannerClient.Behaviour.error()
   @type plan_opt :: OpenTripPlannerClient.Behaviour.plan_opt()
+  @type place :: OpenTripPlannerClient.Behaviour.place()
 
-  @impl true
+  @impl OpenTripPlannerClient.Behaviour
   @doc """
   Generate a trip plan with the given endpoints and options.
   """
-  @spec plan(NamedPosition.t(), NamedPosition.t(), [plan_opt()]) ::
+  @spec plan(place(), place(), [plan_opt()]) ::
           {:ok, Itinerary.t()} | {:error, error()}
   def plan(from, to, opts) do
-    accessible? = Keyword.get(opts, :wheelchair_accessible?, false)
-
     {postprocess_opts, opts} = Keyword.split(opts, [:tags])
 
     with {:ok, params} <- ParamsBuilder.build_params(from, to, opts) do
-      param_string = Enum.map_join(params, "\n", fn {key, val} -> ~s{#{key}: #{val}} end)
+      graphql_query =
+        {"""
+          query TripPlan(
+            $fromPlace: String!
+            $toPlace: String!
+            $date: String
+            $time: String
+            $arriveBy: Boolean
+            $wheelchair: Boolean
+            $transportModes: [TransportMode]
+          ) {
+            plan(
+             fromPlace: $fromPlace
+             toPlace: $toPlace
+             date: $date
+             time: $time
+             arriveBy: $arriveBy
+             wheelchair: $wheelchair
+             transportModes: $transportModes
 
-      graphql_query = """
-      {
-        plan(
-          #{param_string}
-        )
-        #{itinerary_shape()}
-      }
-      """
+             # Increased from 30 minutes, a 1-hour search window accomodates infrequent routes
+             searchWindow: 3600
+
+             # Increased from 3 to offer more itineraries for potential post-processing
+             numItineraries: 5
+
+             # Increased from 2.0 to reduce number of itineraries with significant walking
+             walkReluctance: 5.0
+
+             # Theoretically can be configured in the future for visitors using translation?
+             locale: "en"
+
+             # Prefer MBTA transit legs over Massport or others.
+             preferred: { agencies: "mbta-ma-us:1" }
+            )
+            #{itinerary_shape()}
+         }
+         """, params}
 
       root_url =
         Keyword.get(opts, :root_url, Application.fetch_env!(:open_trip_planner_client, :otp_url))
@@ -75,7 +102,7 @@ defmodule OpenTripPlannerClient do
     end
   end
 
-  defp log_response(url, query) do
+  defp log_response(url, {query, params}) do
     graphql_req =
       Req.new(base_url: url)
       |> AbsintheClient.attach()
@@ -84,12 +111,12 @@ defmodule OpenTripPlannerClient do
       :timer.tc(
         Req,
         :post,
-        [graphql_req, [graphql: query]]
+        [graphql_req, [graphql: {query, params}]]
       )
 
     _ =
       Logger.info(fn ->
-        "#{__MODULE__}.plan_response url=#{url} query=#{inspect(query)} #{status_text(response)} duration=#{duration / :timer.seconds(1)}"
+        "#{__MODULE__}.plan_response url=#{url} params=#{inspect(params)} #{status_text(response)} duration=#{duration / :timer.seconds(1)}"
       end)
 
     response
@@ -122,7 +149,6 @@ defmodule OpenTripPlannerClient do
           distance
           duration
           intermediateStops {
-            id
             gtfsId
             name
             desc
@@ -136,9 +162,9 @@ defmodule OpenTripPlannerClient do
           realTime
           realtimeState
           agency {
-            id
             gtfsId
             name
+            url
           }
           alerts {
             id
@@ -153,7 +179,6 @@ defmodule OpenTripPlannerClient do
               riderCategory {
                 id
                 name
-
               }
             }
           }
@@ -193,6 +218,7 @@ defmodule OpenTripPlannerClient do
             streetName
             lat
             lon
+            absoluteDirection
             relativeDirection
             stayOn
           }
