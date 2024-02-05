@@ -49,7 +49,7 @@ defmodule OpenTripPlannerClient do
       graphql_url = "#{root_url}/otp/routers/default/index/"
 
       with {:ok, body} <- send_request(graphql_url, graphql_query),
-           {:ok, itineraries} <- Parser.parse_ql(body, accessible?) do
+           {:ok, itineraries} <- Parser.validate_body(body) do
         tags = Keyword.get(postprocess_opts, :tags, [])
 
         result =
