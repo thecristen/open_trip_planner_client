@@ -40,7 +40,7 @@ defmodule OpenTripPlannerClient.HttpTest do
       Bypass.expect_once(bypass, fn conn ->
         conn
         |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.send_resp(:ok, ~s({"data":#{@fixture}}))
+        |> Plug.Conn.send_resp(:ok, @fixture)
       end)
 
       {:ok, itineraries} =
@@ -61,9 +61,11 @@ defmodule OpenTripPlannerClient.HttpTest do
       tags = itineraries |> Enum.map(&elem(&1, 0))
 
       assert tags == [
-               [:earliest_arrival, :least_walking, :shortest_trip],
-               [:least_walking],
-               [:least_walking]
+               [],
+               [:shortest_trip, :least_walking, :earliest_arrival],
+               [],
+               [],
+               [:shortest_trip, :least_walking]
              ]
     end
   end
