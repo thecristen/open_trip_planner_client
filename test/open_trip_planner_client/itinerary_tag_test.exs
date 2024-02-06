@@ -1,6 +1,6 @@
 defmodule OpenTripPlannerClient.ItineraryTagTest do
   use ExUnit.Case, async: true
-  alias OpenTripPlannerClient.{Itinerary, ItineraryTag}
+  alias OpenTripPlannerClient.ItineraryTag
 
   defmodule BadTag do
     @behaviour OpenTripPlannerClient.ItineraryTag
@@ -11,12 +11,8 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
   end
 
   test "correctly ignores tags that are always nil" do
-    itineraries = [
-      %Itinerary{start: ~U[2024-01-03 16:27:55Z], stop: ~U[2024-01-03 16:28:04Z]}
-    ]
-
-    tags = ItineraryTag.apply_tag(BadTag, itineraries) |> Enum.map(&Enum.sort(&1.tags))
-
-    assert tags == [[]]
+    itineraries = [%{"startTime" => 1, "endTime" => 2}]
+    tags = ItineraryTag.apply_tag(BadTag, itineraries)
+    assert tags == [{[], %{"startTime" => 1, "endTime" => 2}}]
   end
 end

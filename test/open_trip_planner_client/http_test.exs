@@ -9,7 +9,7 @@ defmodule OpenTripPlannerClient.HttpTest do
   """
   use ExUnit.Case
   import OpenTripPlannerClient
-  alias OpenTripPlannerClient.{ItineraryTag, NamedPosition}
+  alias OpenTripPlannerClient.ItineraryTag
   import Plug.Conn, only: [send_resp: 3]
 
   setup context do
@@ -45,13 +45,12 @@ defmodule OpenTripPlannerClient.HttpTest do
 
       {:ok, itineraries} =
         plan(
-          %NamedPosition{
+          [
             name: "North Station",
             stop_id: "place-north",
-            latitude: 42.365551,
-            longitude: -71.061251
-          },
-          %NamedPosition{latitude: 42.348777, longitude: -71.066481},
+            lat_lon: {42.365551, -71.061251}
+          ],
+          [lat_lon: {42.348777, -71.066481}],
           tags: [
             ItineraryTag.EarliestArrival,
             ItineraryTag.LeastWalking,
@@ -59,7 +58,7 @@ defmodule OpenTripPlannerClient.HttpTest do
           ]
         )
 
-      tags = itineraries |> Enum.map(&Enum.sort(&1.tags))
+      tags = itineraries |> Enum.map(&elem(&1, 0))
 
       assert tags == [
                [:earliest_arrival, :least_walking, :shortest_trip],
@@ -73,14 +72,13 @@ defmodule OpenTripPlannerClient.HttpTest do
     @describetag :external
 
     test "can make a basic plan with OTP" do
-      north_station = %NamedPosition{
+      north_station = [
         name: "North Station",
         stop_id: "place-north",
-        latitude: 42.365551,
-        longitude: -71.061251
-      }
+        lat_lon: {42.365551, -71.061251}
+      ]
 
-      boylston = %NamedPosition{latitude: 42.348777, longitude: -71.066481}
+      boylston = [lat_lon: {42.348777, -71.066481}]
 
       assert {:ok, itineraries} =
                plan(north_station, boylston, depart_at: DateTime.utc_now())
@@ -98,8 +96,8 @@ defmodule OpenTripPlannerClient.HttpTest do
 
       assert {:error, _} =
                plan(
-                 %NamedPosition{latitude: 1, longitude: 1},
-                 %NamedPosition{latitude: 2, longitude: 2},
+                 [lat_lon: {1, 1}],
+                 [lat_lon: {2, 2}],
                  depart_at: DateTime.utc_now()
                )
     end
@@ -110,8 +108,8 @@ defmodule OpenTripPlannerClient.HttpTest do
 
       assert {:error, _} =
                plan(
-                 %NamedPosition{latitude: 1, longitude: 1},
-                 %NamedPosition{latitude: 2, longitude: 2},
+                 [lat_lon: {1, 1}],
+                 [lat_lon: {2, 2}],
                  depart_at: DateTime.utc_now()
                )
     end

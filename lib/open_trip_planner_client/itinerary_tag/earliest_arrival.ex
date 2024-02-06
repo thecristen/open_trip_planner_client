@@ -1,17 +1,17 @@
 defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrival do
-  @moduledoc false
-  @behaviour OpenTripPlannerClient.ItineraryTag
+  @moduledoc """
+  The earliest arrival has the earliest `endTime`.
+  """
 
-  alias OpenTripPlannerClient.Itinerary
+  alias OpenTripPlannerClient.ItineraryTag
+  @behaviour ItineraryTag
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl ItineraryTag
   def optimal, do: :min
 
-  @impl OpenTripPlannerClient.ItineraryTag
-  def score(%Itinerary{} = itinerary) do
-    itinerary.stop |> DateTime.to_unix()
-  end
+  @impl ItineraryTag
+  def score(%{"endTime" => ms_after_epoch}), do: ms_after_epoch
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl ItineraryTag
   def tag, do: :earliest_arrival
 end

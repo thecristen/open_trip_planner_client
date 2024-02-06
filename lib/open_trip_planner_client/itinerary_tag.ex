@@ -2,13 +2,15 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   @moduledoc """
   Logic for a tag which can be applied to itineraries which are the best by some criterion.
   """
-  alias OpenTripPlannerClient.Itinerary
 
   @callback optimal :: :max | :min
   @callback score(Itinerary.t()) :: number() | nil
-  @callback tag :: atom()
+  @callback tag :: tag()
 
   @type t :: module()
+  @type tag :: atom()
+  @type itinerary :: map()
+  @type itinerary_with_tags :: {[tag], itinerary}
 
   @doc """
   Applies the tag defined by the given module to the itinerary with the optimal score.
@@ -16,9 +18,14 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   If multiple itineraries are optimal, they will each get the tag.
   If all itineraries have a score of nil, nothing gets the tag.
   """
-  @spec apply_tag(t(), [Itinerary.t()]) :: [Itinerary.t()]
+  @spec apply_tag(t(), [itinerary()]) :: [itinerary_with_tags()]
+  @spec apply_tag(t(), [itinerary_with_tags()]) :: [itinerary_with_tags()]
+  def apply_tag(tag_module, [%{} | _] = untagged_itineraries) do
+    apply_tag(tag_module, Enum.map(untagged_itineraries, &{[], &1}))
+  end
+
   def apply_tag(tag_module, itineraries) do
-    scores = itineraries |> Enum.map(&tag_module.score/1)
+    scores = itineraries |> Enum.map(fn {_tags, itinerary} -> tag_module.score(itinerary) end)
     {min_score, max_score} = Enum.min_max(scores |> Enum.reject(&is_nil/1), fn -> {nil, nil} end)
 
     best_score =
@@ -28,11 +35,11 @@ defmodule OpenTripPlannerClient.ItineraryTag do
       end
 
     Enum.zip(itineraries, scores)
-    |> Enum.map(fn {itinerary, score} ->
+    |> Enum.map(fn {{existing_tags, itinerary}, score} ->
       if not is_nil(score) and score == best_score do
-        update_in(itinerary.tags, &MapSet.put(&1, tag_module.tag()))
+        {[tag_module.tag() | existing_tags], itinerary}
       else
-        itinerary
+        {existing_tags, itinerary}
       end
     end)
   end

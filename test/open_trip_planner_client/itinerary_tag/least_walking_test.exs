@@ -1,29 +1,23 @@
 defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
   use ExUnit.Case, async: true
-  alias OpenTripPlannerClient.{Itinerary, ItineraryTag, Leg, PersonalDetail, TransitDetail}
+  alias OpenTripPlannerClient.ItineraryTag
 
   test "works" do
     itineraries = [
-      %Itinerary{
-        start: ~U[2024-01-03 04:00:00Z],
-        stop: ~U[2024-01-03 05:15:00Z],
-        legs: [%Leg{mode: %TransitDetail{}}]
+      %{
+        "legs" => [%{"mode" => "SUBWAY"}]
       },
-      %Itinerary{
-        start: ~U[2024-01-03 04:00:00Z],
-        stop: ~U[2024-01-03 05:15:00Z],
-        legs: [%Leg{mode: %PersonalDetail{distance: 10}}]
+      %{
+        "legs" => [%{"mode" => "WALK", "distance" => 10}]
       },
-      %Itinerary{
-        start: ~U[2024-01-03 04:00:00Z],
-        stop: ~U[2024-01-03 05:15:00Z],
-        legs: [%Leg{mode: %PersonalDetail{distance: 8}}, %Leg{mode: %PersonalDetail{distance: 8}}]
+      %{
+        "legs" => [%{"mode" => "WALK", "distance" => 8}, %{"mode" => "WALK", "distance" => 8}]
       }
     ]
 
     tags =
       ItineraryTag.apply_tag(ItineraryTag.LeastWalking, itineraries)
-      |> Enum.map(&(&1.tags |> Enum.sort()))
+      |> Enum.map(&elem(&1, 0))
 
     assert tags == [[:least_walking], [], []]
   end
