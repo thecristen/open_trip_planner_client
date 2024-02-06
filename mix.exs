@@ -8,7 +8,20 @@ defmodule OpenTripPlannerClient.MixProject do
       elixir: "~> 1.16",
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
-      test_coverage: [tool: LcovEx]
+      test_coverage: [tool: LcovEx],
+      aliases: [
+        docs: ["docs --formatter html --output docs"]
+      ],
+
+      # Docs
+      name: "OpenTripPlanner MBTA Client",
+      source_url: "https://github.com/thecristen/open_trip_planner_client",
+      homepage_url: "https://thecristen.github.io/open_trip_planner_client",
+      docs: [
+        # The main page in the docs
+        main: "OpenTripPlannerClient.Behaviour",
+        extras: ["README.md"]
+      ]
     ]
   end
 

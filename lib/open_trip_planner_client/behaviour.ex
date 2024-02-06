@@ -105,7 +105,7 @@ defmodule OpenTripPlannerClient.Behaviour do
   * `GEOCODE_FROM_TO_NOT_FOUND`: Both origin and destination are unknown. Can
     you be a bit more descriptive?
 
-  * `GEOCODE_INTERMEDIATE_NOT_FOUND An intermediate destination is unknown. Can
+  * `GEOCODE_INTERMEDIATE_NOT_FOUND` An intermediate destination is unknown. Can
   you be a bit more descriptive?.
 
   * `TOO_CLOSE`: Origin is within a trivial distance of the destination.
@@ -119,7 +119,7 @@ defmodule OpenTripPlannerClient.Behaviour do
   * `TRIANGLE_OPTIMIZE_TYPE_NOT_SET`: If triangleSafetyFactor,
   triangleSlopeFactor, and triangleTimeFactor are provided, OptimizeType must be
 
-  * `TRIANGLE TRIANGLE_VALUES_NOT_SET`: If OptimizeType is TRIANGLE,
+  * `TRIANGLE_VALUES_NOT_SET`: If OptimizeType is TRIANGLE,
   triangleSafetyFactor, triangleSlopeFactor, and triangleTimeFactor must be set
   """
   @type planner_error_code ::
