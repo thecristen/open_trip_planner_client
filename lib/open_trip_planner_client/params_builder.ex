@@ -10,12 +10,12 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
         ]) ::
           {:ok, %{String.t() => String.t()}} | {:error, any}
   def build_params(from, to, opts \\ []) do
-    fromPlace = Keyword.put_new(from, :name, "Origin") |> location()
-    toPlace = Keyword.put_new(to, :name, "Destination") |> location()
+    from_place = Keyword.put_new(from, :name, "Origin") |> location()
+    to_place = Keyword.put_new(to, :name, "Destination") |> location()
 
     do_build_params(opts, %{
-      "fromPlace" => fromPlace,
-      "toPlace" => toPlace
+      "fromPlace" => from_place,
+      "toPlace" => to_place
     })
   end
 

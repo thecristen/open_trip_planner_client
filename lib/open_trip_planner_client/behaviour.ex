@@ -7,6 +7,9 @@ defmodule OpenTripPlannerClient.Behaviour do
 
   alias OpenTripPlannerClient.ItineraryTag
 
+  @type itinerary :: map()
+  @type itinerary_with_tags :: {[ItineraryTag.tag()], itinerary}
+
   @type place ::
           [{:name, String.t()}, {:stop_id, String.t()}]
           | [{:name, String.t()}, {:lat_lon, {float, float}}]

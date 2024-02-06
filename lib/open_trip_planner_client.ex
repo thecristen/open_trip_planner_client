@@ -13,7 +13,7 @@ defmodule OpenTripPlannerClient do
 
   require Logger
 
-  alias OpenTripPlannerClient.{Itinerary, ItineraryTag, ParamsBuilder, Parser}
+  alias OpenTripPlannerClient.{ItineraryTag, ParamsBuilder, Parser}
 
   @behaviour OpenTripPlannerClient.Behaviour
 
@@ -26,7 +26,7 @@ defmodule OpenTripPlannerClient do
   Generate a trip plan with the given endpoints and options.
   """
   @spec plan(place(), place(), [plan_opt()]) ::
-          {:ok, Itinerary.t()} | {:error, error()}
+          {:ok, [OpenTripPlannerClient.Behaviour.itinerary_with_tags()]} | {:error, error()}
   def plan(from, to, opts) do
     {postprocess_opts, opts} = Keyword.split(opts, [:tags])
 
