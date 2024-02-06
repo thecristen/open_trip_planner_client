@@ -24,6 +24,7 @@ defmodule OpenTripPlannerClient.MixProject do
       {:bypass, "~> 2.1", only: :test},
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:lcov_ex, "~> 0.3", only: [:test], runtime: false},
       {:req, "~> 0.3"},
       {:timex, "~> 3.7"}
