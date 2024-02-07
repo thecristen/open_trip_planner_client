@@ -25,7 +25,11 @@ defmodule OpenTripPlannerClient.ItineraryTag do
 
   def apply_tag(tag_module, itineraries) do
     scores = itineraries |> Enum.map(fn {_tags, itinerary} -> tag_module.score(itinerary) end)
-    {min_score, max_score} = Enum.min_max(scores |> Enum.reject(&is_nil/1), fn -> {nil, nil} end)
+
+    {min_score, max_score} =
+      scores
+      |> Enum.reject(&is_nil/1)
+      |> Enum.min_max(fn -> {nil, nil} end)
 
     best_score =
       case tag_module.optimal() do
@@ -33,7 +37,8 @@ defmodule OpenTripPlannerClient.ItineraryTag do
         :min -> min_score
       end
 
-    Enum.zip(itineraries, scores)
+    itineraries
+    |> Enum.zip(scores)
     |> Enum.map(fn {{existing_tags, itinerary}, score} ->
       if not is_nil(score) and score == best_score do
         {[tag_module.tag() | existing_tags], itinerary}

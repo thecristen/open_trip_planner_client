@@ -2,15 +2,14 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTrip do
   @moduledoc """
   The shortest trip is determined by having the smallest `duration`.
   """
-  alias OpenTripPlannerClient.ItineraryTag
-  @behaviour ItineraryTag
+  @behaviour OpenTripPlannerClient.ItineraryTag
 
-  @impl ItineraryTag
+  @impl OpenTripPlannerClient.ItineraryTag
   def optimal, do: :min
 
-  @impl ItineraryTag
+  @impl OpenTripPlannerClient.ItineraryTag
   def score(%{"duration" => duration}), do: duration
 
-  @impl ItineraryTag
+  @impl OpenTripPlannerClient.ItineraryTag
   def tag, do: :shortest_trip
 end

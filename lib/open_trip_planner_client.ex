@@ -11,11 +11,10 @@ defmodule OpenTripPlannerClient do
   ```
   """
 
-  require Logger
-
+  @behaviour OpenTripPlannerClient.Behaviour
   alias OpenTripPlannerClient.{ItineraryTag, ParamsBuilder, Parser}
 
-  @behaviour OpenTripPlannerClient.Behaviour
+  require Logger
 
   @type error :: OpenTripPlannerClient.Behaviour.error()
   @type plan_opt :: OpenTripPlannerClient.Behaviour.plan_opt()
@@ -104,7 +103,8 @@ defmodule OpenTripPlannerClient do
 
   defp log_response(url, {query, params}) do
     graphql_req =
-      Req.new(base_url: url)
+      [base_url: url]
+      |> Req.new()
       |> AbsintheClient.attach()
 
     {duration, response} =

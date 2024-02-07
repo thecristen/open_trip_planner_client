@@ -10,7 +10,8 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTripTest do
     ]
 
     tags =
-      ItineraryTag.apply_tag(ItineraryTag.ShortestTrip, itineraries)
+      ItineraryTag.ShortestTrip
+      |> ItineraryTag.apply_tag(itineraries)
       |> Enum.map(&elem(&1, 0))
 
     assert tags == [[], [], [:shortest_trip]]

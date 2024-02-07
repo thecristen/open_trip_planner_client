@@ -16,7 +16,8 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
     ]
 
     tags =
-      ItineraryTag.apply_tag(ItineraryTag.LeastWalking, itineraries)
+      ItineraryTag.LeastWalking
+      |> ItineraryTag.apply_tag(itineraries)
       |> Enum.map(&elem(&1, 0))
 
     assert tags == [[:least_walking], [], []]

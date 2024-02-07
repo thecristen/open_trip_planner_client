@@ -7,10 +7,10 @@ defmodule OpenTripPlannerClient.HttpTest do
   remain async: true.
 
   """
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   import OpenTripPlannerClient
-  alias OpenTripPlannerClient.ItineraryTag
   import Plug.Conn, only: [send_resp: 3]
+  alias OpenTripPlannerClient.ItineraryTag
 
   setup context do
     if context[:external] do
@@ -58,7 +58,7 @@ defmodule OpenTripPlannerClient.HttpTest do
           ]
         )
 
-      tags = itineraries |> Enum.map(&elem(&1, 0))
+      tags = Enum.map(itineraries, &elem(&1, 0))
 
       assert tags == [
                [],
