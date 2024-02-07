@@ -13,6 +13,6 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
   test "correctly ignores tags that are always nil" do
     itineraries = [%{"startTime" => 1, "endTime" => 2}]
     tags = ItineraryTag.apply_tag(BadTag, itineraries)
-    assert tags == [{[], %{"startTime" => 1, "endTime" => 2}}]
+    assert tags == [%{"startTime" => 1, "endTime" => 2, "tags" => MapSet.new([])}]
   end
 end

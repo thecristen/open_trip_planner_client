@@ -7,13 +7,27 @@ defmodule OpenTripPlannerClient.Behaviour do
 
   alias OpenTripPlannerClient.ItineraryTag
 
-  @type itinerary :: map()
-  @type itinerary_with_tags :: {[ItineraryTag.tag()], itinerary}
-
+  @typedoc """
+  Places are used in the `c:plan/3` callback to denote each of origin and
+  destination for a trip plan. Either both `latitude` and `longitude`, or
+  `stop_id` are required for successful trip planning.
+  """
   @type place ::
-          [{:name, String.t()}, {:stop_id, String.t()}]
-          | [{:name, String.t()}, {:lat_lon, {float, float}}]
+          {:name, String.t()}
+          | {:stop_id, String.t()}
+          | {:lat_lon, {float, float}}
 
+  @typedoc """
+  Arguments to be passed into OpenTripPlanner or processed post-planning.
+
+    * `:arrive_by` - The DateTime to get to the destination by. Will assume a
+      value of now if absent.
+    * `:depart_at` - The DateTime to depart from the origin. Will assume a value
+      of now if absent. Note this will be overridden by `:arrive_by` should that
+      be present.
+    * `:wheelchair` - Limit itineraries to those that are wheelchair accessible.
+    * `:tags` - A list of tags to apply to itineraries.
+  """
   @type plan_opt ::
           {:arrive_by, DateTime.t()}
           | {:depart_at, DateTime.t()}
@@ -146,6 +160,6 @@ defmodule OpenTripPlannerClient.Behaviour do
           | planner_error_code
           | :unknown
 
-  @callback plan(from :: place, to :: place, opts :: [plan_opt()]) ::
+  @callback plan(from :: [place], to :: [place], opts :: [plan_opt()]) ::
               {:ok, %{itineraries: [map()]}} | {:error, error()}
 end

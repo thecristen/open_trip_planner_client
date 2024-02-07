@@ -5,30 +5,41 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
   """
 
   @doc "Convert general planning options into query params for OTP"
-  @spec build_params(OpenTripPlannerClient.place(), OpenTripPlannerClient.place(), [
-          OpenTripPlannerClient.plan_opt()
-        ]) ::
+  @spec build_params(
+          [OpenTripPlannerClient.Behaviour.place()],
+          [OpenTripPlannerClient.Behaviour.place()],
+          [
+            OpenTripPlannerClient.Behaviour.plan_opt()
+          ]
+        ) ::
           {:ok, %{String.t() => String.t()}} | {:error, any}
   def build_params(from, to, opts \\ []) do
-    from_place = Keyword.put_new(from, :name, "Origin") |> location()
-    to_place = Keyword.put_new(to, :name, "Destination") |> location()
-
-    do_build_params(opts, %{
-      "fromPlace" => from_place,
-      "toPlace" => to_place
-    })
+    with {:ok, from_place} <- location(from), {:ok, to_place} <- location(to) do
+      do_build_params(opts, %{
+        "fromPlace" => from_place,
+        "toPlace" => to_place
+      })
+    else
+      error ->
+        error
+    end
   end
 
   defp location(place) do
-    name = Keyword.fetch!(place, :name)
+    name = Keyword.get(place, :name, "")
+    stop_id = Keyword.get(place, :stop_id)
+    lat_lon = Keyword.get(place, :lat_lon)
 
-    case Keyword.fetch(place, :stop_id) do
-      {:ok, stop_id} when not is_nil(stop_id) ->
-        "#{name}::mbta-ma-us:#{stop_id}"
+    if stop_id do
+      {:ok, "#{name}::mbta-ma-us:#{stop_id}"}
+    else
+      case lat_lon do
+        {latitude, longitude} ->
+          {:ok, "#{name}::#{latitude},#{longitude}"}
 
-      _ ->
-        {latitude, longitude} = Keyword.fetch!(place, :lat_lon)
-        "#{name}::#{latitude},#{longitude}"
+        _ ->
+          {:error, :invalid_location}
+      end
     end
   end
 

@@ -12,7 +12,11 @@ defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrivalTest do
     tags =
       ItineraryTag.EarliestArrival
       |> ItineraryTag.apply_tag(itineraries)
-      |> Enum.map(&elem(&1, 0))
+      |> Enum.map(
+        &(&1
+          |> Map.get("tags")
+          |> MapSet.to_list())
+      )
 
     assert tags == [[:earliest_arrival], [], [:earliest_arrival]]
   end

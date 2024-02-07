@@ -2,14 +2,11 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   @moduledoc """
   Logic for a tag which can be applied to itineraries which are the best by some criterion.
   """
-  alias OpenTripPlannerClient.Behaviour
-
   @callback optimal :: :max | :min
-  @callback score(Behaviour.itinerary()) :: number() | nil
-  @callback tag :: tag()
+  @callback score(map()) :: number() | nil
+  @callback tag :: atom()
 
   @type t :: module()
-  @type tag :: atom()
 
   @doc """
   Applies the tag defined by the given module to the itinerary with the optimal score.
@@ -17,14 +14,9 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   If multiple itineraries are optimal, they will each get the tag.
   If all itineraries have a score of nil, nothing gets the tag.
   """
-  @spec apply_tag(t(), [Behaviour.itinerary()]) :: [Behaviour.itinerary_with_tags()]
-  @spec apply_tag(t(), [Behaviour.itinerary_with_tags()]) :: [Behaviour.itinerary_with_tags()]
-  def apply_tag(tag_module, [%{} | _] = untagged_itineraries) do
-    apply_tag(tag_module, Enum.map(untagged_itineraries, &{[], &1}))
-  end
-
+  @spec apply_tag(t(), [map()]) :: [map()]
   def apply_tag(tag_module, itineraries) do
-    scores = itineraries |> Enum.map(fn {_tags, itinerary} -> tag_module.score(itinerary) end)
+    scores = itineraries |> Enum.map(&tag_module.score/1)
 
     {min_score, max_score} =
       scores
@@ -38,13 +30,20 @@ defmodule OpenTripPlannerClient.ItineraryTag do
       end
 
     itineraries
+    |> Enum.map(&initialize_tags/1)
     |> Enum.zip(scores)
-    |> Enum.map(fn {{existing_tags, itinerary}, score} ->
-      if not is_nil(score) and score == best_score do
-        {[tag_module.tag() | existing_tags], itinerary}
-      else
-        {existing_tags, itinerary}
-      end
+    |> Enum.map(fn {itinerary, score} ->
+      apply_best({itinerary, score}, score === best_score, tag_module.tag())
     end)
+  end
+
+  defp initialize_tags(%{"tags" => _} = itinerary), do: itinerary
+  defp initialize_tags(itinerary), do: Map.put_new(itinerary, "tags", MapSet.new())
+
+  defp apply_best({itinerary, nil}, _, _), do: itinerary
+  defp apply_best({itinerary, _}, false, _), do: itinerary
+
+  defp apply_best({%{} = itinerary, _}, true, tag) do
+    update_in(itinerary["tags"], &MapSet.put(&1, tag))
   end
 end

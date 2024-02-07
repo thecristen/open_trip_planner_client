@@ -16,16 +16,10 @@ defmodule OpenTripPlannerClient do
 
   require Logger
 
-  @type error :: OpenTripPlannerClient.Behaviour.error()
-  @type plan_opt :: OpenTripPlannerClient.Behaviour.plan_opt()
-  @type place :: OpenTripPlannerClient.Behaviour.place()
-
   @impl OpenTripPlannerClient.Behaviour
   @doc """
   Generate a trip plan with the given endpoints and options.
   """
-  @spec plan(place(), place(), [plan_opt()]) ::
-          {:ok, [OpenTripPlannerClient.Behaviour.itinerary_with_tags()]} | {:error, error()}
   def plan(from, to, opts) do
     {postprocess_opts, opts} = Keyword.split(opts, [:tags])
 

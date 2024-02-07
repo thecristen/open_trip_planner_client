@@ -58,14 +58,20 @@ defmodule OpenTripPlannerClient.HttpTest do
           ]
         )
 
-      tags = Enum.map(itineraries, &elem(&1, 0))
+      tags =
+        itineraries
+        |> Enum.map(
+          &(&1
+            |> Map.get("tags")
+            |> MapSet.to_list())
+        )
 
       assert tags == [
                [],
-               [:shortest_trip, :least_walking, :earliest_arrival],
+               [:least_walking, :shortest_trip, :earliest_arrival],
                [],
                [],
-               [:shortest_trip, :least_walking]
+               [:least_walking, :shortest_trip]
              ]
     end
   end
