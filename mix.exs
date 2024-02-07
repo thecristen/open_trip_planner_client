@@ -40,7 +40,7 @@ defmodule OpenTripPlannerClient.MixProject do
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:lcov_ex, "~> 0.3", only: [:test], runtime: false},
       {:req, "~> 0.3"},
-      {:timex, "~> 3.7"}
+      {:timex, "~> 3.0"}
     ]
   end
 end
