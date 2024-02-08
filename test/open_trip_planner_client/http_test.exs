@@ -66,13 +66,20 @@ defmodule OpenTripPlannerClient.HttpTest do
             |> MapSet.to_list())
         )
 
-      assert tags == [
+      assert [
                [],
-               [:least_walking, :shortest_trip, :earliest_arrival],
+               three_tags,
                [],
                [],
-               [:least_walking, :shortest_trip]
-             ]
+               two_tags
+             ] = tags
+
+      assert :shortest_trip in three_tags
+      assert :earliest_arrival in three_tags
+      assert :least_walking in three_tags
+
+      assert :least_walking in two_tags
+      assert :shortest_trip in two_tags
     end
   end
 
