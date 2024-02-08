@@ -1,4 +1,4 @@
-name: Make the documentation and publish it
+name: Test, Docs, Release
 
 on:
   push:
@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   build:
+    name: Test & Build docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +22,7 @@ jobs:
           otp-version: 26.0
           elixir-version: 1.16.0
       - run: mix deps.get
+      - run: mix test --cover
       - run: mix docs
       - uses: actions/upload-pages-artifact@v3
         with:
