@@ -8,7 +8,6 @@ defmodule OpenTripPlannerClient.MixProject do
       elixir: "~> 1.16",
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
-      test_coverage: [tool: LcovEx],
       aliases: [
         docs: ["docs --formatter html --output docs"]
       ],
@@ -38,7 +37,6 @@ defmodule OpenTripPlannerClient.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
-      {:lcov_ex, "~> 0.3", only: [:test], runtime: false},
       {:req, "~> 0.3"},
       {:timex, "~> 3.0"}
     ]
