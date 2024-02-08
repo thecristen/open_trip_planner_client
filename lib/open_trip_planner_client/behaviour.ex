@@ -161,5 +161,5 @@ defmodule OpenTripPlannerClient.Behaviour do
           | :unknown
 
   @callback plan(from :: [place], to :: [place], opts :: [plan_opt()]) ::
-              {:ok, %{itineraries: [map()]}} | {:error, error()}
+              {:ok, [map()]} | {:error, error()}
 end
