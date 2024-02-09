@@ -4,8 +4,8 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   """
   @tag_priority_order [:earliest_arrival, :most_direct, :least_walking, :shortest_trip]
 
-  @callback optimal :: :max | :min
-  @callback score(map()) :: number() | nil
+  @callback optimal :: [:max | :min] | :max | :min
+  @callback score(map()) :: [number()] | number() | nil
   @callback tag :: atom()
 
   @type t :: module()
