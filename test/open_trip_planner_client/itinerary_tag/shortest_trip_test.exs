@@ -2,21 +2,21 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTripTest do
   use ExUnit.Case, async: true
   alias OpenTripPlannerClient.ItineraryTag
 
-  test "works" do
+  test "tags and sorts" do
     itineraries = [
       %{"duration" => 100},
       %{"duration" => 123},
       %{"duration" => 99}
     ]
 
-    tags =
+    tagged =
       ItineraryTag.ShortestTrip
       |> ItineraryTag.apply_tag(itineraries)
-      |> Enum.map(
-        &(&1
-          |> Map.get("tag"))
-      )
 
-    assert tags == [nil, nil, :shortest_trip]
+    assert tagged == [
+             %{"duration" => 99, "tag" => :shortest_trip},
+             %{"duration" => 100, "tag" => nil},
+             %{"duration" => 123, "tag" => nil}
+           ]
   end
 end

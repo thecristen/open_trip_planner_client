@@ -36,6 +36,7 @@ defmodule OpenTripPlannerClient.ItineraryTag do
     |> Enum.zip_with(scores, fn itinerary, score ->
       apply_best(itinerary, tag_module.tag(), score === best_score and not is_nil(score))
     end)
+    |> Enum.sort(&tagged_first/2)
   end
 
   defp initialize_tags(%{"tag" => _} = itinerary), do: itinerary
@@ -53,4 +54,10 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   end
 
   defp tag_priority(tag), do: Enum.find_index(@tag_priority_order, &(&1 == tag)) || 0
+
+  # Sort itineraries such that the tagged ones are always preceding untagged
+  defp tagged_first(%{"tag" => nil}, %{"tag" => nil}), do: true
+  defp tagged_first(%{"tag" => _}, %{"tag" => nil}), do: true
+  defp tagged_first(%{"tag" => nil}, %{"tag" => _}), do: false
+  defp tagged_first(_, _), do: true
 end

@@ -58,20 +58,11 @@ defmodule OpenTripPlannerClient.HttpTest do
           ]
         )
 
-      tags =
-        itineraries
-        |> Enum.map(
-          &(&1
-            |> Map.get("tag"))
-        )
+      {tagged, untagged} = Enum.split_while(itineraries, &(!is_nil(&1["tag"])))
 
-      assert [
-               nil,
-               :earliest_arrival,
-               nil,
-               nil,
-               :least_walking
-             ] = tags
+      assert [nil, nil, nil] = Enum.map(untagged, & &1["tag"])
+      assert :least_walking in Enum.map(tagged, & &1["tag"])
+      assert :earliest_arrival in Enum.map(tagged, & &1["tag"])
     end
   end
 

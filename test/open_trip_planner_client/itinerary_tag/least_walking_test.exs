@@ -2,7 +2,7 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
   use ExUnit.Case, async: true
   alias OpenTripPlannerClient.ItineraryTag
 
-  test "works" do
+  test "tags and sorts" do
     itineraries = [
       %{
         "legs" => [%{"mode" => "SUBWAY"}]
@@ -15,14 +15,26 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
       }
     ]
 
-    tags =
+    tagged =
       ItineraryTag.LeastWalking
       |> ItineraryTag.apply_tag(itineraries)
-      |> Enum.map(
-        &(&1
-          |> Map.get("tag"))
-      )
 
-    assert tags == [:least_walking, nil, nil]
+    assert tagged == [
+             %{
+               "legs" => [%{"mode" => "SUBWAY"}],
+               "tag" => :least_walking
+             },
+             %{
+               "legs" => [%{"mode" => "WALK", "distance" => 10}],
+               "tag" => nil
+             },
+             %{
+               "legs" => [
+                 %{"mode" => "WALK", "distance" => 8},
+                 %{"mode" => "WALK", "distance" => 8}
+               ],
+               "tag" => nil
+             }
+           ]
   end
 end
