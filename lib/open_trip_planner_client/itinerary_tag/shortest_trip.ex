@@ -1,6 +1,7 @@
 defmodule OpenTripPlannerClient.ItineraryTag.ShortestTrip do
   @moduledoc """
-  The shortest trip is determined by having the smallest `duration`.
+  The shortest trip is the itinerary having the shortest travel time, e.g. the
+  smallest `duration`.
   """
   @behaviour OpenTripPlannerClient.ItineraryTag
 

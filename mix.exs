@@ -1,10 +1,12 @@
 defmodule OpenTripPlannerClient.MixProject do
   use Mix.Project
 
+  @version "0.4.0"
+
   def project do
     [
       app: :open_trip_planner_client,
-      version: "0.3.2",
+      version: @version,
       elixir: "~> 1.16",
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
@@ -17,9 +19,9 @@ defmodule OpenTripPlannerClient.MixProject do
       source_url: "https://github.com/thecristen/open_trip_planner_client",
       homepage_url: "https://thecristen.github.io/open_trip_planner_client",
       docs: [
-        # The main page in the docs
-        main: "OpenTripPlannerClient.Behaviour",
-        extras: ["README.md"]
+        main: "readme",
+        extras: ["README.md"],
+        source_ref: "v#{@version}"
       ]
     ]
   end
