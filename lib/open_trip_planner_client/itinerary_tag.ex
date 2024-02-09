@@ -2,6 +2,8 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   @moduledoc """
   Logic for a tag which can be applied to itineraries which are the best by some criterion.
   """
+  @tag_priority_order [:earliest_arrival, :most_direct, :least_walking, :shortest_trip]
+
   @callback optimal :: :max | :min
   @callback score(map()) :: number() | nil
   @callback tag :: atom()
@@ -31,19 +33,24 @@ defmodule OpenTripPlannerClient.ItineraryTag do
 
     itineraries
     |> Enum.map(&initialize_tags/1)
-    |> Enum.zip(scores)
-    |> Enum.map(fn {itinerary, score} ->
-      apply_best({itinerary, score}, score === best_score, tag_module.tag())
+    |> Enum.zip_with(scores, fn itinerary, score ->
+      apply_best(itinerary, tag_module.tag(), score === best_score and not is_nil(score))
     end)
   end
 
-  defp initialize_tags(%{"tags" => _} = itinerary), do: itinerary
-  defp initialize_tags(itinerary), do: Map.put_new(itinerary, "tags", MapSet.new())
+  defp initialize_tags(%{"tag" => _} = itinerary), do: itinerary
+  defp initialize_tags(itinerary), do: Map.put_new(itinerary, "tag", nil)
 
-  defp apply_best({itinerary, nil}, _, _), do: itinerary
-  defp apply_best({itinerary, _}, false, _), do: itinerary
+  defp apply_best(itinerary, _, false), do: itinerary
+  defp apply_best(%{"tag" => nil} = itinerary, tag, _), do: %{itinerary | "tag" => tag}
 
-  defp apply_best({%{} = itinerary, _}, true, tag) do
-    update_in(itinerary["tags"], &MapSet.put(&1, tag))
+  defp apply_best(%{"tag" => current_tag} = itinerary, tag, _) do
+    if tag_priority(tag) < tag_priority(current_tag) do
+      %{itinerary | "tag" => tag}
+    else
+      itinerary
+    end
   end
+
+  defp tag_priority(tag), do: Enum.find_index(@tag_priority_order, &(&1 == tag)) || 0
 end

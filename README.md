@@ -184,11 +184,10 @@ tags = [
 {:ok, itineraries} = plan(origin, destination, tags: tags)
 ```
 
-The returned itineraries include an extra field, `"tags"`, which will include all applied tags.
+The returned itineraries include an extra field, `"tag"`, which will contain the relevant tag.
 
 ```elixir
-%{"tags" => tags} = List.first(itineraries)
-assert tags == MapSet.new([:shortest_trip, :least_walking])
+[:shortest_trip, :least_walking, nil] = Enum.map(itineraries, &Map.get(&1, "tag"))
 ```
 
 ## License

@@ -13,6 +13,25 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
   test "correctly ignores tags that are always nil" do
     itineraries = [%{"startTime" => 1, "endTime" => 2}]
     tags = ItineraryTag.apply_tag(BadTag, itineraries)
-    assert tags == [%{"startTime" => 1, "endTime" => 2, "tags" => MapSet.new([])}]
+    assert tags == [%{"startTime" => 1, "endTime" => 2, "tag" => nil}]
+  end
+
+  test "overrides tags of lower priority" do
+    itineraries = [
+      %{"startTime" => 1, "endTime" => 2, "duration" => 40, "tag" => :least_walking},
+      %{"startTime" => 1, "endTime" => 2, "duration" => 50, "tag" => :least_walking}
+    ]
+
+    # Does not override
+    assert ItineraryTag.ShortestTrip
+           |> ItineraryTag.apply_tag(itineraries)
+           |> List.first()
+           |> Map.get("tag") == :least_walking
+
+    # Overrides
+    assert ItineraryTag.EarliestArrival
+           |> ItineraryTag.apply_tag(itineraries)
+           |> List.first()
+           |> Map.get("tag") == :earliest_arrival
   end
 end

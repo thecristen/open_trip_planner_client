@@ -14,10 +14,9 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTripTest do
       |> ItineraryTag.apply_tag(itineraries)
       |> Enum.map(
         &(&1
-          |> Map.get("tags")
-          |> MapSet.to_list())
+          |> Map.get("tag"))
       )
 
-    assert tags == [[], [], [:shortest_trip]]
+    assert tags == [nil, nil, :shortest_trip]
   end
 end
