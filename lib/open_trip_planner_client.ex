@@ -23,52 +23,14 @@ defmodule OpenTripPlannerClient do
   def plan(from, to, opts) do
     {postprocess_opts, opts} = Keyword.split(opts, [:tags])
 
-    with {:ok, params} <- ParamsBuilder.build_params(from, to, opts) do
-      graphql_query =
-        {"""
-          query TripPlan(
-            $fromPlace: String!
-            $toPlace: String!
-            $date: String
-            $time: String
-            $arriveBy: Boolean
-            $wheelchair: Boolean
-            $transportModes: [TransportMode]
-          ) {
-            plan(
-             fromPlace: $fromPlace
-             toPlace: $toPlace
-             date: $date
-             time: $time
-             arriveBy: $arriveBy
-             wheelchair: $wheelchair
-             transportModes: $transportModes
-
-             # Increased from 30 minutes, a 1-hour search window accomodates infrequent routes
-             searchWindow: 3600
-
-             # Increased from 3 to offer more itineraries for potential post-processing
-             numItineraries: 5
-
-             # Increased from 2.0 to reduce number of itineraries with significant walking
-             walkReluctance: 5.0
-
-             # Theoretically can be configured in the future for visitors using translation?
-             locale: "en"
-
-             # Prefer MBTA transit legs over Massport or others.
-             preferred: { agencies: "mbta-ma-us:1" }
-            )
-            #{itinerary_shape()}
-         }
-         """, params}
-
+    with {:ok, params} <- ParamsBuilder.build_params(from, to, opts),
+         {:ok, graphql_query} <- File.read("priv/plan.graphql") do
       root_url =
         Keyword.get(opts, :root_url, Application.fetch_env!(:open_trip_planner_client, :otp_url))
 
       graphql_url = "#{root_url}/otp/routers/default/index/"
 
-      with {:ok, body} <- send_request(graphql_url, graphql_query),
+      with {:ok, body} <- send_request(graphql_url, {graphql_query, params}),
            {:ok, itineraries} <- Parser.validate_body(body) do
         tags = Keyword.get(postprocess_opts, :tags, [])
 
@@ -122,106 +84,5 @@ defmodule OpenTripPlannerClient do
 
   defp status_text({:error, error}) do
     "status=error error=#{inspect(error)}"
-  end
-
-  defp itinerary_shape do
-    """
-    {
-      routingErrors {
-        code
-        description
-      }
-      itineraries {
-        accessibilityScore
-        startTime
-        endTime
-        duration
-        legs {
-          mode
-          startTime
-          endTime
-          distance
-          duration
-          intermediateStops {
-            gtfsId
-            name
-            desc
-            lat
-            lon
-            code
-            locationType
-          }
-          transitLeg
-          headsign
-          realTime
-          realtimeState
-          agency {
-            gtfsId
-            name
-            url
-          }
-          alerts {
-            id
-            alertHeaderText
-            alertDescriptionText
-          }
-          fareProducts {
-            id
-            product {
-              id
-              name
-              riderCategory {
-                id
-                name
-              }
-            }
-          }
-          from {
-            name
-            lat
-            lon
-            departureTime
-            arrivalTime
-            stop {
-              gtfsId
-            }
-          }
-          to {
-            name
-            lat
-            lon
-            departureTime
-            arrivalTime
-            stop {
-              gtfsId
-            }
-          }
-          route {
-            gtfsId
-            longName
-            shortName
-            desc
-            color
-            textColor
-          }
-          trip {
-            gtfsId
-          }
-          steps {
-            distance
-            streetName
-            lat
-            lon
-            absoluteDirection
-            relativeDirection
-            stayOn
-          }
-          legGeometry {
-            points
-          }
-        }
-      }
-    }
-    """
   end
 end

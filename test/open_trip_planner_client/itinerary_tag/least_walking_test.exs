@@ -2,16 +2,16 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
   use ExUnit.Case, async: true
   alias OpenTripPlannerClient.ItineraryTag
 
-  test "tags and sorts" do
+  test "tags, sorts, breaks tie" do
     itineraries = [
       %{
-        "legs" => [%{"mode" => "SUBWAY"}]
+        "walkDistance" => 287
       },
       %{
-        "legs" => [%{"mode" => "WALK", "distance" => 10}]
+        "walkDistance" => 198
       },
       %{
-        "legs" => [%{"mode" => "WALK", "distance" => 8}, %{"mode" => "WALK", "distance" => 8}]
+        "walkDistance" => 198
       }
     ]
 
@@ -19,22 +19,19 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
       ItineraryTag.LeastWalking
       |> ItineraryTag.apply_tag(itineraries)
 
-    assert tagged == [
+    assert [
              %{
-               "legs" => [%{"mode" => "SUBWAY"}],
+               "walkDistance" => 198,
                "tag" => :least_walking
              },
              %{
-               "legs" => [%{"mode" => "WALK", "distance" => 10}],
+               "walkDistance" => _,
                "tag" => nil
              },
              %{
-               "legs" => [
-                 %{"mode" => "WALK", "distance" => 8},
-                 %{"mode" => "WALK", "distance" => 8}
-               ],
+               "walkDistance" => _,
                "tag" => nil
              }
-           ]
+           ] = tagged
   end
 end

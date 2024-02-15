@@ -24,7 +24,7 @@ def deps do
     %{:open_trip_planner_client,
       [
         github: "thecristen/open_trip_planner_client",
-        ref: "v0.3.2"
+        ref: "v0.5.0"
       ]}
   ]
 end
@@ -71,7 +71,7 @@ value, and can optionally include a `:name`.
 
 ```elixir
 origin = [stop_id: "place-north"]
-destination = [name: "Park Plaza", lat_lon: %{42.348777, -71.066481}]
+destination = [name: "Park Plaza", lat_lon: {42.348777, -71.066481}]
 %{:ok, itineraries} = OpenTripPlannerClient.plan(origin, destination, [])
 ```
 

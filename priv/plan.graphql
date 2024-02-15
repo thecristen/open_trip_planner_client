@@ -1,0 +1,84 @@
+query TripPlan(
+  $fromPlace: String!
+  $toPlace: String!
+  $date: String
+  $time: String
+  $arriveBy: Boolean
+  $wheelchair: Boolean
+  $transportModes: [TransportMode]
+) {
+  plan(
+    fromPlace: $fromPlace
+    toPlace: $toPlace
+    date: $date
+    time: $time
+    arriveBy: $arriveBy
+    wheelchair: $wheelchair
+    transportModes: $transportModes
+
+    # Increased from 30 minutes, a 1-hour search window accomodates infrequent routes
+    searchWindow: 3600
+
+    # Increased from 3 to offer more itineraries for potential post-processing
+    numItineraries: 5
+
+    # Increased from 2.0 to reduce number of itineraries with significant walking
+    walkReluctance: 5.0
+
+    # Theoretically can be configured in the future for visitors using translation?
+    locale: "en"
+
+    # Prefer MBTA transit legs over Massport or others.
+    preferred: { agencies: "mbta-ma-us:1" }
+  ) {
+    routingErrors {
+      code
+      description
+    }
+    itineraries {
+      accessibilityScore
+      duration
+      endTime
+      legs {
+        agency {
+          name
+          url
+        }
+        distance
+        duration
+        endTime
+        from { ...PlaceInfo }
+        intermediateStops { gtfsId }
+        legGeometry { points }
+        mode
+        realTime
+        realtimeState
+        route { 
+          gtfsId
+          shortName
+          longName
+        }
+        startTime
+        steps {
+          distance
+          streetName
+          absoluteDirection
+          relativeDirection
+        }
+        to { ...PlaceInfo }
+        transitLeg
+        trip { gtfsId }
+      }
+      numberOfTransfers
+      startTime
+      walkDistance
+    }
+  }
+}
+
+fragment PlaceInfo on Place {
+  name
+  lat
+  lon
+  stop { gtfsId }
+}
