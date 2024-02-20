@@ -8,6 +8,7 @@ defmodule OpenTripPlannerClient.MixProject do
       app: :open_trip_planner_client,
       version: @version,
       elixir: "~> 1.16",
+      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
       aliases: [
@@ -26,6 +27,9 @@ defmodule OpenTripPlannerClient.MixProject do
     ]
   end
 
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
+
   def application do
     [
       extra_applications: [:logger]
@@ -39,6 +43,8 @@ defmodule OpenTripPlannerClient.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
+      {:ex_machina, "2.7.0", only: :test},
+      {:faker, "0.17.0", only: :test},
       {:req, "~> 0.3"},
       {:timex, "~> 3.0"}
     ]
