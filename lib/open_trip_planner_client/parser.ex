@@ -64,10 +64,6 @@ defmodule OpenTripPlannerClient.Parser do
   end
 
   defp log_error(errors) when is_list(errors), do: Enum.each(errors, &log_error/1)
-  defp log_error(%{"message" => message}), do: Logger.warning(message)
 
-  defp log_error(%{"code" => _, "description" => _} = routing_error),
-    do: Logger.notice(routing_error)
-
-  defp log_error(error), do: Logger.warning(error)
+  defp log_error(error), do: Logger.error(error)
 end

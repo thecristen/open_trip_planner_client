@@ -70,19 +70,26 @@ defmodule OpenTripPlannerClient do
         [graphql_req, [graphql: {query, params}]]
       )
 
-    _ =
-      Logger.info(fn ->
-        "#{__MODULE__}.plan_response url=#{url} params=#{inspect(params)} #{status_text(response)} duration=#{duration / :timer.seconds(1)}"
-      end)
+    logged =
+      [
+        url: url,
+        params: inspect(params),
+        duration: duration / :timer.seconds(1)
+      ]
+
+    case response do
+      {:ok, %{status: code}} ->
+        logged
+        |> Keyword.put_new(:status, code)
+        |> Logger.info()
+
+      {:error, error} ->
+        logged
+        |> Keyword.put_new(:status, "error")
+        |> Keyword.put_new(:error, inspect(error))
+        |> Logger.error()
+    end
 
     response
-  end
-
-  defp status_text({:ok, %{status: code}}) do
-    "status=#{code}"
-  end
-
-  defp status_text({:error, error}) do
-    "status=error error=#{inspect(error)}"
   end
 end
