@@ -2,7 +2,7 @@ defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrivalTest do
   use ExUnit.Case, async: true
   alias OpenTripPlannerClient.ItineraryTag
 
-  test "tags and sorts" do
+  test "tags, sorts, breaks tie" do
     itineraries = [
       %{"endTime" => 12_345_678},
       %{"endTime" => 12_345_888},
@@ -13,10 +13,10 @@ defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrivalTest do
       ItineraryTag.EarliestArrival
       |> ItineraryTag.apply_tag(itineraries)
 
-    assert tagged == [
+    assert [
              %{"endTime" => 12_345_678, "tag" => :earliest_arrival},
-             %{"endTime" => 12_345_678, "tag" => :earliest_arrival},
-             %{"endTime" => 12_345_888, "tag" => nil}
-           ]
+             %{"tag" => nil},
+             %{"tag" => nil}
+           ] = tagged
   end
 end

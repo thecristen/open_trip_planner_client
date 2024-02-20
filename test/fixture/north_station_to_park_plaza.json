@@ -8,6 +8,7 @@
                     "startTime": 1706813160000,
                     "endTime": 1706815000000,
                     "duration": 1840,
+                    "numberOfTransfers": 0,
                     "legs": [
                         {
                             "mode": "WALK",
@@ -166,13 +167,15 @@
                                 "points": "_nqaGh}upL@@zBkC@Bf@bAHKHLFNx@zADHFHr@tAFHDLBBNZHNPJ[hBFBlA`@@@t@X`A\\BBB@@DBB@DBJL[DM@AHW??DFRTLNFFFDFFHFJDf@XFBHBB@D@@@@@B?B@B?@@B?D@B?D@D?B?@?B@D?B?D?B?D?T?\\A|BCR?vAALAH@RBH@~@BP?B?V?PADAHAHAlB]B?B?FBFBX~@DGBFDAh@a@DEROhAiA~@eA@A@A?CFLPSd@h@JJp@r@|@~@FH\\^b@^NJBBJHTNx@`@B@pAh@LD\\N\\Lp@TPFD@\\JLD~@XB@h@H`@H^FF@PDNBz@Nt@LLBTDH@PDh@JTHZFDZt@ND@B?|@RD?F@VFr@JfBT?FBJDPHPFNFJBLBJ@L?P?TVBDBP?BAJT"
                             }
                         }
-                    ]
+                    ],
+                    "walkDistance": 2214.18
                 },
                 {
                     "accessibilityScore": 1,
                     "startTime": 1706813400000,
                     "endTime": 1706814466000,
                     "duration": 1066,
+                    "numberOfTransfers": 1,
                     "legs": [
                         {
                             "mode": "SUBWAY",
@@ -449,13 +452,15 @@
                                 "points": "k~naGfmvpL????Pb@????H\\????@?Bb@@NHA@^Ad@?NAZ?n@H@C~@@BANz@Nt@LLBTDH@PDh@JTHZFDZt@ND@B?|@RD?F@VFr@JfBT?FBJDPHPFNFJBLBJ@L?P?TVBDBP?BAJT"
                             }
                         }
-                    ]
+                    ],
+                    "walkDistance": 663.55
                 },
                 {
                     "accessibilityScore": 1,
                     "startTime": 1706813460000,
                     "endTime": 1706814842000,
                     "duration": 1382,
+                    "numberOfTransfers": 1,
                     "legs": [
                         {
                             "mode": "TRAM",
@@ -671,13 +676,15 @@
                                 "points": "mvoaGdkvpL????Ft@????BC??????BKAOXBd@f@FDb@d@NP|@x@JJDKNLRHhChArAj@lBp@l@Nj@NvAVNJL@F@J@?A@A@?~B`@|@PPB??JB@LTDXJFCt@ND@B?|@RD?F@VFr@JfBT?FBJDPHPFNFJBLBJ@L?P?TVBDBP?BAJT"
                             }
                         }
-                    ]
+                    ],
+                    "walkDistance": 995.92
                 },
                 {
                     "accessibilityScore": 1,
                     "startTime": 1706813580000,
                     "endTime": 1706814995000,
                     "duration": 1415,
+                    "numberOfTransfers": 1,
                     "legs": [
                         {
                             "mode": "TRAM",
@@ -893,13 +900,15 @@
                                 "points": "mvoaGdkvpL????Ft@????BC??????BKAOXBd@f@FDb@d@NP|@x@JJDKNLRHhChArAj@lBp@l@Nj@NvAVNJL@F@J@?A@A@?~B`@|@PPB??JB@LTDXJFCt@ND@B?|@RD?F@VFr@JfBT?FBJDPHPFNFJBLBJ@L?P?TVBDBP?BAJT"
                             }
                         }
-                    ]
+                    ],
+                    "walkDistance": 1039.81
                 },
                 {
                     "accessibilityScore": 1,
                     "startTime": 1706813940000,
                     "endTime": 1706815006000,
                     "duration": 1066,
+                    "numberOfTransfers": 1,
                     "legs": [
                         {
                             "mode": "SUBWAY",
@@ -1176,7 +1185,8 @@
                                 "points": "k~naGfmvpL????Pb@????H\\????@?Bb@@NHA@^Ad@?NAZ?n@H@C~@@BANz@Nt@LLBTDH@PDh@JTHZFDZt@ND@B?|@RD?F@VFr@JfBT?FBJDPHPFNFJBLBJ@L?P?TVBDBP?BAJT"
                             }
                         }
-                    ]
+                    ],
+                    "walkDistance": 663.55
                 }
             ]
         }

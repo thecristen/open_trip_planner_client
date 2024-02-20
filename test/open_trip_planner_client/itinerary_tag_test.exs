@@ -26,7 +26,7 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
     assert ItineraryTag.ShortestTrip
            |> ItineraryTag.apply_tag(itineraries)
            |> List.first()
-           |> Map.get("tag") == :least_walking
+           |> Map.get("tag") == :shortest_trip
 
     # Overrides
     assert ItineraryTag.EarliestArrival
