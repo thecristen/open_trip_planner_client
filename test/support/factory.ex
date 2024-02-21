@@ -3,8 +3,8 @@ defmodule OpenTripPlannerClientTest.Support.Factory do
   @moduledoc "Data generators for tests"
   use ExMachina
 
-  def itinerary_factory do
-    legs = Faker.random_between(1, 4) |> build_list(:leg)
+  def itinerary_factory(attrs) do
+    legs = Map.get(attrs, :legs, Faker.random_between(1, 4) |> build_list(:leg))
 
     %{
       "accessibilityScore" => Enum.random([0, 1]),
