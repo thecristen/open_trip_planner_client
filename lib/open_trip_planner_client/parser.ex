@@ -46,11 +46,7 @@ defmodule OpenTripPlannerClient.Parser do
         }
       }) do
     log_error(routingErrors)
-
-    {:error,
-     code
-     |> String.downcase()
-     |> String.to_existing_atom()}
+    {:error, code}
   end
 
   def validate_body(%{

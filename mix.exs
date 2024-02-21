@@ -1,7 +1,7 @@
 defmodule OpenTripPlannerClient.MixProject do
   use Mix.Project
 
-  @version "0.6.1"
+  @version "0.6.2"
 
   def project do
     [

@@ -71,14 +71,7 @@ defmodule OpenTripPlannerClient.Behaviour do
   removed. If you want to still show the transit results, you need to make
   walking less desirable by increasing the walk reluctance.
   """
-  @type routing_error_code ::
-          :no_transit_connection
-          | :no_transit_connection_in_search_window
-          | :outside_service_period
-          | :outside_bounds
-          | :location_not_found
-          | :no_stops_in_range
-          | :walking_better_than_transit
+  @type routing_error_code :: String.t()
 
   @typedoc """
   Possible planner error messages, taken from `Message.properties` in the OTP
@@ -136,29 +129,12 @@ defmodule OpenTripPlannerClient.Behaviour do
   * `TRIANGLE_VALUES_NOT_SET`: If OptimizeType is TRIANGLE,
   triangleSafetyFactor, triangleSlopeFactor, and triangleTimeFactor must be set
   """
-  @type planner_error_code ::
-          :system_error
-          | :graph_unavailable
-          | :outside_bounds
-          | :processing_timeout
-          | :bogus_parameter
-          | :location_not_accessible
-          | :path_not_found
-          | :no_transit_times
-          | :geocode_from_not_found
-          | :geocode_to_not_found
-          | :geocode_from_to_not_found
-          | :geocode_intermediate_not_found
-          | :too_close
-          | :underspecified_triangle
-          | :triangle_not_affine
-          | :triangle_optimize_type_not_set
-          | :triangle_values_not_set
+  @type planner_error_code :: String.t()
 
   @type error ::
           routing_error_code
           | planner_error_code
-          | :unknown
+          | String.t()
 
   @callback plan(from :: [place], to :: [place], opts :: [plan_opt()]) ::
               {:ok, [map()]} | {:error, error()}

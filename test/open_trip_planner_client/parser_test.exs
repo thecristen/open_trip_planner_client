@@ -72,7 +72,7 @@ defmodule OpenTripPlannerClient.ParserTest do
     end
 
     test "handles routing errors" do
-      assert {{:error, :path_not_found}, log} =
+      assert {{:error, "PATH_NOT_FOUND"}, log} =
                with_log(fn ->
                  validate_body(%{
                    "data" => %{"plan" => %{"routingErrors" => [%{"code" => "PATH_NOT_FOUND"}]}}
