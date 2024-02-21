@@ -16,6 +16,8 @@ defmodule OpenTripPlannerClient do
 
   require Logger
 
+  @plan_query File.read!("priv/plan.graphql")
+
   @impl OpenTripPlannerClient.Behaviour
   @doc """
   Generate a trip plan with the given endpoints and options.
@@ -23,24 +25,35 @@ defmodule OpenTripPlannerClient do
   def plan(from, to, opts) do
     {postprocess_opts, opts} = Keyword.split(opts, [:tags])
 
-    with {:ok, params} <- ParamsBuilder.build_params(from, to, opts),
-         {:ok, graphql_query} <- File.read("priv/plan.graphql") do
-      root_url =
-        Keyword.get(opts, :root_url, Application.fetch_env!(:open_trip_planner_client, :otp_url))
+    case ParamsBuilder.build_params(from, to, opts) do
+      {:ok, params} ->
+        root_url =
+          Keyword.get(
+            opts,
+            :root_url,
+            Application.fetch_env!(:open_trip_planner_client, :otp_url)
+          )
 
-      graphql_url = "#{root_url}/otp/routers/default/index/"
+        graphql_url = "#{root_url}/otp/routers/default/index/"
 
-      with {:ok, body} <- send_request(graphql_url, {graphql_query, params}),
-           {:ok, itineraries} <- Parser.validate_body(body) do
-        tags = Keyword.get(postprocess_opts, :tags, [])
+        with {:ok, body} <- send_request(graphql_url, {@plan_query, params}),
+             {:ok, itineraries} <- Parser.validate_body(body) do
+          tags = Keyword.get(postprocess_opts, :tags, [])
 
-        result =
-          Enum.reduce(tags, itineraries, fn tag, itineraries ->
-            ItineraryTag.apply_tag(tag, itineraries)
-          end)
+          result =
+            Enum.reduce(tags, itineraries, fn tag, itineraries ->
+              ItineraryTag.apply_tag(tag, itineraries)
+            end)
 
-        {:ok, result}
-      end
+          {:ok, result}
+        end
+
+      error ->
+        error
+        |> inspect()
+        |> Logger.error(%{from: from, to: to, opts: opts})
+
+        error
     end
   end
 
