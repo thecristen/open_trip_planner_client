@@ -16,8 +16,8 @@ query TripPlan(
     wheelchair: $wheelchair
     transportModes: $transportModes
 
-    # Increased from 30 minutes, a 1-hour search window accomodates infrequent routes
-    searchWindow: 3600
+    # A 2-hour search window accomodates infrequent routes
+    searchWindow: 7200
 
     # Increased from 3 to offer more itineraries for potential post-processing
     numItineraries: 5
