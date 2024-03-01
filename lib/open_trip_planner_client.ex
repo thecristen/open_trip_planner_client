@@ -38,14 +38,9 @@ defmodule OpenTripPlannerClient do
 
         with {:ok, body} <- send_request(graphql_url, {@plan_query, params}),
              {:ok, itineraries} <- Parser.validate_body(body) do
-          tags = Keyword.get(postprocess_opts, :tags, [])
-
-          result =
-            Enum.reduce(tags, itineraries, fn tag, itineraries ->
-              ItineraryTag.apply_tag(tag, itineraries)
-            end)
-
-          {:ok, result}
+          itineraries
+          |> Enum.map(&Map.put_new(&1, "tag", nil))
+          |> apply_tags(Keyword.get(postprocess_opts, :tags, []))
         end
 
       error ->
@@ -55,6 +50,19 @@ defmodule OpenTripPlannerClient do
 
         error
     end
+  end
+
+  # Don't apply tags if there's only one itinerary returned
+  defp apply_tags([%{}] = itineraries, _), do: {:ok, itineraries}
+  defp apply_tags(itineraries, []), do: {:ok, itineraries}
+
+  defp apply_tags(itineraries, tags) do
+    result =
+      Enum.reduce(tags, itineraries, fn tag, itineraries ->
+        ItineraryTag.apply_tag(tag, itineraries)
+      end)
+
+    {:ok, result}
   end
 
   defp send_request(url, query) do

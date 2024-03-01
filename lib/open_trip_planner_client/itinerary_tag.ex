@@ -25,7 +25,6 @@ defmodule OpenTripPlannerClient.ItineraryTag do
     {best_score, scores} = scored(itineraries, &tag_module.score/1, tag_module.optimal())
 
     itineraries
-    |> Enum.map(&initialize_tags/1)
     |> Enum.zip_with(scores, fn itinerary, score ->
       apply_best(itinerary, tag_module.tag(), score === best_score and not is_nil(score))
     end)
@@ -50,9 +49,6 @@ defmodule OpenTripPlannerClient.ItineraryTag do
 
     {best_score, scores}
   end
-
-  defp initialize_tags(%{"tag" => _} = itinerary), do: itinerary
-  defp initialize_tags(itinerary), do: Map.put_new(itinerary, "tag", nil)
 
   defp apply_best(%{"tag" => current_tag} = itinerary, tag, false) when current_tag == tag do
     %{itinerary | "tag" => nil}

@@ -13,7 +13,8 @@ defmodule OpenTripPlannerClientTest.Support.Factory do
       "legs" => legs,
       "numberOfTransfers" => Enum.count(legs) - 1,
       "startTime" => Enum.map(legs, & &1["startTime"]) |> Enum.min(),
-      "walkDistance" => random_distance()
+      "walkDistance" => random_distance(),
+      "tag" => nil
     }
   end
 

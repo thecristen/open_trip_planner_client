@@ -5,13 +5,16 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
   test "tags, sorts, breaks tie" do
     itineraries = [
       %{
-        "walkDistance" => 287
+        "walkDistance" => 287,
+        "tag" => nil
       },
       %{
-        "walkDistance" => 198
+        "walkDistance" => 198,
+        "tag" => nil
       },
       %{
-        "walkDistance" => 198
+        "walkDistance" => 198,
+        "tag" => nil
       }
     ]
 

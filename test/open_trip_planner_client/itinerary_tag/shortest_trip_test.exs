@@ -4,10 +4,10 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTripTest do
 
   test "tags, sorts, breaks ties" do
     itineraries = [
-      %{"duration" => 100},
-      %{"duration" => 123},
-      %{"duration" => 99},
-      %{"duration" => 99}
+      %{"duration" => 100, "tag" => nil},
+      %{"duration" => 123, "tag" => nil},
+      %{"duration" => 99, "tag" => nil},
+      %{"duration" => 99, "tag" => nil}
     ]
 
     tagged =

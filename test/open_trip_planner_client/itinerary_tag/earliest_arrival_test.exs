@@ -4,9 +4,9 @@ defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrivalTest do
 
   test "tags, sorts, breaks tie" do
     itineraries = [
-      %{"endTime" => 12_345_678},
-      %{"endTime" => 12_345_888},
-      %{"endTime" => 12_345_678}
+      %{"endTime" => 12_345_678, "tag" => nil},
+      %{"endTime" => 12_345_888, "tag" => nil},
+      %{"endTime" => 12_345_678, "tag" => nil}
     ]
 
     tagged =
