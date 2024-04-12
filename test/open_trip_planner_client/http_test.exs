@@ -34,7 +34,7 @@ defmodule OpenTripPlannerClient.HttpTest do
   end
 
   describe "plan/3 with fixture data" do
-    @fixture File.read!("test/fixture/north_station_to_park_plaza.json")
+    @fixture File.read!("test/fixture/alewife_to_franklin_park_zoo.json")
 
     test "can apply tags", %{bypass: bypass} do
       Bypass.expect_once(bypass, fn conn ->
@@ -60,9 +60,9 @@ defmodule OpenTripPlannerClient.HttpTest do
 
       {tagged, untagged} = Enum.split_while(itineraries, &(!is_nil(&1["tag"])))
 
-      assert [nil, nil, nil] = Enum.map(untagged, & &1["tag"])
-      assert :shortest_trip in Enum.map(tagged, & &1["tag"])
-      assert :earliest_arrival in Enum.map(tagged, & &1["tag"])
+      assert Enum.map(untagged, & &1["tag"]) |> Enum.all?(&is_nil/1)
+      assert "least_walking" in Enum.map(tagged, & &1["tag"])
+      assert "earliest_arrival" in Enum.map(tagged, & &1["tag"])
     end
   end
 

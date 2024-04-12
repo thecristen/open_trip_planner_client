@@ -45,6 +45,7 @@ defmodule OpenTripPlannerClient.MixProject do
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:ex_machina, "2.7.0", only: :test},
       {:faker, "0.17.0", only: :test},
+      {:jason, "~> 1.4"},
       {:req, "~> 0.3"},
       {:timex, "~> 3.0"}
     ]
