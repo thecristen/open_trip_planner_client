@@ -38,7 +38,7 @@ query TripPlan(
     itineraries {
       accessibilityScore
       duration
-      endTime
+      end
       legs {
         agency {
           name
@@ -46,7 +46,7 @@ query TripPlan(
         }
         distance
         duration
-        endTime
+        end { ...TimeInfo }
         from { ...PlaceInfo }
         intermediateStops { gtfsId }
         legGeometry { points }
@@ -58,7 +58,7 @@ query TripPlan(
           shortName
           longName
         }
-        startTime
+        start { ...TimeInfo }
         steps {
           distance
           streetName
@@ -70,7 +70,7 @@ query TripPlan(
         trip { gtfsId }
       }
       numberOfTransfers
-      startTime
+      start
       walkDistance
     }
   }
@@ -81,4 +81,12 @@ fragment PlaceInfo on Place {
   lat
   lon
   stop { gtfsId }
+}
+
+fragment TimeInfo on LegTime {
+  scheduledTime
+  estimated {
+    time
+    delay
+  }
 }
