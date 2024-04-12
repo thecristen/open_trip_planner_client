@@ -61,9 +61,11 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
   end
 
   test "overrides tags of lower priority" do
+    end_dt = Faker.DateTime.backward(4)
+
     itineraries = [
-      %{"startTime" => 1, "endTime" => 2, "duration" => 40, "tag" => :least_walking},
-      %{"startTime" => 1, "endTime" => 2, "duration" => 50, "tag" => :least_walking}
+      %{"end" => DateTime.to_iso8601(end_dt), "duration" => 40, "tag" => :least_walking},
+      %{"end" => DateTime.to_iso8601(end_dt), "duration" => 50, "tag" => :least_walking}
     ]
 
     # Does not override
