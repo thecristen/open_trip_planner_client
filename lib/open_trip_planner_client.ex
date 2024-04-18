@@ -54,15 +54,11 @@ defmodule OpenTripPlannerClient do
 
   # Don't apply tags if there's only one itinerary returned
   defp apply_tags([%{}] = itineraries, _), do: {:ok, itineraries}
+  # No tags to apply
   defp apply_tags(itineraries, []), do: {:ok, itineraries}
 
   defp apply_tags(itineraries, tags) do
-    result =
-      Enum.reduce(tags, itineraries, fn tag, itineraries ->
-        ItineraryTag.apply_tag(tag, itineraries)
-      end)
-
-    {:ok, result}
+    {:ok, ItineraryTag.apply_tags(itineraries, tags)}
   end
 
   defp send_request(url, query) do

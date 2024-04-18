@@ -5,18 +5,15 @@ defmodule OpenTripPlannerClient.ItineraryTag.MostDirectTest do
 
   test "tags, sorts, breaks tie" do
     itineraries = add_ties(build_list(7, :itinerary))
-
-    with_tag =
-      ItineraryTag.MostDirect
-      |> ItineraryTag.apply_tag(itineraries)
+    with_tag = ItineraryTag.apply_tags(itineraries, [ItineraryTag.MostDirect])
 
     # all others should have both fewer/equal number of transfers and fewer/equal walking distance
-    {[%{"numberOfTransfers" => best_transfers, "walkDistance" => best_walk}], untagged} =
+    {[tagged], untagged} =
       Enum.split_with(with_tag, &(&1["tag"] == :most_direct))
 
     for %{"numberOfTransfers" => transfers, "walkDistance" => walk} <- untagged do
-      assert best_transfers <= transfers
-      assert best_walk <= walk
+      assert tagged["numberOfTransfers"] <= transfers
+      assert tagged["walkDistance"] < walk
     end
   end
 

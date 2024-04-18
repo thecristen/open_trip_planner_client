@@ -18,22 +18,20 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
       }
     ]
 
-    tagged =
-      ItineraryTag.LeastWalking
-      |> ItineraryTag.apply_tag(itineraries)
+    tagged = ItineraryTag.apply_tags(itineraries, [ItineraryTag.LeastWalking])
 
     assert [
+             %{
+               "walkDistance" => _,
+               "tag" => nil
+             },
              %{
                "walkDistance" => 198,
                "tag" => :least_walking
              },
              %{
-               "walkDistance" => _,
-               "tag" => nil
-             },
-             %{
-               "walkDistance" => _,
-               "tag" => nil
+               "walkDistance" => 198,
+               "tag" => :least_walking
              }
            ] = tagged
   end

@@ -1,136 +1,91 @@
 defmodule OpenTripPlannerClient.ItineraryTag do
   @moduledoc """
-  Logic for a tag which can be applied to itineraries which are the best by some criterion.
+  Logic for applying multiple `OpenTripPlannerClient.ItineraryTag` scoring to a
+  list of itineraries.
   """
-  @tag_priority_order [:most_direct, :earliest_arrival, :shortest_trip, :least_walking]
+
+  alias OpenTripPlannerClient.ItineraryTag.{
+    Behaviour,
+    EarliestArrival,
+    LeastWalking,
+    MostDirect,
+    Scorer,
+    ShortestTrip
+  }
+
+  @tag_priority_order [
+                        MostDirect,
+                        EarliestArrival,
+                        ShortestTrip,
+                        LeastWalking
+                      ]
+                      |> Enum.map(& &1.tag())
 
   @doc """
-  Applies the tag defined by the given module to the itinerary with the optimal score.
-
-  If multiple itineraries are optimal, they will each get the tag.
-  If all itineraries have a score of nil, nothing gets the tag.
+  Apply scores from a number of modules implementing the
+  `OpenTripPlannerClient.ItineraryTag.Behaviour` behaviour, choosing tags for
+  each eligible itinerary according to `@tag_priority_order`.
   """
-  @spec apply_tag(t(), [map()]) :: [map()]
-  def apply_tag(tag_module, itineraries) do
-    {best_score, scores} = scored(itineraries, &tag_module.score/1, tag_module.optimal())
+  @spec apply_tags([Behaviour.itinerary_map()], [Behaviour.t()]) :: [Behaviour.itinerary_map()]
+  def apply_tags(itineraries, tag_modules) do
+    itineraries =
+      itineraries
+      |> Enum.map(&Map.put_new(&1, :candidate_tags, []))
+
+    tag_modules
+    |> Enum.reduce(itineraries, &apply_candidate_tag/2)
+    |> Enum.map(&with_winning_tag/1)
+  end
+
+  @spec apply_candidate_tag(Behaviour.t(), [Behaviour.itinerary_map()]) :: [
+          Behaviour.itinerary_map()
+        ]
+  defp apply_candidate_tag(tag_module, itineraries) do
+    winning_indexes = winning_indexes(tag_module, itineraries)
 
     itineraries
-    |> Enum.zip_with(scores, fn itinerary, score ->
-      apply_best(itinerary, tag_module.tag(), score === best_score and not is_nil(score))
-    end)
-    |> apply_tiebreakers(tag_module)
-    |> final_tiebreaker(tag_module.tag())
-    |> Enum.sort(&tagged_first/2)
-  end
-
-  defp scored(itineraries, scoring_fn, optimal_value) do
-    scores = itineraries |> Enum.map(scoring_fn)
-
-    {min_score, max_score} =
-      scores
-      |> Enum.reject(&is_nil/1)
-      |> Enum.min_max(fn -> {nil, nil} end)
-
-    best_score =
-      case optimal_value do
-        :max -> max_score
-        :min -> min_score
-      end
-
-    {best_score, scores}
-  end
-
-  defp apply_best(%{"tag" => current_tag} = itinerary, tag, false) when current_tag == tag do
-    %{itinerary | "tag" => nil}
-  end
-
-  defp apply_best(%{"tag" => current_tag} = itinerary, tag, true) do
-    if is_nil(current_tag) or tag_priority(tag) < tag_priority(current_tag) do
-      %{itinerary | "tag" => tag}
-    else
-      itinerary
-    end
-  end
-
-  defp apply_best(itinerary, _, _), do: itinerary
-
-  defp tag_priority(tag), do: Enum.find_index(@tag_priority_order, &(&1 == tag)) || 0
-
-  @spec apply_tiebreakers([map()], __MODULE__) :: [map()]
-  @spec apply_tiebreakers([map()], atom(), [{(map() -> number() | nil), :max | :min}]) :: [map()]
-  defp apply_tiebreakers(itineraries, tag_module) do
-    if function_exported?(tag_module, :tiebreakers, 0) do
-      apply_tiebreakers(itineraries, tag_module.tag(), tag_module.tiebreakers())
-    else
-      itineraries
-    end
-  end
-
-  defp apply_tiebreakers(itineraries, tag, tiebreakers) do
-    tiebreakers
-    |> Enum.reduce_while(itineraries, fn tiebreaking, acc_itineraries ->
-      if Enum.count(acc_itineraries, &(&1["tag"] == tag)) <= 1 do
-        {:halt, acc_itineraries}
+    |> Enum.with_index()
+    |> Enum.map(fn {itinerary, index} ->
+      if index in winning_indexes do
+        %{itinerary | candidate_tags: [tag_module.tag() | itinerary.candidate_tags]}
       else
-        {:cont, apply_tiebreaker(tiebreaking, acc_itineraries, tag)}
+        itinerary
       end
     end)
   end
 
-  defp apply_tiebreaker({tiebreaker_fn, tiebreaker_optimization}, itineraries, tag) do
-    {best_of_tagged, _} =
-      itineraries
-      |> Enum.filter(&(&1["tag"] == tag))
-      |> scored(tiebreaker_fn, tiebreaker_optimization)
-
-    {_, all_scores} =
-      itineraries
-      |> scored(tiebreaker_fn, tiebreaker_optimization)
-
-    itineraries
-    |> Enum.zip_with(all_scores, fn
-      %{"tag" => itinerary_tag} = itinerary, score when itinerary_tag == tag ->
-        apply_best(itinerary, tag, score === best_of_tagged)
-
-      itinerary, _ ->
-        itinerary
-    end)
+  @spec winning_indexes(Behaviour.t(), [Behaviour.itinerary_map()]) :: [non_neg_integer()]
+  defp winning_indexes(tag_module, itineraries) do
+    tag_module
+    |> Scorer.itinerary_scorers()
+    |> Enum.map(& &1.(itineraries))
+    |> Enum.reduce_while([], &iterative_scoring/2)
   end
 
-  defp final_tiebreaker(itineraries, tag) do
-    indexed_itineraries =
-      itineraries
-      |> Enum.with_index()
+  # Multiple scoring criteria are ordered, only proceeding to the next in the
+  # event of a tie. Therefore walk through each set of scores and stop when
+  # there's a single winner or after every score has been considered.
+  @spec iterative_scoring([non_neg_integer()], [non_neg_integer()]) ::
+          {:cont, [non_neg_integer()]} | {:halt, [non_neg_integer()]}
+  defp iterative_scoring(candidates, []), do: {:cont, candidates}
+  defp iterative_scoring(_, [single_winner]), do: {:halt, [single_winner]}
 
-    tied_indexes =
-      indexed_itineraries
-      |> Enum.filter(fn {itinerary, _} ->
-        itinerary["tag"] == tag
-      end)
-      |> Enum.map(&elem(&1, 1))
+  defp iterative_scoring(candidates, winners) do
+    edits = List.myers_difference(winners, candidates)
 
-    if Enum.count(tied_indexes) <= 1 do
-      itineraries
+    if Keyword.has_key?(edits, :eq) do
+      {:cont, Keyword.get(edits, :eq)}
     else
-      winning_index = Enum.random(tied_indexes)
-
-      indexed_itineraries
-      |> Enum.map(&to_itinerary(&1, winning_index, tag))
+      {:halt, winners}
     end
   end
 
-  defp to_itinerary({itinerary, index}, winning_index, _)
-       when index == winning_index,
-       do: itinerary
+  defp with_winning_tag(%{candidate_tags: candidate_tags} = itinerary) do
+    winning_tag =
+      Enum.find(@tag_priority_order, &Enum.member?(candidate_tags, &1))
 
-  defp to_itinerary({%{"tag" => itinerary_tag} = itinerary, _}, _, tag) when itinerary_tag == tag,
-    do: %{itinerary | "tag" => nil}
-
-  defp to_itinerary({itinerary, _}, _, _), do: itinerary
-
-  # Sort itineraries such that the tagged ones are always preceding untagged
-  defp tagged_first(%{"tag" => nil}, %{"tag" => nil}), do: true
-  defp tagged_first(%{"tag" => _}, %{"tag" => nil}), do: true
-  defp tagged_first(%{"tag" => nil}, %{"tag" => _}), do: false
-  defp tagged_first(_, _), do: true
+    itinerary
+    |> Map.put("tag", winning_tag)
+    |> Map.drop([:candidate_tags])
+  end
 end
