@@ -9,10 +9,10 @@ defmodule OpenTripPlannerClientTest.Support.Factory do
     %{
       "accessibilityScore" => Enum.random([0, 1]),
       "duration" => Enum.map(legs, & &1["duration"]) |> Enum.sum(),
-      "endTime" => Enum.map(legs, & &1["endTime"]) |> Enum.max(),
+      "end" => Enum.map(legs, & &1["end"]) |> List.last(),
       "legs" => legs,
       "numberOfTransfers" => Enum.count(legs) - 1,
-      "startTime" => Enum.map(legs, & &1["startTime"]) |> Enum.min(),
+      "start" => Enum.map(legs, & &1["start"]) |> List.first(),
       "walkDistance" => random_distance(),
       "tag" => nil
     }
@@ -30,14 +30,18 @@ defmodule OpenTripPlannerClientTest.Support.Factory do
 
     from = build(:place, if(transit_leg, do: %{"stop_id" => random_string(7)}, else: %{}))
     to = build(:place, if(transit_leg, do: %{"stop_id" => random_string(7)}, else: %{}))
-    start_time = sequence(:time, &(Timex.now() |> Timex.shift(minutes: &1 * 10)))
-    end_time = sequence(:time, &(Timex.now() |> Timex.shift(minutes: &1 * 10)))
+
+    start_time =
+      sequence(:time, &(Timex.now() |> Timex.shift(minutes: &1 * 10))) |> DateTime.to_iso8601()
+
+    end_time =
+      sequence(:time, &(Timex.now() |> Timex.shift(minutes: &1 * 10))) |> DateTime.to_iso8601()
 
     %{
       "agency" => agency,
       "distance" => random_distance(),
       "duration" => random_seconds(),
-      "endTime" => end_time,
+      "end" => end_time,
       "from" => from,
       "intermediateStops" => if(transit_leg, do: Faker.random_between(1, 4) |> build_list(:gtfs)),
       "legGeometry" => %{"points" => random_string(20)},
@@ -54,7 +58,7 @@ defmodule OpenTripPlannerClientTest.Support.Factory do
             |> Map.put_new(:shortName, random_string(4))
             |> Map.put_new(:longName, random_string(12))
         ),
-      "startTime" => start_time,
+      "start" => start_time,
       "steps" => if(!transit_leg, do: Faker.random_between(1, 4) |> build_list(:step)),
       "to" => to,
       "transitLeg" => transit_leg,
