@@ -2,7 +2,7 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   @moduledoc """
   Logic for a tag which can be applied to itineraries which are the best by some criterion.
   """
-  @tag_priority_order [:earliest_arrival, :shortest_trip, :most_direct, :least_walking]
+  @tag_priority_order [:most_direct, :earliest_arrival, :shortest_trip, :least_walking]
 
   @callback optimal :: :max | :min
   @callback score(map()) :: number() | nil
