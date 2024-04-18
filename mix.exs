@@ -14,6 +14,7 @@ defmodule OpenTripPlannerClient.MixProject do
       aliases: [
         docs: ["docs --formatter html --output docs"]
       ],
+      test_coverage: [ignore_modules: [Mix.Tasks.UpdateFixture]],
 
       # Docs
       name: "OpenTripPlanner MBTA Client",

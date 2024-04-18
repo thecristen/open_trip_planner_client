@@ -4,6 +4,7 @@ defmodule Mix.Tasks.UpdateFixture do
 
   alias OpenTripPlannerClient.ItineraryTag
 
+  @spec run(command_line_args :: [binary]) :: any()
   def run(_) do
     Mix.Task.run("app.start")
     from = [stop_id: "place-alfcl"]
