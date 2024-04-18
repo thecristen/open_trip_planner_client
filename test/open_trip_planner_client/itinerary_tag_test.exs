@@ -23,7 +23,7 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
   end
 
   defmodule BadTag do
-    @behaviour OpenTripPlannerClient.ItineraryTag
+    @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
 
     def optimal, do: :max
     def score(_), do: nil

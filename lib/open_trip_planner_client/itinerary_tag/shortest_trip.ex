@@ -3,14 +3,14 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTrip do
   The shortest trip is the itinerary having the shortest travel time, e.g. the
   smallest `duration`.
   """
-  @behaviour OpenTripPlannerClient.ItineraryTag
+  @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl true
   def optimal, do: :min
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl true
   def score(%{"duration" => duration}), do: duration
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl true
   def tag, do: :shortest_trip
 end

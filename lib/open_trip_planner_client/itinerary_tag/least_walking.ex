@@ -3,14 +3,14 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalking do
   The least walking has the shortest `distance` covered by walking legs.
   """
 
-  @behaviour OpenTripPlannerClient.ItineraryTag
+  @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl true
   def optimal, do: :min
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl true
   def score(%{"walkDistance" => distance}), do: distance
 
-  @impl OpenTripPlannerClient.ItineraryTag
+  @impl true
   def tag, do: :least_walking
 end

@@ -4,16 +4,6 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   """
   @tag_priority_order [:most_direct, :earliest_arrival, :shortest_trip, :least_walking]
 
-  @callback optimal :: :max | :min
-  @callback score(map()) :: number() | nil
-  @callback tag :: atom()
-
-  @callback tiebreakers :: [{(map() -> number() | nil), :max | :min}]
-
-  @optional_callbacks tiebreakers: 0
-
-  @type t :: module()
-
   @doc """
   Applies the tag defined by the given module to the itinerary with the optimal score.
 
