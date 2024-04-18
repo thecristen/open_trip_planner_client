@@ -27,3 +27,6 @@ open_trip_planner_client-*.tar
 
 # Documentation is hosted
 /docs
+
+# Other
+.DS_Store
