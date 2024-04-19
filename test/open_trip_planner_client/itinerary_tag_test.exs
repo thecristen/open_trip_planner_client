@@ -29,8 +29,16 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
     end_dt = Faker.DateTime.backward(4)
 
     itineraries = [
-      %{"end" => DateTime.to_iso8601(end_dt), "duration" => 40, "tag" => :least_walking},
-      %{"end" => DateTime.to_iso8601(end_dt), "duration" => 50, "tag" => :least_walking}
+      build(:itinerary, %{
+        end: DateTime.to_iso8601(end_dt),
+        tag: :least_walking,
+        duration: 40
+      }),
+      build(:itinerary, %{
+        end: DateTime.to_iso8601(end_dt),
+        tag: :least_walking,
+        duration: 50
+      })
     ]
 
     # Does not override

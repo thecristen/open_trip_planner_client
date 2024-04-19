@@ -35,6 +35,7 @@ defmodule OpenTripPlannerClient.ItineraryTag do
     tag_modules
     |> Enum.reduce(itineraries, &apply_candidate_tag/2)
     |> Enum.map(&with_winning_tag/1)
+    |> sort_tagged()
   end
 
   @spec apply_candidate_tag(Behaviour.t(), [Behaviour.itinerary_map()]) :: [
@@ -102,5 +103,20 @@ defmodule OpenTripPlannerClient.ItineraryTag do
     itinerary
     |> Map.put("tag", winning_tag)
     |> Map.drop([:candidate_tags])
+  end
+
+  defp sort_tagged(tagged_itineraries) do
+    chrono_sorter = fn itinerary ->
+      {:ok, datetime, _} = DateTime.from_iso8601(itinerary["start"])
+      DateTime.to_unix(datetime)
+    end
+
+    priority_sorter = fn itinerary ->
+      @tag_priority_order
+      |> Enum.find_index(&(&1 === itinerary["tag"]))
+    end
+
+    tagged_itineraries
+    |> Enum.sort_by(&{priority_sorter.(&1), chrono_sorter.(&1)})
   end
 end

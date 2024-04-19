@@ -5,16 +5,18 @@ defmodule OpenTripPlannerClientTest.Support.Factory do
 
   def itinerary_factory(attrs) do
     legs = Map.get(attrs, :legs, Faker.random_between(1, 4) |> build_list(:leg))
+    endTime = Map.get(attrs, :end, Enum.map(legs, & &1["end"]) |> List.last())
+    duration = Map.get(attrs, :duration, Enum.map(legs, & &1["duration"]) |> Enum.sum())
 
     %{
       "accessibilityScore" => Enum.random([0, 1]),
-      "duration" => Enum.map(legs, & &1["duration"]) |> Enum.sum(),
-      "end" => Enum.map(legs, & &1["end"]) |> List.last(),
+      "duration" => duration,
+      "end" => endTime,
       "legs" => legs,
       "numberOfTransfers" => Enum.count(legs) - 1,
       "start" => Enum.map(legs, & &1["start"]) |> List.first(),
-      "walkDistance" => random_distance(),
-      "tag" => nil
+      "walkDistance" => Map.get(attrs, :walkDistance, random_distance()),
+      "tag" => Map.get(attrs, :tag)
     }
   end
 
