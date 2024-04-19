@@ -58,25 +58,40 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   defp winning_indexes(tag_module, itineraries) do
     tag_module
     |> Scorer.itinerary_scorers()
-    |> Enum.map(& &1.(itineraries))
-    |> Enum.reduce_while([], &iterative_scoring/2)
+    |> Enum.map(fn scoring_fn ->
+      itineraries
+      |> scoring_fn.()
+      |> Enum.with_index()
+    end)
+    |> consolidate_indexed_rankings()
   end
 
   # Multiple scoring criteria are ordered, only proceeding to the next in the
   # event of a tie. Therefore walk through each set of scores and stop when
-  # there's a single winner or after every score has been considered.
-  @spec iterative_scoring([non_neg_integer()], [non_neg_integer()]) ::
-          {:cont, [non_neg_integer()]} | {:halt, [non_neg_integer()]}
-  defp iterative_scoring(candidates, []), do: {:cont, candidates}
-  defp iterative_scoring(_, [single_winner]), do: {:halt, [single_winner]}
+  # there's a single winner or after every score has been considered. Subsequent
+  # rounds of scoring should only be applied on winners from the prior round.
+  defp consolidate_indexed_rankings([single_ranking]) do
+    {best_value, _} =
+      single_ranking
+      |> Enum.min_by(&elem(&1, 0))
 
-  defp iterative_scoring(candidates, winners) do
-    edits = List.myers_difference(winners, candidates)
+    single_ranking
+    |> Enum.filter(&(elem(&1, 0) == best_value))
+    |> Enum.map(&elem(&1, 1))
+  end
 
-    if Keyword.has_key?(edits, :eq) do
-      {:cont, Keyword.get(edits, :eq)}
+  defp consolidate_indexed_rankings([single_ranking | other_rankings]) do
+    winning_indexes = consolidate_indexed_rankings([single_ranking])
+
+    if length(winning_indexes) == 1 do
+      winning_indexes
     else
-      {:halt, winners}
+      other_rankings
+      |> Enum.map(fn indexed_rankings ->
+        indexed_rankings
+        |> Enum.filter(&(elem(&1, 1) in winning_indexes))
+      end)
+      |> consolidate_indexed_rankings()
     end
   end
 

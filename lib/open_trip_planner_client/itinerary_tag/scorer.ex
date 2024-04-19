@@ -10,7 +10,7 @@ defmodule OpenTripPlannerClient.ItineraryTag.Scorer do
   A function which, for a list of itineraries, outputs a list of indexes
   associated with the itineraries meeting the scoring criteria.
   """
-  @type best_score_fn_t :: ([Behaviour.itinerary_map()] -> [non_neg_integer()])
+  @type best_score_fn_t :: ([Behaviour.itinerary_map()] -> [number()])
 
   @doc """
   Returns at least one itinerary scoring function `t:best_score_fn_t/0`. Because
@@ -35,30 +35,32 @@ defmodule OpenTripPlannerClient.ItineraryTag.Scorer do
   @spec score_fn(Behaviour.t() | Behaviour.tiebreaker_t()) :: best_score_fn_t()
   defp score_fn({score_fn, optimal}) do
     fn itineraries ->
-      scores =
-        itineraries
-        |> Enum.map(score_fn)
-
-      {min_score, max_score} =
-        scores
-        |> Enum.reject(&is_nil/1)
-        |> Enum.min_max(fn -> {nil, nil} end)
-
-      best_score =
-        case optimal do
-          :max -> max_score
-          :min -> min_score
-        end
-
-      scores
-      |> Enum.with_index()
-      |> Enum.filter(&(elem(&1, 0) === best_score))
-      |> Enum.map(&elem(&1, 1))
+      itineraries
+      |> Enum.map(score_fn)
+      |> rank(optimal)
     end
   end
 
   defp score_fn(tag_module) do
     {&tag_module.score/1, tag_module.optimal()}
     |> score_fn()
+  end
+
+  defp rank(scores, optimal) do
+    {min_score, max_score} =
+      scores
+      |> Enum.reject(&is_nil/1)
+      |> Enum.min_max(fn -> {nil, nil} end)
+
+    best_score =
+      case optimal do
+        :max -> max_score
+        :min -> min_score
+      end
+
+    scores
+    |> Enum.map(fn score ->
+      if(!is_nil(score), do: abs(best_score - score))
+    end)
   end
 end
