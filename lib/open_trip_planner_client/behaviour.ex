@@ -5,7 +5,7 @@ defmodule OpenTripPlannerClient.Behaviour do
   May be useful for testing with libraries like [Mox](https://hex.pm/packages/mox).
   """
 
-  alias OpenTripPlannerClient.ItineraryTag
+  alias OpenTripPlannerClient.ItineraryTag.Behaviour
 
   @typedoc """
   Places are used in the `c:plan/3` callback to denote each of origin and
@@ -32,7 +32,7 @@ defmodule OpenTripPlannerClient.Behaviour do
           {:arrive_by, DateTime.t()}
           | {:depart_at, DateTime.t()}
           | {:wheelchair, boolean}
-          | {:tags, [ItineraryTag.t()]}
+          | {:tags, [Behaviour.t()]}
 
   @typedoc """
   Corresponds to `RoutingErrorCode` from OTP `plan` query.
