@@ -53,4 +53,48 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
            |> List.first()
            |> Map.get("tag") == :earliest_arrival
   end
+
+  test "sort_tagged/1 sorts by tag priority & start time" do
+    start_dt = "2024-04-16T02:23:07.462033Z"
+    start_dt1 = "2024-04-16T02:30:07.462033Z"
+    start_dt2 = "2024-04-16T02:38:07.462033Z"
+
+    itineraries = [
+      build(:itinerary, %{
+        start: start_dt,
+        tag: :least_walking
+      }),
+      build(:itinerary, %{
+        start: start_dt,
+        tag: nil
+      }),
+      build(:itinerary, %{
+        start: start_dt1,
+        tag: :least_walking
+      }),
+      build(:itinerary, %{
+        start: start_dt2,
+        tag: :least_walking
+      }),
+      build(:itinerary, %{
+        start: start_dt2,
+        tag: :earliest_arrival
+      }),
+      build(:itinerary, %{
+        start: start_dt1,
+        tag: :most_direct
+      })
+    ]
+
+    sorted = ItineraryTag.sort_tagged(itineraries)
+
+    assert [
+             %{"tag" => :most_direct},
+             %{"tag" => :earliest_arrival},
+             %{"tag" => :least_walking, "start" => ^start_dt},
+             %{"tag" => :least_walking, "start" => ^start_dt1},
+             %{"tag" => :least_walking, "start" => ^start_dt2},
+             %{"tag" => nil}
+           ] = sorted
+  end
 end
