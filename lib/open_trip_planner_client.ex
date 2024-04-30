@@ -56,6 +56,8 @@ defmodule OpenTripPlannerClient do
   defp apply_tags([%{}] = itineraries, _), do: {:ok, itineraries}
   # No tags to apply
   defp apply_tags(itineraries, []), do: {:ok, itineraries}
+  # No itineraries
+  defp apply_tags([], _), do: {:ok, []}
 
   defp apply_tags(itineraries, tags) do
     {:ok, ItineraryTag.apply_tags(itineraries, tags)}

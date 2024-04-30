@@ -72,13 +72,17 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   # there's a single winner or after every score has been considered. Subsequent
   # rounds of scoring should only be applied on winners from the prior round.
   defp consolidate_indexed_rankings([single_ranking]) do
-    {best_value, _} =
-      single_ranking
-      |> Enum.min_by(&elem(&1, 0))
+    if single_ranking == [] do
+      []
+    else
+      {best_value, _} =
+        single_ranking
+        |> Enum.min_by(&elem(&1, 0))
 
-    single_ranking
-    |> Enum.filter(&(elem(&1, 0) == best_value))
-    |> Enum.map(&elem(&1, 1))
+      single_ranking
+      |> Enum.filter(&(elem(&1, 0) == best_value))
+      |> Enum.map(&elem(&1, 1))
+    end
   end
 
   defp consolidate_indexed_rankings([single_ranking | other_rankings]) do
