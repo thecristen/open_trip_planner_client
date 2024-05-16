@@ -7,12 +7,13 @@ defmodule OpenTripPlannerClient.ItineraryTag.MostDirect do
   @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
 
   alias OpenTripPlannerClient.ItineraryTag.LeastWalking
+  alias OpenTripPlannerClient.Schema.Itinerary
 
   @impl true
   def optimal, do: :min
 
   @impl true
-  def score(%{"numberOfTransfers" => number}), do: number
+  def score(%Itinerary{number_of_transfers: number}), do: number
 
   @impl true
   def tiebreakers do

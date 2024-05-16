@@ -3,6 +3,10 @@ defmodule OpenTripPlannerClient.Parser do
   Basic error parsing for Open Trip Planner outputs, processing GraphQL client
   errors and trip planner errors into standard formats for logging and testing.
   """
+  alias Jason.Structs.Decoder
+  alias OpenTripPlannerClient.Schema
+  alias OpenTripPlannerClient.Schema.{Itinerary, Leg, LegTime}
+
   require Logger
 
   @type parse_error ::
@@ -56,7 +60,50 @@ defmodule OpenTripPlannerClient.Parser do
           }
         }
       }) do
-    {:ok, itineraries}
+    {:ok, Enum.map(itineraries, &map_to_struct/1)}
+  end
+
+  defp map_to_struct(map) do
+    with {:ok, json} <- Jason.encode(map),
+         :ok <- Schema.ensure_loaded(),
+         {:ok, %Itinerary{} = itinerary} <- Decoder.decode(json, Itinerary) do
+      itinerary
+      |> strings_to_datetimes()
+    else
+      error ->
+        log_error(error)
+        error
+    end
+  end
+
+  defp strings_to_datetimes(%Itinerary{start: start_time, end: end_time, legs: legs} = itinerary) do
+    %Itinerary{
+      itinerary
+      | start: parse_datetime(start_time),
+        end: parse_datetime(end_time),
+        legs: Enum.map(legs, &strings_to_datetimes/1)
+    }
+  end
+
+  defp strings_to_datetimes(%Leg{} = leg) do
+    %Leg{leg | start: strings_to_datetimes(leg.start), end: strings_to_datetimes(leg.end)}
+  end
+
+  defp strings_to_datetimes(%LegTime{estimated: estimated, scheduled_time: scheduled_time}) do
+    parsed_estimated =
+      if not is_nil(estimated),
+        do: %{
+          estimated
+          | time: parse_datetime(estimated.time)
+        }
+
+    %LegTime{estimated: parsed_estimated, scheduled_time: parse_datetime(scheduled_time)}
+  end
+
+  defp parse_datetime(time) when is_binary(time) do
+    time
+    |> Timex.parse!("{ISO:Extended}")
+    |> Timex.to_datetime(Application.fetch_env!(:open_trip_planner_client, :timezone))
   end
 
   defp log_error(errors) when is_list(errors), do: Enum.each(errors, &log_error/1)

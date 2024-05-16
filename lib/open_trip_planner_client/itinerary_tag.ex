@@ -112,8 +112,8 @@ defmodule OpenTripPlannerClient.ItineraryTag do
   @spec sort_tagged([Behaviour.itinerary_map()]) :: [Behaviour.itinerary_map()]
   def sort_tagged(tagged_itineraries) do
     chrono_sorter = fn itinerary ->
-      {:ok, datetime, _} = DateTime.from_iso8601(itinerary["start"])
-      DateTime.to_unix(datetime)
+      itinerary.start
+      |> DateTime.to_unix()
     end
 
     priority_sorter = fn itinerary ->
