@@ -47,6 +47,8 @@ defmodule OpenTripPlannerClient.MixProject do
       {:ex_machina, "2.7.0", only: :test},
       {:faker, "0.17.0", only: :test},
       {:jason, "~> 1.4"},
+      {:jason_structs,
+       git: "https://github.com/ygunayer/jason_structs.git", branch: "ygunayer-namespaced-structs"},
       {:req, "~> 0.3"},
       {:timex, "~> 3.0"}
     ]
