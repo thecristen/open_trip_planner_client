@@ -40,15 +40,15 @@ query TripPlan(
       duration
       end
       legs {
-        agency {
-          name
-          url
-        }
+        agency { name }
         distance
         duration
         end { ...TimeInfo }
         from { ...PlaceInfo }
-        intermediateStops { gtfsId }
+        intermediateStops { 
+          gtfsId,
+          name
+        }
         legGeometry { points }
         mode
         realTime
@@ -57,6 +57,9 @@ query TripPlan(
           gtfsId
           shortName
           longName
+          type
+          color
+          textColor
         }
         start { ...TimeInfo }
         steps {
