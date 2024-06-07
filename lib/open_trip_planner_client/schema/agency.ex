@@ -9,6 +9,6 @@ defmodule OpenTripPlannerClient.Schema.Agency do
   use OpenTripPlannerClient.Schema
 
   jason_struct do
-    field(:name, String.t(), @default_field)
+    field(:name, String.t())
   end
 end

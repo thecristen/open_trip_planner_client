@@ -18,7 +18,7 @@ defmodule OpenTripPlannerClient.Schema.Geometry do
     https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
   """
   jason_struct do
-    field(:length, non_neg_integer(), @default_field)
-    field(:points, polyline(), @default_field)
+    field(:length, non_neg_integer())
+    field(:points, polyline())
   end
 end

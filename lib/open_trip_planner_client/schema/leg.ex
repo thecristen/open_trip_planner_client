@@ -42,6 +42,8 @@ defmodule OpenTripPlannerClient.Schema.Leg do
   ]
 
   @typedoc """
+  State of real-time data, if present.
+
   SCHEDULED The trip information comes from the GTFS feed, i.e. no real-time
   update has been applied.
 
@@ -65,21 +67,21 @@ defmodule OpenTripPlannerClient.Schema.Leg do
           )
 
   jason_struct do
-    field(:agency, Agency.t(), @default_field)
-    field(:distance, distance_meters(), @default_field)
-    field(:duration, duration_seconds(), @default_field)
+    field(:agency, Agency.t())
+    field(:distance, distance_meters())
+    field(:duration, duration_seconds())
     field(:end, LegTime.t(), @nonnull_field)
     field(:from, Place.t(), @nonnull_field)
-    field(:intermediate_stops, [Stop.t()], @default_field)
-    field(:leg_geometry, Geometry.t(), @default_field)
-    field(:mode, mode(), @default_field)
-    field(:real_time, boolean(), @default_field)
-    field(:realtime_state, realtime_state(), @default_field)
-    field(:route, Route.t(), @default_field)
+    field(:intermediate_stops, [Stop.t()])
+    field(:leg_geometry, Geometry.t())
+    field(:mode, mode())
+    field(:real_time, boolean())
+    field(:realtime_state, realtime_state())
+    field(:route, Route.t())
     field(:start, LegTime.t(), @nonnull_field)
-    field(:steps, [Step.t()], @default_field)
-    field(:transit_leg, boolean(), @default_field)
-    field(:trip, Trip.t(), @default_field)
+    field(:steps, [Step.t()])
+    field(:transit_leg, boolean())
+    field(:trip, Trip.t())
     field(:to, Place.t(), @nonnull_field)
   end
 

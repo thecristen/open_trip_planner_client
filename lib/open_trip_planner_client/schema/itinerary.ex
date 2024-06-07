@@ -19,12 +19,12 @@ defmodule OpenTripPlannerClient.Schema.Itinerary do
   @type accessibility_score :: float() | nil
 
   jason_struct do
-    field(:accessibility_score, accessibility_score(), @default_field)
-    field(:duration, duration_seconds(), @default_field)
-    field(:end, offset_datetime(), @default_field)
+    field(:accessibility_score, accessibility_score())
+    field(:duration, duration_seconds())
+    field(:end, offset_datetime())
     field(:legs, [Leg.t()], @nonnull_field)
     field(:number_of_transfers, non_neg_integer(), @nonnull_field)
-    field(:start, offset_datetime(), @default_field)
-    field(:walk_distance, distance_meters(), @default_field)
+    field(:start, offset_datetime())
+    field(:walk_distance, distance_meters())
   end
 end

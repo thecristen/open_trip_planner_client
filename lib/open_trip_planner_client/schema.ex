@@ -37,7 +37,6 @@ defmodule OpenTripPlannerClient.Schema do
       """
       @type offset_datetime :: DateTime.t()
 
-      @default_field []
       @nonnull_field [enforce: true, null: false]
     end
   end

@@ -11,6 +11,6 @@ defmodule OpenTripPlannerClient.Schema.Stop do
 
   jason_struct do
     field(:gtfs_id, gtfs_id(), @nonnull_field)
-    field(:name, String.t(), @default_field)
+    field(:name, String.t())
   end
 end

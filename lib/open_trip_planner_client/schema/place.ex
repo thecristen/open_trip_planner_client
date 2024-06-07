@@ -9,9 +9,9 @@ defmodule OpenTripPlannerClient.Schema.Place do
   alias OpenTripPlannerClient.Schema.Stop
 
   jason_struct do
-    field(:name, String.t(), @default_field)
+    field(:name, String.t())
     field(:lat, float(), @nonnull_field)
     field(:lon, float(), @nonnull_field)
-    field(:stop, Stop.t(), @default_field)
+    field(:stop, Stop.t())
   end
 end

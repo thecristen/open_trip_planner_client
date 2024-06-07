@@ -31,6 +31,6 @@ defmodule OpenTripPlannerClient.Schema.LegTime do
 
   jason_struct do
     field(:scheduled_time, offset_datetime(), @nonnull_field)
-    field(:estimated, estimated(), @default_field)
+    field(:estimated, estimated())
   end
 end

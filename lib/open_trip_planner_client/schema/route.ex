@@ -44,11 +44,11 @@ defmodule OpenTripPlannerClient.Schema.Route do
 
   jason_struct do
     field(:gtfs_id, gtfs_id(), @nonnull_field)
-    field(:short_name, short_name(), @default_field)
-    field(:long_name, long_name(), @default_field)
-    field(:type, gtfs_route_type(), @default_field)
-    field(:color, hex_color(), @default_field)
-    field(:text_color, hex_color(), @default_field)
+    field(:short_name, short_name())
+    field(:long_name, long_name())
+    field(:type, gtfs_route_type())
+    field(:color, hex_color())
+    field(:text_color, hex_color())
   end
 
   def gtfs_route_type, do: @gtfs_route_type
