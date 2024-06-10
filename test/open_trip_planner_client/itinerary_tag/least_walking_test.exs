@@ -6,13 +6,13 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
   test "tags, sorts" do
     itineraries = [
       build(:itinerary, %{
-        walkDistance: 287
+        walk_distance: 287
       }),
       build(:itinerary, %{
-        walkDistance: 198
+        walk_distance: 198
       }),
       build(:itinerary, %{
-        walkDistance: 198
+        walk_distance: 198
       })
     ]
 
@@ -20,16 +20,16 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalkingTest do
 
     assert [
              %{
-               "walkDistance" => 198,
-               "tag" => :least_walking
+               walk_distance: 198,
+               tag: :least_walking
              },
              %{
-               "walkDistance" => 198,
-               "tag" => :least_walking
+               walk_distance: 198,
+               tag: :least_walking
              },
              %{
-               "walkDistance" => _,
-               "tag" => nil
+               walk_distance: _,
+               tag: nil
              }
            ] = tagged
   end
