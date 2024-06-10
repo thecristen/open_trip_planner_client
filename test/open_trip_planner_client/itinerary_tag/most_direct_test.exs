@@ -1,6 +1,6 @@
 defmodule OpenTripPlannerClient.ItineraryTag.MostDirectTest do
   use ExUnit.Case, async: true
-  import OpenTripPlannerClientTest.Support.Factory
+  import OpenTripPlannerClient.Test.Factory
   alias OpenTripPlannerClient.ItineraryTag
 
   test "tags, sorts, breaks tie" do

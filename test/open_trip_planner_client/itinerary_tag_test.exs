@@ -1,6 +1,6 @@
 defmodule OpenTripPlannerClient.ItineraryTagTest do
   use ExUnit.Case, async: true
-  import OpenTripPlannerClientTest.Support.Factory
+  import OpenTripPlannerClient.Test.Factory
   alias OpenTripPlannerClient.ItineraryTag
 
   defmodule BadTag do
@@ -13,7 +13,7 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
 
   setup_all do
     itineraries =
-      build_list(9, :itinerary, %{legs: build_list(3, :leg)})
+      build_list(9, :itinerary)
 
     {:ok,
      %{
