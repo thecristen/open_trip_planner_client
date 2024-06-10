@@ -39,7 +39,7 @@ defmodule OpenTripPlannerClient do
         with {:ok, body} <- send_request(graphql_url, {@plan_query, params}),
              {:ok, itineraries} <- Parser.validate_body(body) do
           itineraries
-          |> Enum.map(&Map.put_new(&1, "tag", nil))
+          |> Enum.map(&Map.put_new(&1, :tag, nil))
           |> apply_tags(Keyword.get(postprocess_opts, :tags, []))
         end
 
