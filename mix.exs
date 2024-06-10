@@ -8,7 +8,6 @@ defmodule OpenTripPlannerClient.MixProject do
       app: :open_trip_planner_client,
       version: @version,
       elixir: "~> 1.16",
-      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
       aliases: [
@@ -27,9 +26,6 @@ defmodule OpenTripPlannerClient.MixProject do
       ]
     ]
   end
-
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
 
   def application do
     [
