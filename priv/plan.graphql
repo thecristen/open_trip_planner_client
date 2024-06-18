@@ -83,7 +83,7 @@ fragment PlaceInfo on Place {
   name
   lat
   lon
-  stop { gtfsId }
+  stop { gtfsId, name }
 }
 
 fragment TimeInfo on LegTime {
