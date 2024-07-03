@@ -31,7 +31,7 @@ defmodule OpenTripPlannerClient.Test.Factory do
   end
 
   def itinerary_factory do
-    legs = Faker.random_between(1, 6) |> build_leg_sequence()
+    legs = Faker.random_between(1, 3) |> build_leg_sequence()
     %Leg{start: %LegTime{scheduled_time: first_start}} = List.first(legs)
     %Leg{end: %LegTime{scheduled_time: last_end}} = List.last(legs)
 
@@ -60,14 +60,17 @@ defmodule OpenTripPlannerClient.Test.Factory do
     base_time = Timex.now("America/New_York")
 
     transit_legs =
-      build_list(number, :transit_leg, %{
-        start:
-          sequence(:leg_start, fn index ->
-            build(:leg_time, %{
-              scheduled_time: Timex.shift(base_time, minutes: (index + 1) * 10)
-            })
-          end)
-      })
+      0..number
+      |> Enum.map(fn index ->
+        build(:transit_leg, %{
+          start:
+            sequence(:leg_start, fn _ ->
+              build(:leg_time, %{
+                scheduled_time: Timex.shift(base_time, minutes: (index + 1) * 10)
+              })
+            end)
+        })
+      end)
 
     %LegTime{scheduled_time: transit_start_time} = List.first(transit_legs).start
     %LegTime{scheduled_time: transit_end_time} = List.last(transit_legs).end
@@ -132,35 +135,36 @@ defmodule OpenTripPlannerClient.Test.Factory do
   end
 
   def transit_leg_factory(attrs) do
-    agency = attrs[:agency] || build(:agency)
-    route_gtfs_id = gtfs_prefix(agency.name) <> Faker.App.name()
-    trip_gtfs_id = gtfs_prefix(agency.name) <> Faker.App.name()
+    agency = attrs[:agency] || build(:agency, %{name: "MBTA"})
+    trip_gtfs_id = gtfs_prefix(agency.name) <> Faker.Internet.slug()
 
     build(:leg, %{
       agency: agency,
       from:
         build(:place, %{
-          stop: build(:stop, %{gtfs_id: gtfs_prefix(agency.name) <> Faker.App.name()})
+          stop: build(:stop, %{gtfs_id: gtfs_prefix(agency.name) <> Faker.Internet.slug()})
         }),
       intermediate_stops:
         build_list(3, :stop, %{
           gtfs_id: fn ->
             sequence(:intermediate_stop_id, fn _ ->
-              gtfs_prefix(agency.name) <> Faker.App.name()
+              gtfs_prefix(agency.name) <> Faker.Internet.slug()
             end)
           end
         }),
       mode: "TRANSIT",
       real_time: true,
       realtime_state: Faker.Util.pick(Leg.realtime_state()),
-      route: build(:route, %{gtfs_id: route_gtfs_id}),
+      route: attrs[:route] || build(:route),
       to:
         build(:place, %{
-          stop: build(:stop, %{gtfs_id: gtfs_prefix(agency.name) <> Faker.App.name()})
+          stop: build(:stop, %{gtfs_id: gtfs_prefix(agency.name) <> Faker.Internet.slug()})
         }),
       trip: build(:trip, %{gtfs_id: trip_gtfs_id}),
       transit_leg: true
     })
+    |> merge_attributes(attrs)
+    |> evaluate_lazy_attributes()
   end
 
   def walking_leg_factory do
@@ -182,7 +186,7 @@ defmodule OpenTripPlannerClient.Test.Factory do
 
   def route_factory do
     %Route{
-      gtfs_id: gtfs_prefix() <> Faker.App.name(),
+      gtfs_id: gtfs_prefix() <> Faker.Internet.slug(),
       short_name: Faker.Person.suffix(),
       long_name: Faker.Color.fancy_name(),
       type: Faker.Util.pick(Route.gtfs_route_type()),
@@ -203,14 +207,14 @@ defmodule OpenTripPlannerClient.Test.Factory do
 
   def stop_factory do
     %Stop{
-      gtfs_id: gtfs_prefix() <> Faker.App.name(),
+      gtfs_id: gtfs_prefix() <> Faker.Internet.slug(),
       name: Faker.Address.city()
     }
   end
 
   def trip_factory do
     %Trip{
-      gtfs_id: gtfs_prefix() <> Faker.App.name()
+      gtfs_id: gtfs_prefix() <> Faker.Internet.slug()
     }
   end
 
