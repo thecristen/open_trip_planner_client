@@ -22,6 +22,11 @@ defmodule OpenTripPlannerClient.Schema.Route do
   """
   @type long_name :: String.t()
 
+  @typedoc """
+  Description of the route, e.g. "Rail Replacement Bus"
+  """
+  @type desc :: String.t()
+
   @gtfs_route_type [0, 1, 2, 3, 4, 5, 6, 7, 11, 12]
 
   @typedoc """
@@ -49,6 +54,7 @@ defmodule OpenTripPlannerClient.Schema.Route do
     field(:type, gtfs_route_type())
     field(:color, hex_color())
     field(:text_color, hex_color())
+    field(:desc, desc())
   end
 
   def gtfs_route_type, do: @gtfs_route_type

@@ -187,7 +187,8 @@ defmodule OpenTripPlannerClient.Test.Factory do
       long_name: Faker.Color.fancy_name(),
       type: Faker.Util.pick(Route.gtfs_route_type()),
       color: Faker.Color.rgb_hex(),
-      text_color: Faker.Color.rgb_hex()
+      text_color: Faker.Color.rgb_hex(),
+      desc: Faker.Company.catch_phrase()
     }
   end
 

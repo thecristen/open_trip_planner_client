@@ -60,6 +60,7 @@ query TripPlan(
           type
           color
           textColor
+          desc
         }
         start { ...TimeInfo }
         steps {
