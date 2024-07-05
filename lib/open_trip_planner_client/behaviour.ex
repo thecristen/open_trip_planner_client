@@ -136,6 +136,6 @@ defmodule OpenTripPlannerClient.Behaviour do
           | planner_error_code
           | String.t()
 
-  @callback plan(from :: [place], to :: [place], opts :: [plan_opt()]) ::
-              {:ok, [map()]} | {:error, error()}
+  @type plan_result :: {:ok, [map()]} | {:error, error()}
+  @callback plan(from :: [place], to :: [place], opts :: [plan_opt()]) :: plan_result()
 end
