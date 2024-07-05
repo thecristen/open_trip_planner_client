@@ -78,7 +78,16 @@ defmodule OpenTripPlannerClient do
 
   defp log_response(url, {query, params}) do
     graphql_req =
-      [base_url: url]
+      [
+        base_url: url,
+        decode_json: [
+          keys: fn string ->
+            string
+            |> Macro.underscore()
+            |> String.to_atom()
+          end
+        ]
+      ]
       |> Req.new()
       |> AbsintheClient.attach()
 

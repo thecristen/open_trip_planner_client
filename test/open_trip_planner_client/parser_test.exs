@@ -8,31 +8,30 @@ defmodule OpenTripPlannerClient.ParserTest do
       assert {{:error, :graphql_request_error}, log} =
                with_log(fn ->
                  validate_body(%{
-                   "errors" => [
+                   errors: [
                      %{
-                       "message" =>
+                       message:
                          "Validation error (UndefinedVariable@[plan]) : Undefined variable 'from'",
-                       "locations" => [
+                       locations: [
                          %{
-                           "line" => 3,
-                           "column" => 16
+                           line: 3,
+                           column: 16
                          }
                        ],
-                       "extensions" => %{
-                         "classification" => "ValidationError"
+                       extensions: %{
+                         classification: "ValidationError"
                        }
                      },
                      %{
-                       "message" =>
-                         "Validation error (UnusedVariable) : Unused variable 'fromPlace'",
-                       "locations" => [
+                       message: "Validation error (UnusedVariable) : Unused variable 'fromPlace'",
+                       locations: [
                          %{
-                           "line" => 1,
-                           "column" => 16
+                           line: 1,
+                           column: 16
                          }
                        ],
-                       "extensions" => %{
-                         "classification" => "ValidationError"
+                       extensions: %{
+                         classification: "ValidationError"
                        }
                      }
                    ]
@@ -46,22 +45,22 @@ defmodule OpenTripPlannerClient.ParserTest do
       assert {{:error, :graphql_field_error}, log} =
                with_log(fn ->
                  validate_body(%{
-                   "data" => %{"plan" => nil},
-                   "errors" => [
+                   data: %{plan: nil},
+                   errors: [
                      %{
-                       "message" =>
+                       message:
                          "Exception while fetching data (/plan) : The value is not in range[0.0, 1.7976931348623157E308]: -5.0",
-                       "locations" => [
+                       locations: [
                          %{
-                           "line" => 2,
-                           "column" => 3
+                           line: 2,
+                           column: 3
                          }
                        ],
-                       "path" => [
+                       path: [
                          "plan"
                        ],
-                       "extensions" => %{
-                         "classification" => "DataFetchingException"
+                       extensions: %{
+                         classification: "DataFetchingException"
                        }
                      }
                    ]
@@ -75,7 +74,7 @@ defmodule OpenTripPlannerClient.ParserTest do
       assert {{:error, "PATH_NOT_FOUND"}, log} =
                with_log(fn ->
                  validate_body(%{
-                   "data" => %{"plan" => %{"routingErrors" => [%{"code" => "PATH_NOT_FOUND"}]}}
+                   data: %{plan: %{routing_errors: [%{code: "PATH_NOT_FOUND"}]}}
                  })
                end)
 

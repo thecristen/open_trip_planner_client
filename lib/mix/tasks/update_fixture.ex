@@ -19,7 +19,7 @@ defmodule Mix.Tasks.UpdateFixture do
     {:ok, itineraries} = OpenTripPlannerClient.plan(from, to, tags: tags)
 
     encoded =
-      Jason.encode!(%{data: %{plan: %{routingErrors: [], itineraries: itineraries}}},
+      Jason.encode!(%{data: %{plan: %{routing_errors: [], itineraries: itineraries}}},
         pretty: true
       )
 

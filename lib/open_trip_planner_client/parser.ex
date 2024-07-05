@@ -3,8 +3,6 @@ defmodule OpenTripPlannerClient.Parser do
   Basic error parsing for Open Trip Planner outputs, processing GraphQL client
   errors and trip planner errors into standard formats for logging and testing.
   """
-  alias Jason.Structs.Decoder
-  alias OpenTripPlannerClient.Schema
   alias OpenTripPlannerClient.Schema.{Itinerary, Leg, LegTime}
 
   require Logger
@@ -30,11 +28,11 @@ defmodule OpenTripPlannerClient.Parser do
   was raised during execution.
   """
   @spec validate_body(%{}) :: {:ok, list(map())} | {:error, :parse_error}
-  def validate_body(%{"errors" => [_ | _] = errors} = body) do
+  def validate_body(%{errors: [_ | _] = errors} = body) do
     log_error(errors)
 
     case body do
-      %{"data" => _} ->
+      %{data: _} ->
         {:error, :graphql_field_error}
 
       _ ->
@@ -43,37 +41,33 @@ defmodule OpenTripPlannerClient.Parser do
   end
 
   def validate_body(%{
-        "data" => %{
-          "plan" => %{
-            "routingErrors" => [%{"code" => code} | _] = routingErrors
+        data: %{
+          plan: %{
+            routing_errors: [%{code: code} | _] = routing_errors
           }
         }
       }) do
-    log_error(routingErrors)
+    log_error(routing_errors)
     {:error, code}
   end
 
   def validate_body(%{
-        "data" => %{
-          "plan" => %{
-            "itineraries" => itineraries
+        data: %{
+          plan: %{
+            itineraries: itineraries
           }
         }
       }) do
     {:ok, Enum.map(itineraries, &map_to_struct/1)}
   end
 
-  defp map_to_struct(map) do
-    with {:ok, json} <- Jason.encode(map),
-         :ok <- Schema.ensure_loaded(),
-         {:ok, %Itinerary{} = itinerary} <- Decoder.decode(json, Itinerary) do
-      itinerary
-      |> strings_to_datetimes()
-    else
-      error ->
-        log_error(error)
-        error
-    end
+  defp map_to_struct(itinerary_map) do
+    itinerary_map
+    |> Jason.encode!()
+    |> Jason.Structs.Decoder.decode(Itinerary)
+    |> then(fn {:ok, itinerary} ->
+      strings_to_datetimes(itinerary)
+    end)
   end
 
   defp strings_to_datetimes(%Itinerary{start: start_time, end: end_time, legs: legs} = itinerary) do
@@ -99,6 +93,8 @@ defmodule OpenTripPlannerClient.Parser do
 
     %LegTime{estimated: parsed_estimated, scheduled_time: parse_datetime(scheduled_time)}
   end
+
+  defp parse_datetime(nil), do: nil
 
   defp parse_datetime(time) when is_binary(time) do
     time
