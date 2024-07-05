@@ -62,6 +62,8 @@ defmodule OpenTripPlannerClient.Parser do
   end
 
   defp map_to_struct(itinerary_map) do
+    :ok = OpenTripPlannerClient.Schema.ensure_loaded()
+
     itinerary_map
     |> Jason.encode!()
     |> Jason.Structs.Decoder.decode(Itinerary)
