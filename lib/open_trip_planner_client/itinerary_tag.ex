@@ -105,7 +105,7 @@ defmodule OpenTripPlannerClient.ItineraryTag do
       Enum.find(@tag_priority_order, &Enum.member?(candidate_tags, &1))
 
     itinerary
-    |> Map.put("tag", winning_tag)
+    |> Map.put(:tag, winning_tag)
     |> Map.drop([:candidate_tags])
   end
 
@@ -118,7 +118,7 @@ defmodule OpenTripPlannerClient.ItineraryTag do
 
     priority_sorter = fn itinerary ->
       @tag_priority_order
-      |> Enum.find_index(&(&1 === itinerary["tag"]))
+      |> Enum.find_index(&(&1 === itinerary.tag))
     end
 
     tagged_itineraries
