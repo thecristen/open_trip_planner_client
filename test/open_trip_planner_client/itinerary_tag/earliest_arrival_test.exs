@@ -1,6 +1,6 @@
 defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrivalTest do
   use ExUnit.Case, async: true
-  import OpenTripPlannerClientTest.Support.Factory
+  import OpenTripPlannerClient.Test.Factory
   alias OpenTripPlannerClient.ItineraryTag
 
   test "tags, sorts" do
@@ -9,24 +9,22 @@ defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrivalTest do
 
     itineraries = [
       build(:itinerary, %{
-        end: DateTime.to_iso8601(end_dt)
+        end: end_dt
       }),
       build(:itinerary, %{
-        end: DateTime.to_iso8601(later_dt)
+        end: later_dt
       }),
       build(:itinerary, %{
-        end: DateTime.to_iso8601(end_dt)
+        end: end_dt
       })
     ]
 
     tagged = ItineraryTag.apply_tags(itineraries, [ItineraryTag.EarliestArrival])
 
     assert [
-             %{"end" => dt, "tag" => :earliest_arrival},
-             %{"end" => dt, "tag" => :earliest_arrival},
-             %{"tag" => nil}
+             %{end: ^end_dt, tag: :earliest_arrival},
+             %{end: ^end_dt, tag: :earliest_arrival},
+             %{tag: nil}
            ] = tagged
-
-    assert {:ok, ^end_dt, _} = DateTime.from_iso8601(dt)
   end
 end

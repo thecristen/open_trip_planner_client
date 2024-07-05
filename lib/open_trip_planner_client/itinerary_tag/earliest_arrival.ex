@@ -2,15 +2,17 @@ defmodule OpenTripPlannerClient.ItineraryTag.EarliestArrival do
   @moduledoc """
   The earliest arrival has the earliest `end` time.
   """
+
   @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
+
+  alias OpenTripPlannerClient.Schema.Itinerary
 
   @impl true
   def optimal, do: :min
 
   @impl true
-  def score(%{"end" => iso8601_formatted_datetime}) do
-    {:ok, datetime, _} = DateTime.from_iso8601(iso8601_formatted_datetime)
-    DateTime.to_unix(datetime)
+  def score(%Itinerary{end: end_time}) do
+    DateTime.to_unix(end_time)
   end
 
   @impl true

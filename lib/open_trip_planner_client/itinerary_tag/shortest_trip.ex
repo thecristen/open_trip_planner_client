@@ -5,11 +5,13 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTrip do
   """
   @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
 
+  alias OpenTripPlannerClient.Schema.Itinerary
+
   @impl true
   def optimal, do: :min
 
   @impl true
-  def score(%{"duration" => duration}), do: duration
+  def score(%Itinerary{duration: duration}), do: duration
 
   @impl true
   def tag, do: :shortest_trip

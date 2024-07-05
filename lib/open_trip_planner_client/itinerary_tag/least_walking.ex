@@ -5,11 +5,13 @@ defmodule OpenTripPlannerClient.ItineraryTag.LeastWalking do
 
   @behaviour OpenTripPlannerClient.ItineraryTag.Behaviour
 
+  alias OpenTripPlannerClient.Schema.Itinerary
+
   @impl true
   def optimal, do: :min
 
   @impl true
-  def score(%{"walkDistance" => distance}), do: distance
+  def score(%Itinerary{walk_distance: walk_distance}), do: walk_distance
 
   @impl true
   def tag, do: :least_walking

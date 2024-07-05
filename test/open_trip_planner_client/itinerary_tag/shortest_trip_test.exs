@@ -1,6 +1,6 @@
 defmodule OpenTripPlannerClient.ItineraryTag.ShortestTripTest do
   use ExUnit.Case, async: true
-  import OpenTripPlannerClientTest.Support.Factory
+  import OpenTripPlannerClient.Test.Factory
   alias OpenTripPlannerClient.ItineraryTag
 
   test "tags, sorts" do
@@ -14,10 +14,10 @@ defmodule OpenTripPlannerClient.ItineraryTag.ShortestTripTest do
     tagged = ItineraryTag.apply_tags(itineraries, [ItineraryTag.ShortestTrip])
 
     assert [
-             %{"duration" => 99, "tag" => :shortest_trip},
-             %{"duration" => 99, "tag" => :shortest_trip},
-             %{"tag" => nil},
-             %{"tag" => nil}
+             %{duration: 99, tag: :shortest_trip},
+             %{duration: 99, tag: :shortest_trip},
+             %{tag: nil},
+             %{tag: nil}
            ] = tagged
   end
 end

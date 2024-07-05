@@ -8,13 +8,17 @@ defmodule OpenTripPlannerClient.MixProject do
       app: :open_trip_planner_client,
       version: @version,
       elixir: "~> 1.16",
-      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
       aliases: [
         docs: ["docs --formatter html --output docs"]
       ],
-      test_coverage: [ignore_modules: [Mix.Tasks.UpdateFixture]],
+      test_coverage: [
+        ignore_modules: [
+          Mix.Tasks.UpdateFixture,
+          ~r/Jason.Encoder.OpenTripPlannerClient.Schema\./
+        ]
+      ],
 
       # Docs
       name: "OpenTripPlanner MBTA Client",
@@ -27,9 +31,6 @@ defmodule OpenTripPlannerClient.MixProject do
       ]
     ]
   end
-
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
 
   def application do
     [
@@ -44,8 +45,8 @@ defmodule OpenTripPlannerClient.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.32", only: :dev, runtime: false},
-      {:ex_machina, "2.7.0", only: :test},
-      {:faker, "0.17.0", only: :test},
+      {:ex_machina, "2.7.0"},
+      {:faker, "0.18.0"},
       {:jason, "~> 1.4"},
       {:jason_structs,
        git: "https://github.com/ygunayer/jason_structs.git", branch: "ygunayer-namespaced-structs"},
