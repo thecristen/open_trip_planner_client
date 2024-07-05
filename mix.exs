@@ -40,7 +40,7 @@ defmodule OpenTripPlannerClient.MixProject do
 
   defp deps do
     [
-      {:absinthe_client, "~> 0.1.0"},
+      {:absinthe_client, "~> 0.1.1"},
       {:bypass, "~> 2.1", only: :test},
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
@@ -50,7 +50,7 @@ defmodule OpenTripPlannerClient.MixProject do
       {:jason, "~> 1.4"},
       {:jason_structs,
        git: "https://github.com/ygunayer/jason_structs.git", branch: "ygunayer-namespaced-structs"},
-      {:req, "~> 0.3"},
+      {:req, "~> 0.4"},
       {:timex, "~> 3.0"}
     ]
   end
