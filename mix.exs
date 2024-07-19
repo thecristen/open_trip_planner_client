@@ -1,7 +1,7 @@
 defmodule OpenTripPlannerClient.MixProject do
   use Mix.Project
 
-  @version "0.9.1"
+  @version "0.9.2"
 
   def project do
     [
@@ -44,13 +44,13 @@ defmodule OpenTripPlannerClient.MixProject do
       {:bypass, "~> 2.1", only: :test},
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.32", only: :dev, runtime: false},
-      {:ex_machina, "2.7.0"},
-      {:faker, "0.18.0"},
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false},
+      {:ex_machina, "~> 2.8", only: [:dev, :test]},
+      {:faker, "~> 0.18", only: [:dev, :test]},
       {:jason, "~> 1.4"},
       {:jason_structs,
        git: "https://github.com/ygunayer/jason_structs.git", branch: "ygunayer-namespaced-structs"},
-      {:req, "~> 0.4"},
+      {:req, "~> 0.5"},
       {:timex, "~> 3.0"}
     ]
   end
