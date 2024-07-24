@@ -1,4 +1,4 @@
-defmodule OpenTripPlannerClient.Test.Factory do
+defmodule OpenTripPlannerClient.Test.Support.Factory do
   @moduledoc """
   Generate OpenTripPlannerClient.Schema structs
   """
