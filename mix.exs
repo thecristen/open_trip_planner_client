@@ -1,13 +1,14 @@
 defmodule OpenTripPlannerClient.MixProject do
   use Mix.Project
 
-  @version "0.9.2"
+  @version "0.9.3"
 
   def project do
     [
       app: :open_trip_planner_client,
       version: @version,
       elixir: "~> 1.16",
+      elixirc_paths: ["lib", "test/support"],
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
       aliases: [
@@ -45,8 +46,8 @@ defmodule OpenTripPlannerClient.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test]},
       {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.34", only: :dev, runtime: false},
-      {:ex_machina, "~> 2.8", only: [:dev, :test]},
-      {:faker, "~> 0.18", only: [:dev, :test]},
+      {:ex_machina, "~> 2.8", optional: true},
+      {:faker, "~> 0.18", optional: true},
       {:jason, "~> 1.4"},
       {:jason_structs,
        git: "https://github.com/ygunayer/jason_structs.git", branch: "ygunayer-namespaced-structs"},

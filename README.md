@@ -24,7 +24,7 @@ def deps do
     %{:open_trip_planner_client,
       [
         github: "thecristen/open_trip_planner_client",
-        ref: "v0.9.0"
+        ref: "v0.9.3"
       ]}
   ]
 end
@@ -56,6 +56,19 @@ config :open_trip_planner_client,
   otp_url: "http://localhost:8080",
   timezone: "America/New_York"
 ```
+
+### Optional requirements
+
+We include a factory (`OpenTripPlannerClient.Test.Support.Factory`) to help with testing your usage of OpenTripPlanner.
+In order to use it, you'll also need to include the deps [ex_machina](https://hexdocs.pm/ex_machina/readme.html) and [faker](https://hexdocs.pm/faker/readme.html).
+
+```
+{:ex_machina, "2.8.0", only: [:dev, :test]},
+{:faker, "0.18.0", only: [:dev, :test]},
+```
+
+If you don't want or need the test helper and don't want or need ExMachina or Faker, no need to do anything.
+The library simply won't export the helper.
 
 ## Usage
 
