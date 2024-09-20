@@ -7,7 +7,7 @@ defmodule OpenTripPlannerClient.MixProject do
     [
       app: :open_trip_planner_client,
       version: @version,
-      elixir: "~> 1.16",
+      elixir: "~> 1.17",
       elixirc_paths: ["lib", "test/support"],
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]],
