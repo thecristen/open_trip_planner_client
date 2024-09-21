@@ -1,3 +1,4 @@
+# credo:disable-for-this-file Credo.Check.Warning.IoInspect
 defmodule OpenTripPlannerClient.Schema.Leg do
   @moduledoc """
   Part of an itinerary. Can represent a transit trip or a sequence of walking
@@ -6,32 +7,9 @@ defmodule OpenTripPlannerClient.Schema.Leg do
   https://docs.opentripplanner.org/api/dev-2.x/graphql-gtfs/types/Leg
   """
 
-  use Jason.Structs.Struct
   use OpenTripPlannerClient.Schema
 
   alias OpenTripPlannerClient.Schema.{Agency, Geometry, LegTime, Place, Route, Step, Stop, Trip}
-
-  @type mode ::
-          :AIRPLANE
-          | :BICYCLE
-          | :BUS
-          | :CABLE_CAR
-          | :CAR
-          | :COACH
-          | :FERRY
-          | :FLEX
-          | :FUNICULAR
-          | :GONDOLA
-          | :RAIL
-          | :SCOOTER
-          | :SUBWAY
-          | :TRAM
-          | :CARPOOL
-          | :TAXI
-          | :TRANSIT
-          | :WALK
-          | :TROLLEYBUS
-          | :MONORAIL
 
   @realtime_state [
     :SCHEDULED,
@@ -65,7 +43,37 @@ defmodule OpenTripPlannerClient.Schema.Leg do
             |> Code.string_to_quoted!()
           )
 
-  jason_struct do
+  defimpl Nestru.PreDecoder do
+    # credo:disable-for-next-line
+    def gather_fields_for_decoding(_, _, map) do
+      updated_map =
+        map
+        |> update_in([:intermediate_stops], &replace_nil_with_list/1)
+        |> update_in([:steps], &replace_nil_with_list/1)
+
+      {:ok, updated_map}
+    end
+
+    defp replace_nil_with_list(nil), do: []
+    defp replace_nil_with_list(other), do: other
+  end
+
+  @derive {Nestru.Decoder,
+           hint: %{
+             agency: Agency,
+             end: LegTime,
+             from: Place,
+             intermediate_stops: [Stop],
+             leg_geometry: Geometry,
+             mode: &__MODULE__.to_atom/1,
+             realtime_state: &__MODULE__.to_atom/1,
+             route: Route,
+             start: LegTime,
+             steps: [Step],
+             trip: Trip,
+             to: Place
+           }}
+  schema do
     field(:agency, Agency.t())
     field(:distance, distance_meters())
     field(:duration, duration_seconds())
@@ -73,7 +81,7 @@ defmodule OpenTripPlannerClient.Schema.Leg do
     field(:from, Place.t(), @nonnull_field)
     field(:intermediate_stops, [Stop.t()])
     field(:leg_geometry, Geometry.t())
-    field(:mode, mode())
+    field(:mode, PlanParams.mode_t())
     field(:real_time, boolean())
     field(:realtime_state, realtime_state())
     field(:route, Route.t())
@@ -86,4 +94,8 @@ defmodule OpenTripPlannerClient.Schema.Leg do
 
   @spec realtime_state :: [realtime_state()]
   def realtime_state, do: @realtime_state
+
+  @spec to_atom(any()) :: {:ok, any()}
+  def to_atom(string) when is_binary(string), do: {:ok, String.to_existing_atom(string)}
+  def to_atom(other), do: {:ok, other}
 end

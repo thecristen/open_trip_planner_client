@@ -4,7 +4,6 @@ defmodule OpenTripPlannerClient.Schema.Itinerary do
 
   https://docs.opentripplanner.org/api/dev-2.x/graphql-gtfs/types/Itinerary
   """
-  use Jason.Structs.Struct
   use OpenTripPlannerClient.Schema
 
   alias OpenTripPlannerClient.Schema.Leg
@@ -18,7 +17,8 @@ defmodule OpenTripPlannerClient.Schema.Itinerary do
   """
   @type accessibility_score :: float() | nil
 
-  jason_struct do
+  @derive {Nestru.Decoder, hint: %{end: DateTime, legs: [Leg], start: DateTime}}
+  schema do
     field(:accessibility_score, accessibility_score())
     field(:duration, duration_seconds())
     field(:end, offset_datetime())

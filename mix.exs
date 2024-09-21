@@ -1,7 +1,7 @@
 defmodule OpenTripPlannerClient.MixProject do
   use Mix.Project
 
-  @version "0.9.5"
+  @version "0.10.2"
 
   def project do
     [
@@ -17,7 +17,7 @@ defmodule OpenTripPlannerClient.MixProject do
       test_coverage: [
         ignore_modules: [
           Mix.Tasks.UpdateFixture,
-          ~r/Jason.Encoder.OpenTripPlannerClient.Schema\./
+          ~r/OpenTripPlannerClient.Schema\./
         ]
       ],
 
@@ -65,10 +65,10 @@ defmodule OpenTripPlannerClient.MixProject do
       {:ex_machina, "~> 2.8", optional: true},
       {:faker, "~> 0.18", optional: true},
       {:jason, "~> 1.4"},
-      {:jason_structs,
-       git: "https://github.com/ygunayer/jason_structs.git", branch: "ygunayer-namespaced-structs"},
+      {:nestru, "~> 1.0"},
       {:req, "~> 0.5"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:typed_struct, "~> 0.3.0"}
     ]
   end
 end

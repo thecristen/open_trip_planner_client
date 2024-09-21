@@ -16,8 +16,8 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
   def build_params(from, to, opts \\ []) do
     with {:ok, from_place} <- location(from), {:ok, to_place} <- location(to) do
       do_build_params(opts, %{
-        "fromPlace" => from_place,
-        "toPlace" => to_place
+        fromPlace: from_place,
+        toPlace: to_place
       })
     else
       error ->
@@ -50,7 +50,7 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
   defp do_build_params([{:wheelchair, wheelchair} | rest], acc) when is_boolean(wheelchair) do
     acc =
       if wheelchair do
-        put_in(acc["wheelchair"], true)
+        put_in(acc[:wheelchair], true)
       else
         acc
       end
@@ -75,7 +75,7 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
   defp do_build_params([{:mode, [_ | _] = modes} | rest], acc) do
     do_build_params(
       rest,
-      Map.put(acc, "transportModes", [%{mode: "WALK"} | Enum.map(modes, &%{mode: &1})])
+      Map.put(acc, :transportModes, [%{mode: "WALK"} | Enum.map(modes, &%{mode: &1})])
     )
   end
 
@@ -83,7 +83,7 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
     {:error, {:unsupported_param, option}}
   end
 
-  defp do_date_time(arriveBy, %DateTime{} = datetime, acc) do
+  defp do_date_time(arrive_by, %DateTime{} = datetime, acc) do
     local =
       Timex.to_datetime(datetime, Application.fetch_env!(:open_trip_planner_client, :timezone))
 
@@ -91,9 +91,9 @@ defmodule OpenTripPlannerClient.ParamsBuilder do
     time = Timex.format!(local, "{h12}:{0m}{am}")
 
     Map.merge(acc, %{
-      "date" => date,
-      "time" => time,
-      "arriveBy" => arriveBy
+      date: date,
+      time: time,
+      arriveBy: arrive_by
     })
   end
 end

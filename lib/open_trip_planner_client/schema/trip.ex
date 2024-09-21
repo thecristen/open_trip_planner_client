@@ -6,10 +6,10 @@ defmodule OpenTripPlannerClient.Schema.Trip do
   https://docs.opentripplanner.org/api/dev-2.x/graphql-gtfs/types/Trip
   """
 
-  use Jason.Structs.Struct
   use OpenTripPlannerClient.Schema
 
-  jason_struct do
+  @derive Nestru.Decoder
+  schema do
     field(:gtfs_id, gtfs_id(), @nonnull_field)
   end
 end

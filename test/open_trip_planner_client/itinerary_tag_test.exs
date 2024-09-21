@@ -14,17 +14,18 @@ defmodule OpenTripPlannerClient.ItineraryTagTest do
   end
 
   setup_all do
-    itineraries =
-      build_list(9, :itinerary)
-
-    {:ok,
-     %{
-       bad_itineraries: ItineraryTag.apply_tags(itineraries, [BadTag])
-     }}
+    {:ok, %{itineraries: build_list(9, :itinerary)}}
   end
 
-  test "correctly ignores tags that are always nil", %{bad_itineraries: itineraries} do
-    assert Enum.all?(itineraries, &is_nil(&1.tag))
+  test "ignores no tags/itineraries", %{itineraries: itineraries} do
+    assert ItineraryTag.apply_tags(itineraries, [])
+    assert ItineraryTag.apply_tags([], [ItineraryTag.ShortestTrip])
+    assert ItineraryTag.apply_tags([], [])
+  end
+
+  test "correctly ignores tags that are always nil", %{itineraries: itineraries} do
+    bad_itineraries = ItineraryTag.apply_tags(itineraries, [BadTag])
+    assert Enum.all?(bad_itineraries, &is_nil(&1.tag))
   end
 
   test "overrides tags of lower priority" do

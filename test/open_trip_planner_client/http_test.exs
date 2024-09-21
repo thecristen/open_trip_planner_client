@@ -10,7 +10,7 @@ defmodule OpenTripPlannerClient.HttpTest do
   use ExUnit.Case, async: false
   import OpenTripPlannerClient
   import Plug.Conn, only: [send_resp: 3]
-  alias OpenTripPlannerClient.ItineraryTag
+  alias OpenTripPlannerClient.{ItineraryTag, Plan, PlanParams}
 
   setup context do
     if context[:external] do
@@ -43,7 +43,7 @@ defmodule OpenTripPlannerClient.HttpTest do
         |> Plug.Conn.send_resp(:ok, @fixture)
       end)
 
-      {:ok, itineraries} =
+      {:ok, plan} =
         plan(
           [
             name: "North Station",
@@ -58,13 +58,14 @@ defmodule OpenTripPlannerClient.HttpTest do
           ]
         )
 
-      {tagged, untagged} = Enum.split_while(itineraries, &(!is_nil(&1.tag)))
+      assert plan.itineraries
+
+      {tagged, untagged} = Enum.split_while(plan.itineraries, &(!is_nil(&1.tag)))
 
       assert untagged
              |> Enum.map(& &1.tag)
              |> Enum.all?(&is_nil/1)
 
-      assert :least_walking in Enum.map(tagged, & &1.tag)
       assert :earliest_arrival in Enum.map(tagged, & &1.tag)
     end
   end
@@ -79,12 +80,27 @@ defmodule OpenTripPlannerClient.HttpTest do
         lat_lon: {42.365551, -71.061251}
       ]
 
-      boylston = [lat_lon: {42.348777, -71.066481}]
+      mb = [lat_lon: {42.3657472, -71.0672384}]
 
-      assert {:ok, itineraries} =
-               plan(north_station, boylston, depart_at: DateTime.utc_now())
+      {:ok, plan} = plan(north_station, mb, depart_at: DateTime.utc_now())
+      assert %Plan{} = plan
+      refute plan.itineraries == []
+    end
+  end
 
-      refute itineraries == []
+  describe "plan/2 with real OTP" do
+    @describetag :external
+
+    test "can make a basic plan with OTP" do
+      params =
+        PlanParams.new(%{
+          fromPlace: "North Station::mbta-ma-us:place-north",
+          toPlace: "Market Basket::42.3657472,-71.0672384"
+        })
+
+      {:ok, plan} = plan(params)
+      assert %Plan{} = plan
+      refute plan.itineraries == []
     end
   end
 

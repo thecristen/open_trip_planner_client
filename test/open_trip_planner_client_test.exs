@@ -12,4 +12,12 @@ defmodule OpenTripPlannerClientTest do
       assert expected == actual
     end
   end
+
+  describe "plan/2" do
+    test "" do
+      # probably should make a PlanParams factory.
+      # then use it WITH arrive_by: true
+      # to create a plan
+    end
+  end
 end

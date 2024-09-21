@@ -9,7 +9,6 @@ defmodule OpenTripPlannerClient.Schema.Route do
   https://docs.opentripplanner.org/api/dev-2.x/graphql-gtfs/types/Route
   """
 
-  use Jason.Structs.Struct
   use OpenTripPlannerClient.Schema
 
   @typedoc """
@@ -46,7 +45,8 @@ defmodule OpenTripPlannerClient.Schema.Route do
   """
   @type hex_color :: String.t()
 
-  jason_struct do
+  @derive Nestru.Decoder
+  schema do
     field(:gtfs_id, gtfs_id(), @nonnull_field)
     field(:short_name, short_name())
     field(:long_name, long_name())

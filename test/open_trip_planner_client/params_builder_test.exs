@@ -12,11 +12,11 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
       expected =
         {:ok,
          %{
-           "date" => "2017-05-22",
-           "time" => "12:04pm",
-           "arriveBy" => false,
-           "fromPlace" => "::42.356365,-71.06092",
-           "toPlace" => "::42.3636617,-71.0832908"
+           date: "2017-05-22",
+           time: "12:04pm",
+           arriveBy: false,
+           fromPlace: "::42.356365,-71.06092",
+           toPlace: "::42.3636617,-71.0832908"
          }}
 
       actual =
@@ -33,11 +33,11 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
       expected =
         {:ok,
          %{
-           "date" => "2017-05-22",
-           "time" => "12:04pm",
-           "arriveBy" => true,
-           "fromPlace" => "::42.356365,-71.06092",
-           "toPlace" => "::42.3636617,-71.0832908"
+           date: "2017-05-22",
+           time: "12:04pm",
+           arriveBy: true,
+           fromPlace: "::42.356365,-71.06092",
+           toPlace: "::42.3636617,-71.0832908"
          }}
 
       actual =
@@ -54,9 +54,9 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
       expected =
         {:ok,
          %{
-           "wheelchair" => true,
-           "fromPlace" => "::42.356365,-71.06092",
-           "toPlace" => "::42.3636617,-71.0832908"
+           wheelchair: true,
+           fromPlace: "::42.356365,-71.06092",
+           toPlace: "::42.3636617,-71.0832908"
          }}
 
       actual = build_params(@from_inside, @to_inside, wheelchair: true)
@@ -64,8 +64,8 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
 
       assert {:ok,
               %{
-                "fromPlace" => "::42.356365,-71.06092",
-                "toPlace" => "::42.3636617,-71.0832908"
+                fromPlace: "::42.356365,-71.06092",
+                toPlace: "::42.3636617,-71.0832908"
               }} == build_params(@from_inside, @to_inside, wheelchair: false)
     end
 
@@ -73,8 +73,8 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
       expected =
         {:ok,
          %{
-           "fromPlace" => "::42.356365,-71.06092",
-           "toPlace" => "::42.3636617,-71.0832908"
+           fromPlace: "::42.356365,-71.06092",
+           toPlace: "::42.3636617,-71.0832908"
          }}
 
       actual = build_params(@from_inside, @to_inside, mode: [])
@@ -85,14 +85,14 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
       expected =
         {:ok,
          %{
-           "transportModes" => [
+           transportModes: [
              %{mode: "WALK"},
              %{mode: "BUS"},
              %{mode: "SUBWAY"},
              %{mode: "TRAM"}
            ],
-           "fromPlace" => "::42.356365,-71.06092",
-           "toPlace" => "::42.3636617,-71.0832908"
+           fromPlace: "::42.356365,-71.06092",
+           toPlace: "::42.3636617,-71.0832908"
          }}
 
       actual = build_params(@from_inside, @to_inside, mode: ["BUS", "SUBWAY", "TRAM"])
@@ -115,8 +115,8 @@ defmodule OpenTripPlannerClient.ParamsBuilderTest do
       expected = {
         :ok,
         %{
-          "fromPlace" => "FromStop::mbta-ma-us:From_Id",
-          "toPlace" => "ToStop::mbta-ma-us:To_Id"
+          fromPlace: "FromStop::mbta-ma-us:From_Id",
+          toPlace: "ToStop::mbta-ma-us:To_Id"
         }
       }
 

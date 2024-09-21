@@ -38,21 +38,51 @@ defmodule OpenTripPlannerClient.Schema do
       @type offset_datetime :: DateTime.t()
 
       @nonnull_field [enforce: true, null: false]
+
+      use TypedStruct
+
+      import OpenTripPlannerClient.Schema, only: [schema: 1]
     end
   end
 
-  def ensure_loaded do
-    Code.ensure_all_loaded([
-      OpenTripPlannerClient.Schema.Agency,
-      OpenTripPlannerClient.Schema.Geometry,
-      OpenTripPlannerClient.Schema.Itinerary,
-      OpenTripPlannerClient.Schema.LegTime,
-      OpenTripPlannerClient.Schema.Leg,
-      OpenTripPlannerClient.Schema.Place,
-      OpenTripPlannerClient.Schema.Route,
-      OpenTripPlannerClient.Schema.Step,
-      OpenTripPlannerClient.Schema.Stop,
-      OpenTripPlannerClient.Schema.Trip
-    ])
+  defimpl Nestru.Encoder, for: DateTime do
+    # credo:disable-for-next-line
+    def gather_fields_from_struct(struct, _) do
+      {:ok, DateTime.to_string(struct)}
+    end
+  end
+
+  defimpl Nestru.Decoder, for: DateTime do
+    # credo:disable-for-next-line
+    def decode_fields_hint(_, _, %DateTime{} = dt) do
+      {:ok, OpenTripPlannerClient.Util.to_local_time(dt)}
+    end
+
+    # credo:disable-for-next-line
+    def decode_fields_hint(_, _, value) do
+      case Timex.parse(value, "{ISO:Extended}") do
+        {:ok, date_time} ->
+          {:ok,
+           Timex.to_datetime(
+             date_time,
+             Application.fetch_env!(:open_trip_planner_client, :timezone)
+           )}
+
+        error ->
+          error
+      end
+    end
+  end
+
+  @doc """
+  A drop-in replacement for the [`typedstruct`](https://hexdocs.pm/typed_struct/TypedStruct.html) macro, invoked in `use OpenTripPlannerClient.Schema` to automatically enable Jason encoding and implement the Access behaviour.
+  """
+  defmacro schema(do_block) do
+    quote do
+      @derive Jason.Encoder
+      TypedStruct.typedstruct do
+        unquote(do_block)
+      end
+    end
   end
 end

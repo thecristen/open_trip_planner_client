@@ -31,6 +31,8 @@ query TripPlan(
     # Prefer MBTA transit legs over Massport or others.
     preferred: { agencies: "mbta-ma-us:1" }
   ) {
+    searchWindowUsed
+    date
     routingErrors {
       code
       description

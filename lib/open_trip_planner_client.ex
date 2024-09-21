@@ -10,9 +10,9 @@ defmodule OpenTripPlannerClient do
     timezone: "America/New_York"
   ```
   """
-
   @behaviour OpenTripPlannerClient.Behaviour
-  alias OpenTripPlannerClient.{ItineraryTag, ParamsBuilder, Parser}
+
+  alias OpenTripPlannerClient.{ItineraryTag, ParamsBuilder, Parser, PlanParams, Util}
 
   require Logger
 
@@ -27,13 +27,9 @@ defmodule OpenTripPlannerClient do
 
     case ParamsBuilder.build_params(from, to, opts) do
       {:ok, params} ->
-        with {:ok, body} <- send_request(params),
-             {:ok, itineraries} <- Parser.validate_body(body) do
-          itineraries
-          |> Enum.map(&Map.put_new(&1, :tag, nil))
-          |> ItineraryTag.apply_tags(tags)
-          |> then(&{:ok, &1})
-        end
+        params
+        |> PlanParams.new()
+        |> do_plan(tags)
 
       error ->
         error
@@ -44,50 +40,66 @@ defmodule OpenTripPlannerClient do
     end
   end
 
-  defp default_tags(%{arriveBy: true}), do: ItineraryTag.default_arriving()
-  defp default_tags(_), do: ItineraryTag.default_departing()
+  @impl OpenTripPlannerClient.Behaviour
+  def plan(params, tags \\ nil) do
+    tags = if tags, do: tags, else: default_tags(params)
+    do_plan(params, tags)
+  end
 
-  defp send_request(params) do
-    with {:ok, response} <- log_response(params),
-         %{status: 200, body: body} <- response do
-      {:ok, body}
-    else
-      %{status: _} = response ->
-        {:error, response}
+  defp do_plan(params, tags) do
+    case send_request(params) do
+      {:ok, plan} ->
+        plan
+        |> update_in([:itineraries], fn itineraries ->
+          itineraries
+          |> Enum.map(&Map.put_new(&1, :tag, nil))
+          |> ItineraryTag.apply_tags(tags)
+        end)
+        |> then(&{:ok, &1})
 
       error ->
+        error
+        |> inspect()
+
         error
     end
   end
 
-  defp req_request do
+  defp default_tags(%{arrive_by: true}), do: ItineraryTag.default_arriving()
+  defp default_tags(_), do: ItineraryTag.default_departing()
+
+  @spec send_request(PlanParams.t()) :: {:ok, map()} | {:error, any()}
+  def send_request(params) do
+    with {:ok, %Req.Response{status: 200, body: body}} <- log_response(params),
+         {:ok, plan} <- Parser.validate_body(body) do
+      {:ok, plan}
+    else
+      {:error, _} = error ->
+        error
+
+      other_error ->
+        {:error, other_error}
+    end
+  end
+
+  defp do_request(%PlanParams{} = params) do
     [
       base_url: plan_url(),
       cache: true,
       compressed: true,
-      decode_json: [keys: &key_as_atom/1]
+      decode_json: [keys: &Util.to_snake_keys/1]
     ]
     |> Req.new()
     |> AbsintheClient.attach()
+    |> Req.post(graphql: {@plan_query, params})
   end
 
   defp plan_url do
     Application.fetch_env!(:open_trip_planner_client, :otp_url) <> "/otp/routers/default/index/"
   end
 
-  defp key_as_atom(string_key) do
-    string_key
-    |> Macro.underscore()
-    |> String.to_existing_atom()
-  end
-
   defp log_response(params) do
-    {duration, response} =
-      :timer.tc(
-        Req,
-        :post,
-        [req_request(), [graphql: {@plan_query, params}]]
-      )
+    {duration, response} = :timer.tc(&do_request/1, [params])
 
     meta = [
       params: inspect(params),

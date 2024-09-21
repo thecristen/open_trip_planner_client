@@ -3,8 +3,6 @@ defmodule OpenTripPlannerClient.Parser do
   Basic error parsing for Open Trip Planner outputs, processing GraphQL client
   errors and trip planner errors into standard formats for logging and testing.
   """
-  alias Jason.Structs.Decoder
-  alias OpenTripPlannerClient.Schema.{Itinerary, Leg, LegTime}
 
   require Logger
 
@@ -28,8 +26,14 @@ defmodule OpenTripPlannerClient.Parser do
   null), the errors entry must be present if and only if one or more field error
   was raised during execution.
   """
-  @spec validate_body(%{}) :: {:ok, list(map())} | {:error, :parse_error}
-  def validate_body(%{errors: [_ | _] = errors} = body) do
+  @spec validate_body(%{}) :: {:ok, OpenTripPlannerClient.Plan.t()} | {:error, any()}
+  def validate_body(body) do
+    body
+    |> validate_graphql()
+    |> validate_routing()
+  end
+
+  defp validate_graphql(%{errors: [_ | _] = errors} = body) do
     log_error(errors)
 
     case body do
@@ -41,69 +45,20 @@ defmodule OpenTripPlannerClient.Parser do
     end
   end
 
-  def validate_body(%{
-        data: %{
-          plan: %{
-            routing_errors: [%{code: code} | _] = routing_errors
-          }
-        }
-      }) do
+  defp validate_graphql(body), do: body
+
+  defp validate_routing(%{
+         data: %{plan: %{routing_errors: [%{code: code} | _] = routing_errors}}
+       }) do
     log_error(routing_errors)
     {:error, code}
   end
 
-  def validate_body(%{
-        data: %{
-          plan: %{
-            itineraries: itineraries
-          }
-        }
-      }) do
-    {:ok, Enum.map(itineraries, &map_to_struct/1)}
+  defp validate_routing(%{data: %{plan: plan}}) do
+    Nestru.decode(plan, OpenTripPlannerClient.Plan)
   end
 
-  defp map_to_struct(itinerary_map) do
-    :ok = OpenTripPlannerClient.Schema.ensure_loaded()
-
-    itinerary_map
-    |> Jason.encode!()
-    |> Decoder.decode(Itinerary)
-    |> then(fn {:ok, itinerary} ->
-      strings_to_datetimes(itinerary)
-    end)
-  end
-
-  defp strings_to_datetimes(%Itinerary{start: start_time, end: end_time, legs: legs} = itinerary) do
-    %Itinerary{
-      itinerary
-      | start: parse_datetime(start_time),
-        end: parse_datetime(end_time),
-        legs: Enum.map(legs, &strings_to_datetimes/1)
-    }
-  end
-
-  defp strings_to_datetimes(%Leg{} = leg) do
-    %Leg{leg | start: strings_to_datetimes(leg.start), end: strings_to_datetimes(leg.end)}
-  end
-
-  defp strings_to_datetimes(%LegTime{estimated: estimated, scheduled_time: scheduled_time}) do
-    parsed_estimated =
-      if not is_nil(estimated),
-        do: %{
-          estimated
-          | time: parse_datetime(estimated.time)
-        }
-
-    %LegTime{estimated: parsed_estimated, scheduled_time: parse_datetime(scheduled_time)}
-  end
-
-  defp parse_datetime(nil), do: nil
-
-  defp parse_datetime(time) when is_binary(time) do
-    time
-    |> Timex.parse!("{ISO:Extended}")
-    |> Timex.to_datetime(Application.fetch_env!(:open_trip_planner_client, :timezone))
-  end
+  defp validate_routing(body), do: body
 
   defp log_error(errors) when is_list(errors), do: Enum.each(errors, &log_error/1)
 

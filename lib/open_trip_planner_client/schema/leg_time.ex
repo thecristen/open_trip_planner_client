@@ -6,31 +6,38 @@ defmodule OpenTripPlannerClient.Schema.LegTime do
   https://docs.opentripplanner.org/api/dev-2.x/graphql-gtfs/types/Trip
   """
 
-  use Jason.Structs.Struct
   use OpenTripPlannerClient.Schema
 
-  @typedoc """
-  An ISO-8601-formatted duration, i.e. PT2H30M for 2 hours and 30 minutes.
-
-  Negative durations are formatted like -PT10M.
-  """
-  @type duration :: String.t()
-
-  @typedoc """
-  Real-time estimates for a vehicle at a certain place.
-
-  The delay represents the "earliness" of the vehicle at a certain place. If the
-  vehicle is early then this is a negative duration.
-  """
-  @type estimated ::
-          %{
-            delay: duration(),
-            time: offset_datetime()
-          }
-          | nil
-
-  jason_struct do
+  @derive {Nestru.Decoder,
+           hint: %{
+             scheduled_time: DateTime,
+             estimated: OpenTripPlannerClient.Schema.LegTime.Estimated
+           }}
+  schema do
     field(:scheduled_time, offset_datetime(), @nonnull_field)
-    field(:estimated, estimated())
+    field(:estimated, Estimated.t())
+  end
+
+  defmodule Estimated do
+    @moduledoc """
+    Real-time estimates for a vehicle at a certain place.
+
+    The delay represents the "earliness" of the vehicle at a certain place. If
+    the vehicle is early then this is a negative duration.
+    """
+    use OpenTripPlannerClient.Schema
+
+    @typedoc """
+    An ISO-8601-formatted duration, i.e. PT2H30M for 2 hours and 30 minutes.
+
+    Negative durations are formatted like -PT10M.
+    """
+    @type duration :: String.t()
+
+    @derive {Nestru.Decoder, hint: %{time: DateTime}}
+    schema do
+      field(:delay, duration())
+      field(:time, offset_datetime(), @nonnull_field)
+    end
   end
 end

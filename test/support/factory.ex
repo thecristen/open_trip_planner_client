@@ -9,6 +9,8 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
 
     import Faker.Random.Elixir, only: [random_uniform: 0]
 
+    alias OpenTripPlannerClient.PlanParams
+
     alias OpenTripPlannerClient.Schema.{
       Agency,
       Geometry,
@@ -164,7 +166,7 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
               end)
             end
           }),
-        mode: "TRANSIT",
+        mode: Faker.Util.pick([:TRANSIT, :RAIL, :SUBWAY, :BUS]),
         real_time: true,
         realtime_state: Faker.Util.pick(Leg.realtime_state()),
         route: build(:route),
@@ -181,7 +183,7 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
 
     def walking_leg_factory do
       build(:leg, %{
-        mode: "WALK",
+        mode: :WALK,
         steps: build_list(3, :step),
         transit_leg: false
       })
@@ -210,9 +212,9 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
 
     def step_factory do
       %Step{
-        absolute_direction: Faker.Util.pick(Step.absolute_direction()) |> Atom.to_string(),
+        absolute_direction: Faker.Util.pick(Step.absolute_direction()),
         distance: random_distance(),
-        relative_direction: Faker.Util.pick(Step.relative_direction()) |> Atom.to_string(),
+        relative_direction: Faker.Util.pick(Step.relative_direction()),
         street_name: Faker.Address.street_name()
       }
     end
@@ -239,5 +241,25 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
 
     defp random_distance, do: Faker.random_uniform() * 2000
     defp random_seconds, do: Faker.random_between(100, 1000)
+
+    def plan_params_factory do
+      %PlanParams{
+        fromPlace: build(:plan_params_place) |> PlanParams.to_place_param(),
+        toPlace: build(:plan_params_place) |> PlanParams.to_place_param(),
+        date: Faker.DateTime.forward(3) |> PlanParams.to_date_param(),
+        time: Faker.DateTime.forward(3) |> PlanParams.to_time_param(),
+        arriveBy: Faker.Util.pick([true, false]),
+        wheelchair: Faker.Util.pick([true, false])
+      }
+    end
+
+    def plan_params_place_factory do
+      %{
+        name: Faker.Address.street_name(),
+        latitude: Faker.Address.latitude(),
+        longitude: Faker.Address.longitude(),
+        stop_id: [Faker.Internet.slug(), nil] |> Faker.Util.pick()
+      }
+    end
   end
 end
