@@ -48,12 +48,7 @@ defmodule OpenTripPlannerClient do
   defp default_tags(_), do: ItineraryTag.default_departing()
 
   defp send_request(params) do
-    url =
-      Application.fetch_env!(:open_trip_planner_client, :otp_url) <> "/otp/routers/default/index/"
-
-    query = {@plan_query, params}
-
-    with {:ok, response} <- log_response(url, query),
+    with {:ok, response} <- log_response(params),
          %{status: 200, body: body} <- response do
       {:ok, body}
     else
@@ -65,46 +60,47 @@ defmodule OpenTripPlannerClient do
     end
   end
 
-  defp log_response(url, {query, params}) do
-    graphql_req =
-      [
-        base_url: url,
-        decode_json: [
-          keys: fn string ->
-            string
-            |> Macro.underscore()
-            |> String.to_existing_atom()
-          end
-        ]
-      ]
-      |> Req.new()
-      |> AbsintheClient.attach()
+  defp req_request do
+    [
+      base_url: plan_url(),
+      cache: true,
+      compress_body: true,
+      compressed: true,
+      decode_json: [keys: &key_as_atom/1]
+    ]
+    |> Req.new()
+    |> AbsintheClient.attach()
+  end
 
+  defp plan_url do
+    Application.fetch_env!(:open_trip_planner_client, :otp_url) <> "/otp/routers/default/index/"
+  end
+
+  defp key_as_atom(string_key) do
+    string_key
+    |> Macro.underscore()
+    |> String.to_existing_atom()
+  end
+
+  defp log_response(params) do
     {duration, response} =
       :timer.tc(
         Req,
         :post,
-        [graphql_req, [graphql: {query, params}]]
+        [req_request(), [graphql: {@plan_query, params}]]
       )
 
-    logged =
-      [
-        url: url,
-        params: inspect(params),
-        duration: duration / :timer.seconds(1)
-      ]
+    meta = [
+      params: inspect(params),
+      duration: duration / :timer.seconds(1)
+    ]
 
     case response do
       {:ok, %{status: code}} ->
-        logged
-        |> Keyword.put_new(:status, code)
-        |> Logger.info()
+        Logger.info(%{status: code}, meta)
 
       {:error, error} ->
-        logged
-        |> Keyword.put_new(:status, "error")
-        |> Keyword.put_new(:error, inspect(error))
-        |> Logger.error()
+        Logger.error(%{status: "error", error: inspect(error)}, meta)
     end
 
     response
