@@ -7,16 +7,16 @@ Release](https://github.com/thecristen/open_trip_planner_client/workflows/Test,%
 Updated](https://img.shields.io/github/last-commit/thecristen/open_trip_planner_client.svg)](https://github.com/thecristen/open_trip_planner_client/commits/main)
 
 Shared functionality for working with
-[OpenTripPlanner](https://docs.opentripplanner.org/en/v2.4.0/), curated to the
+[OpenTripPlanner](https://docs.opentripplanner.org/en/v2.5.0/), curated to the
 MBTA's needs.
 
-Use with caution – this is in early stages and we expect things can change!
-Feedback welcomed.
+> #### Use with caution {: .warning}
+>
+> This is in early stages and we expect things can change! Contribution welcomed.
 
 ## Installation
 
-Not on Hex (yet?). Github-hosted Elixir libraries such as this one can be added
-to a project's dependencies in `mix.exs` in this way:
+Github-hosted Elixir libraries such as this one can be added to a project's dependencies in `mix.exs` in this way:
 
 ```elixir
 def deps do
@@ -125,4 +125,4 @@ The returned itineraries include an extra field, `"tag"`, which will contain the
 
 ## License
 
-~~It's mine all mine~~ TBD after moving to the [https://github.com/mbta/](MBTA) organization ¯\\_(ツ)_/¯
+TBD

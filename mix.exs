@@ -28,7 +28,23 @@ defmodule OpenTripPlannerClient.MixProject do
       docs: [
         main: "readme",
         extras: ["README.md"],
-        source_ref: "v#{@version}"
+        source_ref: "v#{@version}",
+        api_reference: false,
+        groups_for_modules: [
+          "Itinerary Tagging": [
+            OpenTripPlannerClient.ItineraryTag,
+            OpenTripPlannerClient.ItineraryTag.Behaviour,
+            OpenTripPlannerClient.ItineraryTag.Scorer
+          ],
+          "Supported Itinerary Tags": ~r/(MostDirect|ShortestTrip|EarliestArrival|LeastWalking)/,
+          "OTP derived schemas": ~r/OpenTripPlannerClient.Schema/,
+          "Test helpers": [OpenTripPlannerClient.Test.Support.Factory]
+        ],
+        nest_modules_by_prefix: [
+          OpenTripPlannerClient.ItineraryTag,
+          OpenTripPlannerClient.Schema,
+          OpenTripPlannerClient
+        ]
       ]
     ]
   end
