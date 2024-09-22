@@ -37,8 +37,7 @@ defmodule OpenTripPlannerClient.Schema.Route do
   @type gtfs_route_type ::
           unquote(
             @gtfs_route_type
-            |> Enum.map(&inspect/1)
-            |> Enum.join(" | ")
+            |> Enum.map_join(" | ", &inspect/1)
             |> Code.string_to_quoted!()
           )
 
@@ -57,5 +56,6 @@ defmodule OpenTripPlannerClient.Schema.Route do
     field(:desc, desc())
   end
 
+  @spec gtfs_route_type :: [gtfs_route_type()]
   def gtfs_route_type, do: @gtfs_route_type
 end

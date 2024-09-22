@@ -21,12 +21,23 @@ defmodule OpenTripPlannerClient.ItineraryTag do
                       ]
                       |> Enum.map(& &1.tag())
 
+  @spec default_arriving() :: [Behaviour.t()]
+  def default_arriving, do: [ShortestTrip, MostDirect, LeastWalking]
+
+  @spec default_departing() :: [Behaviour.t()]
+  def default_departing, do: [EarliestArrival, MostDirect, LeastWalking]
+
   @doc """
   Apply scores from a number of modules implementing the
   `OpenTripPlannerClient.ItineraryTag.Behaviour` behaviour, choosing tags for
   each eligible itinerary according to `@tag_priority_order`.
   """
   @spec apply_tags([Behaviour.itinerary_map()], [Behaviour.t()]) :: [Behaviour.itinerary_map()]
+  def apply_tags([], _), do: []
+  def apply_tags(itineraries, []), do: itineraries
+  # Don't apply tags if there's only one itinerary returned
+  def apply_tags([%{}] = itineraries, _), do: itineraries
+
   def apply_tags(itineraries, tag_modules) do
     itineraries =
       itineraries

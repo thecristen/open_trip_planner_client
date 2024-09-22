@@ -61,8 +61,7 @@ defmodule OpenTripPlannerClient.Schema.Leg do
   @type realtime_state ::
           unquote(
             @realtime_state
-            |> Enum.map(&inspect/1)
-            |> Enum.join(" | ")
+            |> Enum.map_join(" | ", &inspect/1)
             |> Code.string_to_quoted!()
           )
 
@@ -85,5 +84,6 @@ defmodule OpenTripPlannerClient.Schema.Leg do
     field(:to, Place.t(), @nonnull_field)
   end
 
+  @spec realtime_state :: [realtime_state()]
   def realtime_state, do: @realtime_state
 end

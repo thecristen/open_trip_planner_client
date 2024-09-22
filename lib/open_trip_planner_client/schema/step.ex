@@ -24,8 +24,7 @@ defmodule OpenTripPlannerClient.Schema.Step do
   @type absolute_direction ::
           unquote(
             @absolute_direction
-            |> Enum.map(&inspect/1)
-            |> Enum.join(" | ")
+            |> Enum.map_join(" | ", &inspect/1)
             |> Code.string_to_quoted!()
           )
 
@@ -55,8 +54,7 @@ defmodule OpenTripPlannerClient.Schema.Step do
   @type relative_direction ::
           unquote(
             @relative_direction
-            |> Enum.map(&inspect/1)
-            |> Enum.join(" | ")
+            |> Enum.map_join(" | ", &inspect/1)
             |> Code.string_to_quoted!()
           )
 
@@ -67,6 +65,9 @@ defmodule OpenTripPlannerClient.Schema.Step do
     field(:relative_direction, relative_direction())
   end
 
+  @spec absolute_direction :: [absolute_direction()]
   def absolute_direction, do: @absolute_direction
+
+  @spec relative_direction :: [relative_direction()]
   def relative_direction, do: @relative_direction
 end

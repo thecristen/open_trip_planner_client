@@ -23,24 +23,16 @@ defmodule OpenTripPlannerClient do
   Generate a trip plan with the given endpoints and options.
   """
   def plan(from, to, opts) do
-    {postprocess_opts, opts} = Keyword.split(opts, [:tags])
+    {tags, opts} = Keyword.pop(opts, :tags, default_tags(opts))
 
     case ParamsBuilder.build_params(from, to, opts) do
       {:ok, params} ->
-        root_url =
-          Keyword.get(
-            opts,
-            :root_url,
-            Application.fetch_env!(:open_trip_planner_client, :otp_url)
-          )
-
-        graphql_url = "#{root_url}/otp/routers/default/index/"
-
-        with {:ok, body} <- send_request(graphql_url, {@plan_query, params}),
+        with {:ok, body} <- send_request(params),
              {:ok, itineraries} <- Parser.validate_body(body) do
           itineraries
           |> Enum.map(&Map.put_new(&1, :tag, nil))
-          |> apply_tags(Keyword.get(postprocess_opts, :tags, []))
+          |> ItineraryTag.apply_tags(tags)
+          |> then(&{:ok, &1})
         end
 
       error ->
@@ -52,18 +44,15 @@ defmodule OpenTripPlannerClient do
     end
   end
 
-  # Don't apply tags if there's only one itinerary returned
-  defp apply_tags([%{}] = itineraries, _), do: {:ok, itineraries}
-  # No tags to apply
-  defp apply_tags(itineraries, []), do: {:ok, itineraries}
-  # No itineraries
-  defp apply_tags([], _), do: {:ok, []}
+  defp default_tags(%{arriveBy: true}), do: ItineraryTag.default_arriving()
+  defp default_tags(_), do: ItineraryTag.default_departing()
 
-  defp apply_tags(itineraries, tags) do
-    {:ok, ItineraryTag.apply_tags(itineraries, tags)}
-  end
+  defp send_request(params) do
+    url =
+      Application.fetch_env!(:open_trip_planner_client, :otp_url) <> "/otp/routers/default/index/"
 
-  defp send_request(url, query) do
+    query = {@plan_query, params}
+
     with {:ok, response} <- log_response(url, query),
          %{status: 200, body: body} <- response do
       {:ok, body}
@@ -84,7 +73,7 @@ defmodule OpenTripPlannerClient do
           keys: fn string ->
             string
             |> Macro.underscore()
-            |> String.to_atom()
+            |> String.to_existing_atom()
           end
         ]
       ]

@@ -3,6 +3,7 @@ defmodule OpenTripPlannerClient.Parser do
   Basic error parsing for Open Trip Planner outputs, processing GraphQL client
   errors and trip planner errors into standard formats for logging and testing.
   """
+  alias Jason.Structs.Decoder
   alias OpenTripPlannerClient.Schema.{Itinerary, Leg, LegTime}
 
   require Logger
@@ -66,7 +67,7 @@ defmodule OpenTripPlannerClient.Parser do
 
     itinerary_map
     |> Jason.encode!()
-    |> Jason.Structs.Decoder.decode(Itinerary)
+    |> Decoder.decode(Itinerary)
     |> then(fn {:ok, itinerary} ->
       strings_to_datetimes(itinerary)
     end)

@@ -1,3 +1,4 @@
+# credo:disable-for-this-file Credo.Check.Readability.Specs
 if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
   defmodule OpenTripPlannerClient.Test.Support.Factory do
     @moduledoc """
@@ -6,12 +7,14 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
 
     use ExMachina
 
+    import Faker.Random.Elixir, only: [random_uniform: 0]
+
     alias OpenTripPlannerClient.Schema.{
       Agency,
       Geometry,
       Itinerary,
-      LegTime,
       Leg,
+      LegTime,
       Place,
       Route,
       Step,
@@ -38,14 +41,20 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
       %Leg{end: %LegTime{scheduled_time: last_end}} = List.last(legs)
 
       %Itinerary{
-        accessibility_score: Faker.Random.Elixir.random_uniform(),
-        duration: legs |> Enum.map(& &1.duration) |> Enum.sum(),
+        accessibility_score: random_uniform(),
+        duration:
+          legs
+          |> Enum.map(& &1.duration)
+          |> Enum.sum(),
         end: last_end,
         legs: legs,
         number_of_transfers: length(legs) - 1,
         start: first_start,
         walk_distance:
-          legs |> Enum.filter(&(&1.mode == :WALK)) |> Enum.map(& &1.distance) |> Enum.sum()
+          legs
+          |> Enum.filter(&(&1.mode == :WALK))
+          |> Enum.map(& &1.distance)
+          |> Enum.sum()
       }
     end
 
@@ -79,7 +88,6 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
 
       first_walk_leg =
         build(:walking_leg, %{
-          duration: random_seconds(),
           end:
             build(:leg_time, %{
               scheduled_time: transit_start_time
@@ -98,7 +106,9 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
             })
         })
 
-      [first_walk_leg | transit_legs ++ [last_walk_leg]]
+      transit_legs
+      |> List.insert_at(0, first_walk_leg)
+      |> List.insert_at(-1, last_walk_leg)
     end
 
     def leg_factory(attrs) do
@@ -157,7 +167,7 @@ if Code.ensure_loaded?(ExMachina) and Code.ensure_loaded?(Faker) do
         mode: "TRANSIT",
         real_time: true,
         realtime_state: Faker.Util.pick(Leg.realtime_state()),
-        route: attrs[:route] || build(:route),
+        route: build(:route),
         to:
           build(:place, %{
             stop: build(:stop, %{gtfs_id: gtfs_prefix(agency.name) <> Faker.Internet.slug()})
