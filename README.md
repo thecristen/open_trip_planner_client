@@ -24,7 +24,7 @@ def deps do
     %{:open_trip_planner_client,
       [
         github: "thecristen/open_trip_planner_client",
-        ref: "v0.9.3"
+        ref: "v0.9.4"
       ]}
   ]
 end
