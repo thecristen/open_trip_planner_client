@@ -64,7 +64,6 @@ defmodule OpenTripPlannerClient do
     [
       base_url: plan_url(),
       cache: true,
-      compress_body: true,
       compressed: true,
       decode_json: [keys: &key_as_atom/1]
     ]
