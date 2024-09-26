@@ -55,6 +55,7 @@ defmodule OpenTripPlannerClient.Parser do
   end
 
   defp validate_routing(%{data: %{plan: plan}}) do
+    _ = OpenTripPlannerClient.Util.ensure_loaded()
     Nestru.decode(plan, OpenTripPlannerClient.Plan)
   end
 

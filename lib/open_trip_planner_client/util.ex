@@ -26,4 +26,28 @@ defmodule OpenTripPlannerClient.Util do
       Application.fetch_env!(:open_trip_planner_client, :timezone)
     )
   end
+
+  @doc """
+  Because underlying functionality uses String.to_existing_atom, we have to load
+  modules so that the atoms exist.
+  """
+  @spec ensure_loaded :: :ok
+  def ensure_loaded do
+    for mod <- [
+          OpenTripPlannerClient.Plan,
+          OpenTripPlannerClient.PlanParams,
+          OpenTripPlannerClient.Schema.Agency,
+          OpenTripPlannerClient.Schema.Geometry,
+          OpenTripPlannerClient.Schema.Itinerary,
+          OpenTripPlannerClient.Schema.LegTime,
+          OpenTripPlannerClient.Schema.Leg,
+          OpenTripPlannerClient.Schema.Place,
+          OpenTripPlannerClient.Schema.Route,
+          OpenTripPlannerClient.Schema.Step,
+          OpenTripPlannerClient.Schema.Stop,
+          OpenTripPlannerClient.Schema.Trip
+        ] do
+      Code.ensure_compiled!(mod)
+    end
+  end
 end

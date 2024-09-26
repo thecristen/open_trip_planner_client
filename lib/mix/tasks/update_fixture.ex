@@ -8,22 +8,7 @@ defmodule Mix.Tasks.UpdateFixture do
   def run(_) do
     Mix.Task.run("app.start")
 
-    for mod <- [
-          OpenTripPlannerClient.Plan,
-          OpenTripPlannerClient.PlanParams,
-          OpenTripPlannerClient.Schema.Agency,
-          OpenTripPlannerClient.Schema.Geometry,
-          OpenTripPlannerClient.Schema.Itinerary,
-          OpenTripPlannerClient.Schema.LegTime,
-          OpenTripPlannerClient.Schema.Leg,
-          OpenTripPlannerClient.Schema.Place,
-          OpenTripPlannerClient.Schema.Route,
-          OpenTripPlannerClient.Schema.Step,
-          OpenTripPlannerClient.Schema.Stop,
-          OpenTripPlannerClient.Schema.Trip
-        ] do
-      Code.ensure_compiled!(mod)
-    end
+    _ = OpenTripPlannerClient.Util.ensure_loaded()
 
     {:ok, plan} =
       %{
