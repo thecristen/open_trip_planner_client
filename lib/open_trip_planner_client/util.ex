@@ -5,7 +5,7 @@ defmodule OpenTripPlannerClient.Util do
   def to_snake_keys(term) when is_binary(term) or is_atom(term) do
     term
     |> Macro.underscore()
-    |> String.to_existing_atom()
+    |> to_existing_atom()
   end
 
   def to_snake_keys(other), do: other
@@ -14,7 +14,7 @@ defmodule OpenTripPlannerClient.Util do
   def to_uppercase_atom(term) when is_binary(term) do
     term
     |> String.upcase()
-    |> String.to_existing_atom()
+    |> to_existing_atom()
   end
 
   def to_uppercase_atom(other), do: other
@@ -28,11 +28,10 @@ defmodule OpenTripPlannerClient.Util do
   end
 
   @doc """
-  Because underlying functionality uses String.to_existing_atom, we have to load
-  modules so that the atoms exist.
+  A safe version of String.to_existing_atom/1 ensuring atoms are already loaded
   """
-  @spec ensure_loaded :: :ok
-  def ensure_loaded do
+  @spec to_existing_atom(String.t()) :: atom()
+  def to_existing_atom(string) do
     for mod <- [
           OpenTripPlannerClient.Plan,
           OpenTripPlannerClient.PlanParams,
@@ -49,5 +48,7 @@ defmodule OpenTripPlannerClient.Util do
         ] do
       Code.ensure_compiled!(mod)
     end
+
+    String.to_existing_atom(string)
   end
 end

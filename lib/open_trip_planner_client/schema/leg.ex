@@ -96,6 +96,8 @@ defmodule OpenTripPlannerClient.Schema.Leg do
   def realtime_state, do: @realtime_state
 
   @spec to_atom(any()) :: {:ok, any()}
-  def to_atom(string) when is_binary(string), do: {:ok, String.to_existing_atom(string)}
+  def to_atom(string) when is_binary(string),
+    do: {:ok, OpenTripPlannerClient.Util.to_existing_atom(string)}
+
   def to_atom(other), do: {:ok, other}
 end

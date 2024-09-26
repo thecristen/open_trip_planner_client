@@ -8,8 +8,6 @@ defmodule Mix.Tasks.UpdateFixture do
   def run(_) do
     Mix.Task.run("app.start")
 
-    _ = OpenTripPlannerClient.Util.ensure_loaded()
-
     {:ok, plan} =
       %{
         fromPlace: "::mbta-ma-us:place-alfcl",
