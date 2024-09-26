@@ -1,2021 +1,2116 @@
 {
   "data": {
     "plan": {
+      "date": "2024-09-26T12:43:00.000-04:00",
+      "routing_errors": [],
       "itineraries": [
         {
-          "accessibilityScore": null,
-          "duration": 4031,
-          "end": "2024-07-05T16:05:11-04:00",
+          "start": "2024-09-26T12:48:00-04:00",
+          "end": "2024-09-26T13:55:07-04:00",
+          "duration": 4027,
+          "accessibility_score": null,
           "legs": [
             {
-              "agency": {
-                "name": "MBTA"
+              "start": {
+                "scheduled_time": "2024-09-26T12:48:00-04:00",
+                "estimated": null
               },
-              "distance": 9761.06,
-              "duration": 1440.0,
+              "mode": "SUBWAY",
               "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:22:00-04:00"
+                "scheduled_time": "2024-09-26T13:26:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Ashmont",
+                "stop": {
+                  "name": "Ashmont",
+                  "gtfs_id": "mbta-ma-us:70093"
+                },
+                "lat": 42.284508,
+                "lon": -71.063833
               },
               "from": {
-                "lat": 42.396158,
-                "lon": -71.139971,
                 "name": "Alewife",
                 "stop": {
-                  "gtfsId": "mbta-ma-us:70061",
-                  "name": "Alewife"
-                }
+                  "name": "Alewife",
+                  "gtfs_id": "mbta-ma-us:70061"
+                },
+                "lat": 42.396148,
+                "lon": -71.140698
               },
-              "intermediateStops": [
+              "realtime_state": null,
+              "intermediate_stops": [
                 {
-                  "gtfsId": "mbta-ma-us:70063",
-                  "name": "Davis"
+                  "name": "Davis",
+                  "gtfs_id": "mbta-ma-us:70063"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:70065",
-                  "name": "Porter"
+                  "name": "Porter",
+                  "gtfs_id": "mbta-ma-us:70065"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:70067",
-                  "name": "Harvard"
+                  "name": "Harvard",
+                  "gtfs_id": "mbta-ma-us:70067"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:70069",
-                  "name": "Central"
+                  "name": "Central",
+                  "gtfs_id": "mbta-ma-us:70069"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:70071",
-                  "name": "Kendall/MIT"
+                  "name": "Kendall/MIT",
+                  "gtfs_id": "mbta-ma-us:70071"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:70073",
-                  "name": "Charles/MGH"
+                  "name": "Charles/MGH",
+                  "gtfs_id": "mbta-ma-us:70073"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:70075",
-                  "name": "Park Street"
+                  "name": "Park Street",
+                  "gtfs_id": "mbta-ma-us:70075"
+                },
+                {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70077"
+                },
+                {
+                  "name": "South Station",
+                  "gtfs_id": "mbta-ma-us:70079"
+                },
+                {
+                  "name": "Broadway",
+                  "gtfs_id": "mbta-ma-us:70081"
+                },
+                {
+                  "name": "Andrew",
+                  "gtfs_id": "mbta-ma-us:70083"
+                },
+                {
+                  "name": "JFK/UMass",
+                  "gtfs_id": "mbta-ma-us:70085"
+                },
+                {
+                  "name": "Savin Hill",
+                  "gtfs_id": "mbta-ma-us:70087"
+                },
+                {
+                  "name": "Fields Corner",
+                  "gtfs_id": "mbta-ma-us:70089"
+                },
+                {
+                  "name": "Shawmut",
+                  "gtfs_id": "mbta-ma-us:70091"
                 }
               ],
-              "legGeometry": {
-                "length": null,
-                "points": "cowaGzoeqLAsAGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]"
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
               },
-              "mode": "SUBWAY",
-              "realTime": false,
-              "realtimeState": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "aowaGjteqLCcFGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]??HO~IqQj@cAp@wBr@kBj@kBHYDS??nDmM^i@POl@UhAQj@Gb@?r@HZFj@Pz@b@fe@h[pCA??zlAm@??f@?j@TxF|BpBp@\\NNBV?|@[j@[l@g@~B}CTYn@kA~A}BZg@xDwF^c@l@q@VQdAu@\\Sl@Yj@U\\O~@YdAUvAORCt@EzAIPA??`BMXCjAGlAEt@Ev@E~@AdAAbCEnCC~BChCMr@?nBDxALjARdBd@pDbA~@XnBn@\\LPF~Al@NF??p@RbA^jA`@lAZf@R~@TvAX|@J~@NP?dBVxHhArDt@`@JXFvAVhALx@FbADtAA`BAx@BJBHBz@f@TL^^R\\h@jAN`@J\\H^F^LpADnA@dD@jD@x@B`@@r@HdAHd@Jl@H^VxA??VxA@Rl@tD^rAVn@Rb@`@z@\\l@b@l@n@r@l@j@l@h@n@`@hAf@n@\\t@RzANpACrBGrE{@zBa@tB_@??@AnOmBbOgBb@GrC[n@OdEmARAV?b@LJ@rCkA"
+              },
               "route": {
+                "type": 1,
+                "desc": "Rapid Transit",
                 "color": "DA291C",
-                "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Red",
-                "longName": "Red Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
+                "gtfs_id": "mbta-ma-us:Red",
+                "short_name": null,
+                "long_name": "Red Line",
+                "text_color": "FFFFFF"
               },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T14:58:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "transitLeg": true,
               "trip": {
-                "gtfsId": "mbta-ma-us:63288414"
-              }
+                "gtfs_id": "mbta-ma-us:65190059"
+              },
+              "distance": 18957.84,
+              "duration": 2280.0,
+              "real_time": false,
+              "transit_leg": true
             },
             {
-              "agency": null,
-              "distance": 130.15,
-              "duration": 107.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:23:47-04:00"
-              },
-              "from": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "}poaGl}upL????????"
+              "start": {
+                "scheduled_time": "2024-09-26T13:26:00-04:00",
+                "estimated": null
               },
               "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:22:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 36.12,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Concourse | CharlieCard Store"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 77.57,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Orange Line - Forest Hills"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Orange Line - Forest Hills"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 16.46,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Orange Line - Forest Hills"
-                }
-              ],
-              "to": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70020",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "transitLeg": false,
-              "trip": null
-            },
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 5215.25,
-              "duration": 900.0,
               "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:44:00-04:00"
+                "scheduled_time": "2024-09-26T13:26:53-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Ashmont",
+                "stop": {
+                  "name": "Ashmont",
+                  "gtfs_id": "mbta-ma-us:334"
+                },
+                "lat": 42.284195,
+                "lon": -71.063879
               },
               "from": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
+                "name": "Ashmont",
                 "stop": {
-                  "gtfsId": "mbta-ma-us:70020",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:70018",
-                  "name": "Chinatown"
+                  "name": "Ashmont",
+                  "gtfs_id": "mbta-ma-us:70093"
                 },
-                {
-                  "gtfsId": "mbta-ma-us:70016",
-                  "name": "Tufts Medical Center"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70014",
-                  "name": "Back Bay"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70012",
-                  "name": "Massachusetts Avenue"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70010",
-                  "name": "Ruggles"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70008",
-                  "name": "Roxbury Crossing"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "iqoaG~}upL?@@@t@r@hAtAjDdDb@d@t@r@TJj@Lj@@l@Bz@H@???P@fD`@|B^XJRLx@`AzBvB^F??\\FvAVPP~GrRJb@B\\?d@OzCCbACrFAtG@jCA|FBv@@`B?jAHlAJ~AF`@??@D@@Hd@FJRb@R^x@dAzAzBdB~BlHjJ^f@xAlBJJp@v@pBdCnDlEr@fA\\d@b@n@`@l@fAvA??fB`ClN`RfAtApCrD`@j@RVRT??`C`DRVlLzNNPdEpFPN~AhBn@l@NL^Z??|@v@xAfA??jBvApAz@bAn@l@Zb@Vd@Pz@`@\\Rh@Rn@Xp@T|@R|@ZrA`@l@NZHtErAHBd@JbHtCd@R"
+                "lat": 42.284508,
+                "lon": -71.063833
               },
-              "mode": "SUBWAY",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
-                "color": "ED8B00",
-                "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Orange",
-                "longName": "Orange Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:29:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.323132,
-                "lon": -71.099592,
-                "name": "Jackson Square",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70006",
-                  "name": "Jackson Square"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63145470"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 71.02,
-              "duration": 61.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:45:01-04:00"
-              },
-              "from": {
-                "lat": 42.323132,
-                "lon": -71.099592,
-                "name": "Jackson Square",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70006",
-                  "name": "Jackson Square"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "qfiaGns}pL????????Vv@KaA"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:44:00-04:00"
-              },
+              "realtime_state": null,
+              "intermediate_stops": [],
               "steps": [
                 {
-                  "absoluteDirection": "SOUTH",
+                  "absolute_direction": "SOUTH",
+                  "distance": 13.41,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Mattapan Line, buses"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 11.53,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Mattapan Line, buses"
+                },
+                {
+                  "absolute_direction": "NORTHWEST",
+                  "distance": 7.62,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Mattapan Line, buses"
+                },
+                {
+                  "absolute_direction": "SOUTH",
                   "distance": 41.15,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to street"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to street and buses"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 9.14,
-                  "relativeDirection": "CONTINUE",
-                  "streetName": "pathway"
-                },
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 8.53,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to buses, Centre Street"
-                },
-                {
-                  "absoluteDirection": "EAST",
-                  "distance": 12.19,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Buses"
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Busway"
                 }
               ],
-              "to": {
-                "lat": 42.323074,
-                "lon": -71.099546,
-                "name": "Jackson Square",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:11531",
-                  "name": "Jackson Square"
-                }
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "cuaaG~svpLTAPI[Pp@@"
               },
-              "transitLeg": false,
-              "trip": null
+              "route": null,
+              "trip": null,
+              "distance": 73.71,
+              "duration": 53.0,
+              "real_time": false,
+              "transit_leg": false
             },
             {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 2101.23,
-              "duration": 420.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:57:00-04:00"
-              },
-              "from": {
-                "lat": 42.323074,
-                "lon": -71.099546,
-                "name": "Jackson Square",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:11531",
-                  "name": "Jackson Square"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:1265",
-                  "name": "Columbus Ave @ Dimock St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:1266",
-                  "name": "Columbus Ave opp Bray St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:10413",
-                  "name": "Columbus Ave @ Weld Ave - Egleston Sq"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:11413",
-                  "name": "Columbus Ave @ Walnut Ave"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:17421",
-                  "name": "Seaver St opp Harold St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:17411",
-                  "name": "Seaver St opp Humboldt Ave"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "cfiaG|r}pL`A\\Z_FdDKjKI??lMK??xBCfFI\\I^[~AcCDI??fDiFxBiD??`@m@f@_ATi@XeAZy@TUZUb@U??@?f@Mt@GrAQjA]t@_@f@c@p@s@pAgBR[??|HgLhBgCFK"
+              "start": {
+                "scheduled_time": "2024-09-26T13:32:00-04:00",
+                "estimated": null
               },
               "mode": "BUS",
-              "realTime": false,
-              "realtimeState": null,
+              "end": {
+                "scheduled_time": "2024-09-26T13:45:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Blue Hill Ave @ Ellington St",
+                "stop": {
+                  "name": "Blue Hill Ave @ Ellington St",
+                  "gtfs_id": "mbta-ma-us:383"
+                },
+                "lat": 42.302768,
+                "lon": -71.085185
+              },
+              "from": {
+                "name": "Ashmont",
+                "stop": {
+                  "name": "Ashmont",
+                  "gtfs_id": "mbta-ma-us:334"
+                },
+                "lat": 42.284195,
+                "lon": -71.063879
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Talbot Ave @ Dorchester Ave",
+                  "gtfs_id": "mbta-ma-us:367"
+                },
+                {
+                  "name": "Talbot Ave @ Welles Ave",
+                  "gtfs_id": "mbta-ma-us:369"
+                },
+                {
+                  "name": "Talbot Ave @ Centre St",
+                  "gtfs_id": "mbta-ma-us:371"
+                },
+                {
+                  "name": "Talbot Ave @ Southern Ave",
+                  "gtfs_id": "mbta-ma-us:372"
+                },
+                {
+                  "name": "Talbot Ave @ Spencer St",
+                  "gtfs_id": "mbta-ma-us:373"
+                },
+                {
+                  "name": "Talbot Ave @ Talbot Station",
+                  "gtfs_id": "mbta-ma-us:374"
+                },
+                {
+                  "name": "Talbot Ave @ Bernard St",
+                  "gtfs_id": "mbta-ma-us:375"
+                },
+                {
+                  "name": "Talbot Ave @ Kerwin St",
+                  "gtfs_id": "mbta-ma-us:376"
+                },
+                {
+                  "name": "Talbot Ave @ Nightingale St",
+                  "gtfs_id": "mbta-ma-us:378"
+                },
+                {
+                  "name": "Blue Hill Ave @ Harvard St",
+                  "gtfs_id": "mbta-ma-us:1737"
+                },
+                {
+                  "name": "Blue Hill Ave @ Wales St",
+                  "gtfs_id": "mbta-ma-us:381"
+                },
+                {
+                  "name": "Blue Hill Ave @ Charlotte St",
+                  "gtfs_id": "mbta-ma-us:382"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "asaaGvtvpL}@`@a@`@Q\\]NiASyAY[G{@OQEAJKr@c@\\OFe@N????C@aCfAu@j@{@p@{AdBe@r@o@dA_@~@Qd@IV??a@lAm@~BEPI^YpAY|BKh@W|C??CZC|@IdB?lACT[xAa@rB????I`@o@fDa@dB]jBGV??]hBOr@}@vEo@`D?@??k@jCo@dDOr@??oAzGiA|FCL????_@fB[bBcAzEkAbGCP????s@pDMl@Sv@YhAoAWwA[????sDy@sEcAsAUuAY????WGeDy@wD}@[I????qCq@sBg@wD{@"
+              },
               "route": {
-                "color": "FFC72C",
+                "type": 3,
                 "desc": "Key Bus",
-                "gtfsId": "mbta-ma-us:22",
-                "longName": "Ashmont Station - Ruggles Station via Talbot Ave",
-                "shortName": "22",
-                "textColor": "000000",
-                "type": 3
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:50:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.307515,
-                "lon": -71.089263,
-                "name": "Seaver St opp Elm Hill Ave",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:17401",
-                  "name": "Seaver St opp Elm Hill Ave"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63072138"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 599.21,
-              "duration": 491.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:05:11-04:00"
-              },
-              "from": {
-                "lat": 42.307515,
-                "lon": -71.089263,
-                "name": "Seaver St opp Elm Hill Ave",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:17401",
-                  "name": "Seaver St opp Elm Hill Ave"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "}dfaG|r{pLMB@H?H?H?HAJCJAHEJ]bAEJEJGHGJIJEHCJEJCJCLAL?JAL?L@J@NDXJ`@^r@@BZn@v@o@H@FAFEHId@g@RS\\NJ?NANGHGLOb@a@HIFCH?J@FGXYp@u@BCp@q@RQFJNVFJDJF@"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:57:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "WEST",
-                  "distance": 244.7,
-                  "relativeDirection": "DEPART",
-                  "streetName": "service road"
-                },
-                {
-                  "absoluteDirection": "SOUTHEAST",
-                  "distance": 207.57,
-                  "relativeDirection": "LEFT",
-                  "streetName": "path"
-                },
-                {
-                  "absoluteDirection": "SOUTHEAST",
-                  "distance": 146.96,
-                  "relativeDirection": "LEFT",
-                  "streetName": "path"
-                }
-              ],
-              "to": {
-                "lat": 42.305067,
-                "lon": -71.090434,
-                "name": "Franklin Park Zoo",
-                "stop": null
-              },
-              "transitLeg": false,
-              "trip": null
-            }
-          ],
-          "numberOfTransfers": 2,
-          "start": "2024-07-05T14:58:00-04:00",
-          "tag": "earliest_arrival",
-          "walkDistance": 800.3800000000001
-        },
-        {
-          "accessibilityScore": null,
-          "duration": 4019,
-          "end": "2024-07-05T16:26:20-04:00",
-          "legs": [
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 13014.29,
-              "duration": 1645.0,
-              "end": {
-                "estimated": {
-                  "time": "2024-07-05T15:46:46-04:00",
-                  "delay": "-PT1M14S"
-                },
-                "scheduledTime": "2024-07-05T15:48:00-04:00"
-              },
-              "from": {
-                "lat": 42.396158,
-                "lon": -71.139971,
-                "name": "Alewife",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70061",
-                  "name": "Alewife"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:70063",
-                  "name": "Davis"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70065",
-                  "name": "Porter"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70067",
-                  "name": "Harvard"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70069",
-                  "name": "Central"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70071",
-                  "name": "Kendall/MIT"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70073",
-                  "name": "Charles/MGH"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70075",
-                  "name": "Park Street"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70079",
-                  "name": "South Station"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70081",
-                  "name": "Broadway"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "cowaGzoeqLAsAGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]??HO~IqQj@cAp@wBr@kBj@kBHYDS??nDmM^i@POl@UhAQj@Gb@?r@HZFj@Pz@b@fe@h[pCA??zlAm@"
-              },
-              "mode": "SUBWAY",
-              "realTime": true,
-              "realtimeState": null,
-              "route": {
-                "color": "DA291C",
-                "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Red",
-                "longName": "Red Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
-              },
-              "start": {
-                "estimated": {
-                  "time": "2024-07-05T15:19:21-04:00",
-                  "delay": "PT7M21S"
-                },
-                "scheduledTime": "2024-07-05T15:12:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.330154,
-                "lon": -71.057655,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70083",
-                  "name": "Andrew"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63288415"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 56.2,
-              "duration": 49.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:47:35-04:00"
-              },
-              "from": {
-                "lat": 42.330154,
-                "lon": -71.057655,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70083",
-                  "name": "Andrew"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "mrjaGjmupL??\\h@Fo@"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:46:46-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 20.12,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to street and buses"
-                },
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 23.89,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Buses"
-                },
-                {
-                  "absoluteDirection": "EAST",
-                  "distance": 12.19,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Buses"
-                }
-              ],
-              "to": {
-                "lat": 42.329962,
-                "lon": -71.057625,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:13",
-                  "name": "Andrew"
-                }
-              },
-              "transitLeg": false,
-              "trip": null
-            },
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 5053.37,
-              "duration": 1320.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:19:00-04:00"
-              },
-              "from": {
-                "lat": 42.329962,
-                "lon": -71.057625,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:13",
-                  "name": "Andrew"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:11241",
-                  "name": "South Bay Mall @ Target"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:11242",
-                  "name": "South Bay Mall opp Bed Bath & Beyond"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:11244",
-                  "name": "South Bay Mall @ Allstate Rd"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:133",
-                  "name": "Massachusetts Ave opp Clapp St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:134",
-                  "name": "Massachusetts Ave @ Columbia Rd"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:362",
-                  "name": "Columbia Rd @ Holden St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2910",
-                  "name": "Columbia Rd @ Dudley St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2911",
-                  "name": "Columbia Rd @ Bird St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2912",
-                  "name": "Columbia Rd @ Glendale St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2913",
-                  "name": "Columbia Rd @ Quincy St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2914",
-                  "name": "Columbia Rd @ Hamilton St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2915",
-                  "name": "Columbia Rd opp Wyola Pl"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2916",
-                  "name": "Columbia Rd @ Devon St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2918",
-                  "name": "Columbia Rd @ Geneva Ave"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2919",
-                  "name": "Columbia Rd @ Washington St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2920",
-                  "name": "Columbia Rd @ Seaver St"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "mqjaGdmupLAeCR?X?v@Jm@tFm@jECR[hDWnBQ~ASbBAFo@jFI~@XGJ?^DNCHIHEDKBQ?iAA[?????Y@e@Dg@FSFOLQb@c@bB}ATQPGLAP?RBVFTHhFbCz@b@????tCzAXP\\RFD??FD^t@FPBPCXGn@T?NDRPh@nAHn@j@tAt@tBJIj@_@hByAn@g@r@o@JI??jAeAfEgD|BgB|BgB??TQX[NUD`@Lb@JTZd@Xh@`@d@\\`@`@^f@`@b@ZzA|@????VPrBnAp@b@\\^t@`AXj@JV????Tj@^r@PTzBlB~@v@l@d@f@b@zAhA|@l@????NHdD|ArBbAjAj@????NF\\ZtBbCdAtA\\h@\\v@P^??l@xAdAtCd@~@h@dA????JPpAbCZf@PVf@x@h@dAtA`Ct@nABB??`@h@l@x@|AlBTX??@?JL|@fAv@jAj@bAZv@Xv@Nn@FZ????FTDp@Z|BTrANh@Vn@b@|@????HRPZ|@~ATj@v@xAj@z@Zl@??JPj@j@f@r@Xn@Ph@Ft@DjAA`A@b@D|AFh@Z|@h@fA"
-              },
-              "mode": "BUS",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
                 "color": "FFC72C",
-                "desc": "Local Bus",
-                "gtfsId": "mbta-ma-us:16",
-                "longName": "Forest Hills Station - Andrew Station or Harbor Point",
-                "shortName": "16",
-                "textColor": "000000",
-                "type": 3
+                "gtfs_id": "mbta-ma-us:22",
+                "short_name": "22",
+                "long_name": "Ashmont Station - Ruggles Station via Talbot Ave",
+                "text_color": "000000"
               },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:57:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.303124,
-                "lon": -71.08595,
-                "name": "Franklin Park Zoo @ Entrance",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:1587",
-                  "name": "Franklin Park Zoo @ Entrance"
-                }
-              },
-              "transitLeg": true,
               "trip": {
-                "gtfsId": "mbta-ma-us:63070560"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 538.03,
-              "duration": 440.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:26:20-04:00"
+                "gtfs_id": "mbta-ma-us:64462836"
               },
-              "from": {
-                "lat": 42.303124,
-                "lon": -71.08595,
-                "name": "Franklin Park Zoo @ Entrance",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:1587",
-                  "name": "Franklin Park Zoo @ Entrance"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "oieaGd~zpLFGf@`AHPSRm@t@IJBFHRT^BL?JAJIRc@d@}@~@iAlAw@x@STED_@`@SRi@j@[\\GFOPILEHENIr@CVABEPFJNVFJDJF@"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:19:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 43.54,
-                  "relativeDirection": "DEPART",
-                  "streetName": "Franklin Park Road"
-                },
-                {
-                  "absoluteDirection": "NORTHWEST",
-                  "distance": 494.52,
-                  "relativeDirection": "RIGHT",
-                  "streetName": "path"
-                }
-              ],
-              "to": {
-                "lat": 42.305067,
-                "lon": -71.090434,
-                "name": "Franklin Park Zoo",
-                "stop": null
-              },
-              "transitLeg": false,
-              "trip": null
-            }
-          ],
-          "numberOfTransfers": 1,
-          "start": "2024-07-05T15:19:21-04:00",
-          "tag": "shortest_trip",
-          "walkDistance": 594.23
-        },
-        {
-          "accessibilityScore": null,
-          "duration": 4160,
-          "end": "2024-07-05T16:14:20-04:00",
-          "legs": [
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 13014.29,
-              "duration": 2160.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:41:00-04:00"
-              },
-              "from": {
-                "lat": 42.396158,
-                "lon": -71.139971,
-                "name": "Alewife",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70061",
-                  "name": "Alewife"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:70063",
-                  "name": "Davis"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70065",
-                  "name": "Porter"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70067",
-                  "name": "Harvard"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70069",
-                  "name": "Central"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70071",
-                  "name": "Kendall/MIT"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70073",
-                  "name": "Charles/MGH"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70075",
-                  "name": "Park Street"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70079",
-                  "name": "South Station"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70081",
-                  "name": "Broadway"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "cowaGzoeqLAsAGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]??HO~IqQj@cAp@wBr@kBj@kBHYDS??nDmM^i@POl@UhAQj@Gb@?r@HZFj@Pz@b@fe@h[pCA??zlAm@"
-              },
-              "mode": "SUBWAY",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
-                "color": "DA291C",
-                "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Red",
-                "longName": "Red Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:05:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.330154,
-                "lon": -71.057655,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70083",
-                  "name": "Andrew"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63288204"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 56.2,
-              "duration": 49.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:41:49-04:00"
-              },
-              "from": {
-                "lat": 42.330154,
-                "lon": -71.057655,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70083",
-                  "name": "Andrew"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "mrjaGjmupL??\\h@Fo@"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:41:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 20.12,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to street and buses"
-                },
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 23.89,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Buses"
-                },
-                {
-                  "absoluteDirection": "EAST",
-                  "distance": 12.19,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Buses"
-                }
-              ],
-              "to": {
-                "lat": 42.329962,
-                "lon": -71.057625,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:13",
-                  "name": "Andrew"
-                }
-              },
-              "transitLeg": false,
-              "trip": null
-            },
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 1452.44,
-              "duration": 300.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:53:00-04:00"
-              },
-              "from": {
-                "lat": 42.329962,
-                "lon": -71.057625,
-                "name": "Andrew",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:13",
-                  "name": "Andrew"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:2905",
-                  "name": "Boston St @ Ellery St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2906",
-                  "name": "Boston St opp Washburn St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2907",
-                  "name": "Boston St @ W Howell St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2908",
-                  "name": "Boston St opp Harvest St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2909",
-                  "name": "Boston St opp Mayhew St"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "mqjaGdmupLAeCR?X?v@J^\\vBhAv@`@??RHj@T`Bl@h@RxAd@j@RnAb@pAd@^J????lA\\\\LXJ??j@RVNRL`BfA~@l@??n@`@XPb@VdAr@n@`@~@`@tA^XF????x@R\\DT?f@Aj@EX?PBNDRXD`@Lb@JTZd@Xh@`@d@\\`@`@^f@`@b@ZzA|@"
-              },
-              "mode": "BUS",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
-                "color": "FFC72C",
-                "desc": "Local Bus",
-                "gtfsId": "mbta-ma-us:17",
-                "longName": "Fields Corner Station - Andrew Station",
-                "shortName": "17",
-                "textColor": "000000",
-                "type": 3
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:48:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.318764,
-                "lon": -71.063583,
-                "name": "Columbia Rd @ Holden St",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:362",
-                  "name": "Columbia Rd @ Holden St"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63072555"
-              }
-            },
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 2627.51,
-              "duration": 660.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:07:00-04:00"
-              },
-              "from": {
-                "lat": 42.318764,
-                "lon": -71.063583,
-                "name": "Columbia Rd @ Holden St",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:362",
-                  "name": "Columbia Rd @ Holden St"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:2910",
-                  "name": "Columbia Rd @ Dudley St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2911",
-                  "name": "Columbia Rd @ Bird St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2912",
-                  "name": "Columbia Rd @ Glendale St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2913",
-                  "name": "Columbia Rd @ Quincy St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2914",
-                  "name": "Columbia Rd @ Hamilton St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2915",
-                  "name": "Columbia Rd opp Wyola Pl"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2916",
-                  "name": "Columbia Rd @ Devon St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2918",
-                  "name": "Columbia Rd @ Geneva Ave"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2919",
-                  "name": "Columbia Rd @ Washington St"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:2920",
-                  "name": "Columbia Rd @ Seaver St"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "_khaGxqvpL??VPrBnAp@b@\\^t@`AXj@JV????Tj@^r@PTzBlB~@v@l@d@f@b@zAhA|@l@????NHdD|ArBbAjAj@????NF\\ZtBbCdAtA\\h@\\v@P^??l@xAdAtCd@~@h@dA????JPpAbCZf@PVf@x@h@dAtA`Ct@nABB??`@h@l@x@|AlBTX??@?JL|@fAv@jAj@bAZv@Xv@Nn@FZ????FTDp@Z|BTrANh@Vn@b@|@????HRPZ|@~ATj@v@xAj@z@Zl@??JPj@j@f@r@Xn@Ph@Ft@DjAA`A@b@D|AFh@Z|@h@fA"
-              },
-              "mode": "BUS",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
-                "color": "FFC72C",
-                "desc": "Local Bus",
-                "gtfsId": "mbta-ma-us:16",
-                "longName": "Forest Hills Station - Andrew Station or Harbor Point",
-                "shortName": "16",
-                "textColor": "000000",
-                "type": 3
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:56:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.303124,
-                "lon": -71.08595,
-                "name": "Franklin Park Zoo @ Entrance",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:1587",
-                  "name": "Franklin Park Zoo @ Entrance"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63073157"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 538.03,
-              "duration": 440.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:14:20-04:00"
-              },
-              "from": {
-                "lat": 42.303124,
-                "lon": -71.08595,
-                "name": "Franklin Park Zoo @ Entrance",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:1587",
-                  "name": "Franklin Park Zoo @ Entrance"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "oieaGd~zpLFGf@`AHPSRm@t@IJBFHRT^BL?JAJIRc@d@}@~@iAlAw@x@STED_@`@SRi@j@[\\GFOPILEHENIr@CVABEPFJNVFJDJF@"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:07:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 43.54,
-                  "relativeDirection": "DEPART",
-                  "streetName": "Franklin Park Road"
-                },
-                {
-                  "absoluteDirection": "NORTHWEST",
-                  "distance": 494.52,
-                  "relativeDirection": "RIGHT",
-                  "streetName": "path"
-                }
-              ],
-              "to": {
-                "lat": 42.305067,
-                "lon": -71.090434,
-                "name": "Franklin Park Zoo",
-                "stop": null
-              },
-              "transitLeg": false,
-              "trip": null
-            }
-          ],
-          "numberOfTransfers": 2,
-          "start": "2024-07-05T15:05:00-04:00",
-          "tag": "least_walking",
-          "walkDistance": 594.23
-        },
-        {
-          "accessibilityScore": null,
-          "duration": 4430,
-          "end": "2024-07-05T16:18:50-04:00",
-          "legs": [
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 10300.55,
-              "duration": 1560.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:31:00-04:00"
-              },
-              "from": {
-                "lat": 42.396158,
-                "lon": -71.139971,
-                "name": "Alewife",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70061",
-                  "name": "Alewife"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:70063",
-                  "name": "Davis"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70065",
-                  "name": "Porter"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70067",
-                  "name": "Harvard"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70069",
-                  "name": "Central"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70071",
-                  "name": "Kendall/MIT"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70073",
-                  "name": "Charles/MGH"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70075",
-                  "name": "Park Street"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "cowaGzoeqLAsAGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]??HO~IqQj@cAp@wBr@kBj@kBHYDS"
-              },
-              "mode": "SUBWAY",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
-                "color": "DA291C",
-                "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Red",
-                "longName": "Red Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:05:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.352271,
-                "lon": -71.055242,
-                "name": "South Station",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70079",
-                  "name": "South Station"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:63288204"
-              }
-            },
-            {
-              "agency": null,
-              "distance": 239.22,
-              "duration": 199.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:34:19-04:00"
-              },
-              "from": {
-                "lat": 42.352271,
-                "lon": -71.055242,
-                "name": "South Station",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70079",
-                  "name": "South Station"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "u|naGh~tpL??????????????jD`@"
-              },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:31:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 47.85,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Silver Line - SL4 Nubian, lobby, Amtrak, Commuter Rail"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit-only gates"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 6.1,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Bus Terminal, lobby, Amtrak, Silver Line - SL4 Nubian, Commuter Rail"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 33.83,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Silver Line Nubian / Bus Terminal / Commuter Rail"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Commuter Rail, concourse"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 23.77,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Commuter Rail, concourse"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 127.66,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Commuter Rail - All trains"
-                }
-              ],
-              "to": {
-                "lat": 42.35141,
-                "lon": -71.055417,
-                "name": "South Station",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:NEC-2287",
-                  "name": "South Station"
-                }
-              },
-              "transitLeg": false,
-              "trip": null
-            },
-            {
-              "agency": {
-                "name": "MBTA"
-              },
-              "distance": 5686.15,
+              "distance": 3394.21,
               "duration": 780.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:00:00-04:00"
-              },
-              "from": {
-                "lat": 42.35141,
-                "lon": -71.055417,
-                "name": "South Station",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:NEC-2287",
-                  "name": "South Station"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:DB-2265-01",
-                  "name": "Newmarket"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:DB-2258-01",
-                  "name": "Uphams Corner"
-                }
-              ],
-              "legGeometry": {
-                "length": null,
-                "points": "kvnaGd|tpL|KxEr@XpDbBl@Zh@\\t@^hAp@fBfAvDzBvEnCFFHDJHjBdApAv@tAf@p@Nj@NLDPFR@b@@V?~@Av@A`AAhAAnDK|DGdHMxBEXDp@N`@Nh@XrAt@|A~@NJlE|BhBfAlAl@zAx@n@Z`@Rb@Rz@f@`@TbB~@f@T|@j@jCtAhFtCfCtA`B|@??nCxApAp@JFXL|B`AtAd@dAVnAVpAVtBZdATjGfAbANpEv@rARdCb@??HBfANXD`Et@F@`BZxA\\v@ThA^`Ab@tAh@fGbC~Al@PFFBZJtAh@fBt@`A^`C`AtCfAfA^~@`@bA`@\\LdChA|@f@v@d@`At@~@|@v@z@z@dAjBxBbCvCxA`Bx@bAr@t@v@v@v@l@FDLH"
-              },
-              "mode": "RAIL",
-              "realTime": false,
-              "realtimeState": null,
-              "route": {
-                "color": "80276C",
-                "desc": "Commuter Rail",
-                "gtfsId": "mbta-ma-us:CR-Fairmount",
-                "longName": "Fairmount Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 2
-              },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:47:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.303955,
-                "lon": -71.077979,
-                "name": "Four Corners/Geneva",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:DB-2249-01",
-                  "name": "Four Corners/Geneva"
-                }
-              },
-              "transitLeg": true,
-              "trip": {
-                "gtfsId": "mbta-ma-us:CR-670371-945"
-              }
+              "real_time": false,
+              "transit_leg": true
             },
             {
-              "agency": null,
-              "distance": 1397.53,
-              "duration": 1130.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:18:50-04:00"
-              },
-              "from": {
-                "lat": 42.303955,
-                "lon": -71.077979,
-                "name": "Four Corners/Geneva",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:DB-2249-01",
-                  "name": "Four Corners/Geneva"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "ypeaGnjypLdCpB?BTt@HGHJDCPJRPNRVp@ZpAp@|Bx@lCq@fA_BpCaAbBaA`BNXJ`@FP??DPBRBLBP@N?N@P?RA^@R?H?P?T?V@\\@dA?HAHAFCFDLBDBHv@`Bf@`AHPSRm@t@IJBFHRT^BL?JAJIRc@d@}@~@iAlAw@x@STED_@`@SRi@j@[\\GFOPILEHENIr@CVABEPFJNVFJDJF@"
+              "start": {
+                "scheduled_time": "2024-09-26T13:45:00-04:00",
+                "estimated": null
               },
               "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:00:00-04:00"
+              "end": {
+                "scheduled_time": "2024-09-26T13:55:07-04:00",
+                "estimated": null
               },
+              "to": {
+                "name": "Franklin Park Zoo",
+                "stop": null,
+                "lat": 42.305067,
+                "lon": -71.090434
+              },
+              "from": {
+                "name": "Blue Hill Ave @ Ellington St",
+                "stop": {
+                  "name": "Blue Hill Ave @ Ellington St",
+                  "gtfs_id": "mbta-ma-us:383"
+                },
+                "lat": 42.302768,
+                "lon": -71.085185
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
               "steps": [
                 {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 88.76,
-                  "relativeDirection": "DEPART",
-                  "streetName": "Track 1 (Outbound)"
+                  "absolute_direction": "NORTH",
+                  "distance": 9.3,
+                  "relative_direction": "DEPART",
+                  "street_name": "sidewalk"
                 },
                 {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 40.6,
-                  "relativeDirection": "SLIGHTLY_RIGHT",
-                  "streetName": "path"
+                  "absolute_direction": "NORTHWEST",
+                  "distance": 9.6,
+                  "relative_direction": "LEFT",
+                  "street_name": "Ellington Street"
                 },
                 {
-                  "absoluteDirection": "SOUTHEAST",
-                  "distance": 3.74,
-                  "relativeDirection": "LEFT",
-                  "streetName": "Washington Street"
+                  "absolute_direction": "NORTH",
+                  "distance": 56.35,
+                  "relative_direction": "RIGHT",
+                  "street_name": "Blue Hill Avenue"
                 },
                 {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 223.95,
-                  "relativeDirection": "RIGHT",
-                  "streetName": "Erie Street"
+                  "absolute_direction": "WEST",
+                  "distance": 16.0,
+                  "relative_direction": "LEFT",
+                  "street_name": "Columbia Road"
                 },
                 {
-                  "absoluteDirection": "NORTHWEST",
-                  "distance": 230.13,
-                  "relativeDirection": "RIGHT",
-                  "streetName": "Hewins Street"
-                },
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 206.83,
-                  "relativeDirection": "LEFT",
-                  "streetName": "Columbia Road"
-                },
-                {
-                  "absoluteDirection": "SOUTHWEST",
+                  "absolute_direction": "SOUTHWEST",
                   "distance": 109.03,
-                  "relativeDirection": "LEFT",
-                  "streetName": "Franklin Park Road"
+                  "relative_direction": "LEFT",
+                  "street_name": "Franklin Park Road"
                 },
                 {
-                  "absoluteDirection": "NORTHWEST",
+                  "absolute_direction": "NORTHWEST",
                   "distance": 494.52,
-                  "relativeDirection": "RIGHT",
-                  "streetName": "path"
+                  "relative_direction": "RIGHT",
+                  "street_name": "path"
                 }
               ],
-              "to": {
-                "lat": 42.305067,
-                "lon": -71.090434,
-                "name": "Franklin Park Zoo",
-                "stop": null
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "ggeaGlyzpL?AC??AKAKPoAYEAKC?HAHAFCFDLBD@D@Bv@`Bf@`AHPSRm@t@IJBFHRT^BL?JAJIRc@d@}@~@iAlAw@x@STED_@`@SRi@j@[\\GFOPILEHENIr@CVABEPFJNVFJDJF@"
               },
-              "transitLeg": false,
-              "trip": null
+              "route": null,
+              "trip": null,
+              "distance": 694.77,
+              "duration": 607.0,
+              "real_time": false,
+              "transit_leg": false
             }
           ],
-          "numberOfTransfers": 1,
-          "start": "2024-07-05T15:05:00-04:00",
-          "tag": null,
-          "walkDistance": 1636.75
+          "number_of_transfers": 1,
+          "walk_distance": 768.48
         },
         {
-          "accessibilityScore": null,
-          "duration": 4219,
-          "end": "2024-07-05T16:36:19-04:00",
+          "start": "2024-09-26T12:48:00-04:00",
+          "end": "2024-09-26T13:55:20-04:00",
+          "duration": 4040,
+          "accessibility_score": null,
           "legs": [
             {
+              "start": {
+                "scheduled_time": "2024-09-26T12:48:00-04:00",
+                "estimated": null
+              },
+              "mode": "SUBWAY",
+              "end": {
+                "scheduled_time": "2024-09-26T13:14:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Andrew",
+                "stop": {
+                  "name": "Andrew",
+                  "gtfs_id": "mbta-ma-us:70083"
+                },
+                "lat": 42.330154,
+                "lon": -71.057655
+              },
+              "from": {
+                "name": "Alewife",
+                "stop": {
+                  "name": "Alewife",
+                  "gtfs_id": "mbta-ma-us:70061"
+                },
+                "lat": 42.396148,
+                "lon": -71.140698
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Davis",
+                  "gtfs_id": "mbta-ma-us:70063"
+                },
+                {
+                  "name": "Porter",
+                  "gtfs_id": "mbta-ma-us:70065"
+                },
+                {
+                  "name": "Harvard",
+                  "gtfs_id": "mbta-ma-us:70067"
+                },
+                {
+                  "name": "Central",
+                  "gtfs_id": "mbta-ma-us:70069"
+                },
+                {
+                  "name": "Kendall/MIT",
+                  "gtfs_id": "mbta-ma-us:70071"
+                },
+                {
+                  "name": "Charles/MGH",
+                  "gtfs_id": "mbta-ma-us:70073"
+                },
+                {
+                  "name": "Park Street",
+                  "gtfs_id": "mbta-ma-us:70075"
+                },
+                {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70077"
+                },
+                {
+                  "name": "South Station",
+                  "gtfs_id": "mbta-ma-us:70079"
+                },
+                {
+                  "name": "Broadway",
+                  "gtfs_id": "mbta-ma-us:70081"
+                }
+              ],
+              "steps": [],
               "agency": {
                 "name": "MBTA"
               },
-              "distance": 9761.06,
-              "duration": 1440.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:50:00-04:00"
-              },
-              "from": {
-                "lat": 42.396158,
-                "lon": -71.139971,
-                "name": "Alewife",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70061",
-                  "name": "Alewife"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:70063",
-                  "name": "Davis"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70065",
-                  "name": "Porter"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70067",
-                  "name": "Harvard"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70069",
-                  "name": "Central"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70071",
-                  "name": "Kendall/MIT"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70073",
-                  "name": "Charles/MGH"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70075",
-                  "name": "Park Street"
-                }
-              ],
-              "legGeometry": {
+              "leg_geometry": {
                 "length": null,
-                "points": "cowaGzoeqLAsAGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]"
+                "points": "aowaGjteqLCcFGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]??HO~IqQj@cAp@wBr@kBj@kBHYDS??nDmM^i@POl@UhAQj@Gb@?r@HZFj@Pz@b@fe@h[pCA??zlAm@"
               },
-              "mode": "SUBWAY",
-              "realTime": false,
-              "realtimeState": null,
               "route": {
-                "color": "DA291C",
+                "type": 1,
                 "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Red",
-                "longName": "Red Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
+                "color": "DA291C",
+                "gtfs_id": "mbta-ma-us:Red",
+                "short_name": null,
+                "long_name": "Red Line",
+                "text_color": "FFFFFF"
               },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:26:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "transitLeg": true,
               "trip": {
-                "gtfsId": "mbta-ma-us:63288416"
-              }
+                "gtfs_id": "mbta-ma-us:65190059"
+              },
+              "distance": 13074.0,
+              "duration": 1560.0,
+              "real_time": false,
+              "transit_leg": true
             },
             {
-              "agency": null,
-              "distance": 130.15,
-              "duration": 107.0,
+              "start": {
+                "scheduled_time": "2024-09-26T13:14:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
               "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:51:47-04:00"
+                "scheduled_time": "2024-09-26T13:14:49-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Andrew",
+                "stop": {
+                  "name": "Andrew",
+                  "gtfs_id": "mbta-ma-us:13"
+                },
+                "lat": 42.329962,
+                "lon": -71.057625
               },
               "from": {
-                "lat": 42.355518,
-                "lon": -71.060225,
+                "name": "Andrew",
+                "stop": {
+                  "name": "Andrew",
+                  "gtfs_id": "mbta-ma-us:70083"
+                },
+                "lat": 42.330154,
+                "lon": -71.057655
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 20.12,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to street and buses"
+                },
+                {
+                  "absolute_direction": "SOUTHWEST",
+                  "distance": 23.89,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Buses"
+                },
+                {
+                  "absolute_direction": "EAST",
+                  "distance": 12.19,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Buses"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "mrjaGjmupL??\\h@Fo@"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 56.2,
+              "duration": 49.0,
+              "real_time": false,
+              "transit_leg": false
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:21:00-04:00",
+                "estimated": null
+              },
+              "mode": "BUS",
+              "end": {
+                "scheduled_time": "2024-09-26T13:48:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Franklin Park Zoo @ Entrance",
+                "stop": {
+                  "name": "Franklin Park Zoo @ Entrance",
+                  "gtfs_id": "mbta-ma-us:1587"
+                },
+                "lat": 42.303124,
+                "lon": -71.08595
+              },
+              "from": {
+                "name": "Andrew",
+                "stop": {
+                  "name": "Andrew",
+                  "gtfs_id": "mbta-ma-us:13"
+                },
+                "lat": 42.329962,
+                "lon": -71.057625
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "South Bay Mall @ Target",
+                  "gtfs_id": "mbta-ma-us:11241"
+                },
+                {
+                  "name": "South Bay Mall opp Bed Bath & Beyond",
+                  "gtfs_id": "mbta-ma-us:11242"
+                },
+                {
+                  "name": "South Bay Mall @ Allstate Rd",
+                  "gtfs_id": "mbta-ma-us:11244"
+                },
+                {
+                  "name": "Massachusetts Ave opp Clapp St",
+                  "gtfs_id": "mbta-ma-us:133"
+                },
+                {
+                  "name": "Massachusetts Ave @ Columbia Rd",
+                  "gtfs_id": "mbta-ma-us:134"
+                },
+                {
+                  "name": "Columbia Rd @ Holden St",
+                  "gtfs_id": "mbta-ma-us:362"
+                },
+                {
+                  "name": "Columbia Rd @ Dudley St",
+                  "gtfs_id": "mbta-ma-us:2910"
+                },
+                {
+                  "name": "Columbia Rd @ Bird St",
+                  "gtfs_id": "mbta-ma-us:2911"
+                },
+                {
+                  "name": "Columbia Rd @ Glendale St",
+                  "gtfs_id": "mbta-ma-us:2912"
+                },
+                {
+                  "name": "Columbia Rd @ Quincy St",
+                  "gtfs_id": "mbta-ma-us:2913"
+                },
+                {
+                  "name": "Columbia Rd @ Hamilton St",
+                  "gtfs_id": "mbta-ma-us:2914"
+                },
+                {
+                  "name": "Columbia Rd opp Wyola Pl",
+                  "gtfs_id": "mbta-ma-us:2915"
+                },
+                {
+                  "name": "Columbia Rd @ Devon St",
+                  "gtfs_id": "mbta-ma-us:2916"
+                },
+                {
+                  "name": "Columbia Rd @ Geneva Ave",
+                  "gtfs_id": "mbta-ma-us:2918"
+                },
+                {
+                  "name": "Columbia Rd @ Washington St",
+                  "gtfs_id": "mbta-ma-us:2919"
+                },
+                {
+                  "name": "Columbia Rd @ Seaver St",
+                  "gtfs_id": "mbta-ma-us:2920"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "arjaGdmupL?cCd@An@?`@Jm@tFm@jECR[hDWnBQ~ASbBAFg@lEET?VJRHPb@FNCHIHEDKBQ?iAA[?????Y@e@Dg@FSFOLQb@c@bB}ATQPGLAP?RBVFTHhFbCz@b@????tCzAXP\\RFD??FD^t@FPBPCXGn@T?NDRPh@nAHn@j@tAt@tBJIj@_@hByAn@g@r@o@JI??jAeAfEgD|BgB|BgB??TQX[NUD`@Lb@JTZd@Xh@`@d@\\`@`@^f@`@b@ZzA|@????VPrBnAp@b@\\^t@`AXj@JV????Tj@^r@PTzBlB~@v@l@d@f@b@zAhA|@l@????NHdD|ArBbAjAj@????NF\\ZtBbCdAtA\\h@\\v@P^??l@xAdAtCd@~@h@dA????JPpAbCZf@PVf@x@h@dAtA`Ct@nABB??`@h@l@x@|AlBTX??@?JL|@fAv@jAj@bAZv@Xv@Nn@FZ????FTDp@Z|BTrANh@Vn@b@|@????HRPZ|@~ATj@v@xAj@z@Zl@??JPj@j@f@r@Xn@Ph@Ft@DjAA`A@b@D|AFh@Z|@h@fA"
+              },
+              "route": {
+                "type": 3,
+                "desc": "Local Bus",
+                "color": "FFC72C",
+                "gtfs_id": "mbta-ma-us:16",
+                "short_name": "16",
+                "long_name": "Forest Hills Station - Andrew Station or Harbor Point",
+                "text_color": "000000"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:64464010"
+              },
+              "distance": 5043.52,
+              "duration": 1620.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:48:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T13:55:20-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Franklin Park Zoo",
+                "stop": null,
+                "lat": 42.305067,
+                "lon": -71.090434
+              },
+              "from": {
+                "name": "Franklin Park Zoo @ Entrance",
+                "stop": {
+                  "name": "Franklin Park Zoo @ Entrance",
+                  "gtfs_id": "mbta-ma-us:1587"
+                },
+                "lat": 42.303124,
+                "lon": -71.08595
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "SOUTHWEST",
+                  "distance": 43.54,
+                  "relative_direction": "DEPART",
+                  "street_name": "Franklin Park Road"
+                },
+                {
+                  "absolute_direction": "NORTHWEST",
+                  "distance": 494.52,
+                  "relative_direction": "RIGHT",
+                  "street_name": "path"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "oieaGd~zpLFGf@`AHPSRm@t@IJBFHRT^BL?JAJIRc@d@}@~@iAlAw@x@STED_@`@SRi@j@[\\GFOPILEHENIr@CVABEPFJNVFJDJF@"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 538.03,
+              "duration": 440.0,
+              "real_time": false,
+              "transit_leg": false
+            }
+          ],
+          "number_of_transfers": 1,
+          "walk_distance": 594.23
+        },
+        {
+          "start": "2024-09-26T12:55:00-04:00",
+          "end": "2024-09-26T14:01:11-04:00",
+          "duration": 3971,
+          "accessibility_score": null,
+          "legs": [
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T12:55:00-04:00",
+                "estimated": null
+              },
+              "mode": "SUBWAY",
+              "end": {
+                "scheduled_time": "2024-09-26T13:14:00-04:00",
+                "estimated": null
+              },
+              "to": {
                 "name": "Downtown Crossing",
                 "stop": {
-                  "gtfsId": "mbta-ma-us:70077",
-                  "name": "Downtown Crossing"
-                }
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70077"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
               },
-              "intermediateStops": null,
-              "legGeometry": {
+              "from": {
+                "name": "Alewife",
+                "stop": {
+                  "name": "Alewife",
+                  "gtfs_id": "mbta-ma-us:70061"
+                },
+                "lat": 42.396148,
+                "lon": -71.140698
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Davis",
+                  "gtfs_id": "mbta-ma-us:70063"
+                },
+                {
+                  "name": "Porter",
+                  "gtfs_id": "mbta-ma-us:70065"
+                },
+                {
+                  "name": "Harvard",
+                  "gtfs_id": "mbta-ma-us:70067"
+                },
+                {
+                  "name": "Central",
+                  "gtfs_id": "mbta-ma-us:70069"
+                },
+                {
+                  "name": "Kendall/MIT",
+                  "gtfs_id": "mbta-ma-us:70071"
+                },
+                {
+                  "name": "Charles/MGH",
+                  "gtfs_id": "mbta-ma-us:70073"
+                },
+                {
+                  "name": "Park Street",
+                  "gtfs_id": "mbta-ma-us:70075"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "aowaGjteqLCcFGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]"
+              },
+              "route": {
+                "type": 1,
+                "desc": "Rapid Transit",
+                "color": "DA291C",
+                "gtfs_id": "mbta-ma-us:Red",
+                "short_name": null,
+                "long_name": "Red Line",
+                "text_color": "FFFFFF"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:65190060"
+              },
+              "distance": 9820.78,
+              "duration": 1140.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:14:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T13:15:47-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70020"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "from": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70077"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 36.12,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Concourse | CharlieCard Store"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 77.57,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Orange Line - Forest Hills"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 0.0,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Orange Line - Forest Hills"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 16.46,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Orange Line - Forest Hills"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
                 "length": null,
                 "points": "}poaGl}upL????????"
               },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
               "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:50:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 36.12,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Concourse | CharlieCard Store"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 77.57,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Orange Line - Forest Hills"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Orange Line - Forest Hills"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 16.46,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Orange Line - Forest Hills"
-                }
-              ],
-              "to": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70020",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "transitLeg": false,
-              "trip": null
+              "trip": null,
+              "distance": 130.15,
+              "duration": 107.0,
+              "real_time": false,
+              "transit_leg": false
             },
             {
+              "start": {
+                "scheduled_time": "2024-09-26T13:25:00-04:00",
+                "estimated": null
+              },
+              "mode": "SUBWAY",
+              "end": {
+                "scheduled_time": "2024-09-26T13:40:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:70006"
+                },
+                "lat": 42.323132,
+                "lon": -71.099592
+              },
+              "from": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70020"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Chinatown",
+                  "gtfs_id": "mbta-ma-us:70018"
+                },
+                {
+                  "name": "Tufts Medical Center",
+                  "gtfs_id": "mbta-ma-us:70016"
+                },
+                {
+                  "name": "Back Bay",
+                  "gtfs_id": "mbta-ma-us:70014"
+                },
+                {
+                  "name": "Massachusetts Avenue",
+                  "gtfs_id": "mbta-ma-us:70012"
+                },
+                {
+                  "name": "Ruggles",
+                  "gtfs_id": "mbta-ma-us:70010"
+                },
+                {
+                  "name": "Roxbury Crossing",
+                  "gtfs_id": "mbta-ma-us:70008"
+                }
+              ],
+              "steps": [],
               "agency": {
                 "name": "MBTA"
               },
-              "distance": 5215.25,
-              "duration": 900.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:14:00-04:00"
-              },
-              "from": {
-                "lat": 42.355518,
-                "lon": -71.060225,
-                "name": "Downtown Crossing",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70020",
-                  "name": "Downtown Crossing"
-                }
-              },
-              "intermediateStops": [
-                {
-                  "gtfsId": "mbta-ma-us:70018",
-                  "name": "Chinatown"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70016",
-                  "name": "Tufts Medical Center"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70014",
-                  "name": "Back Bay"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70012",
-                  "name": "Massachusetts Avenue"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70010",
-                  "name": "Ruggles"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:70008",
-                  "name": "Roxbury Crossing"
-                }
-              ],
-              "legGeometry": {
+              "leg_geometry": {
                 "length": null,
                 "points": "iqoaG~}upL?@@@t@r@hAtAjDdDb@d@t@r@TJj@Lj@@l@Bz@H@???P@fD`@|B^XJRLx@`AzBvB^F??\\FvAVPP~GrRJb@B\\?d@OzCCbACrFAtG@jCA|FBv@@`B?jAHlAJ~AF`@??@D@@Hd@FJRb@R^x@dAzAzBdB~BlHjJ^f@xAlBJJp@v@pBdCnDlEr@fA\\d@b@n@`@l@fAvA??fB`ClN`RfAtApCrD`@j@RVRT??`C`DRVlLzNNPdEpFPN~AhBn@l@NL^Z??|@v@xAfA??jBvApAz@bAn@l@Zb@Vd@Pz@`@\\Rh@Rn@Xp@T|@R|@ZrA`@l@NZHtErAHBd@JbHtCd@R"
               },
-              "mode": "SUBWAY",
-              "realTime": false,
-              "realtimeState": null,
               "route": {
-                "color": "ED8B00",
+                "type": 1,
                 "desc": "Rapid Transit",
-                "gtfsId": "mbta-ma-us:Orange",
-                "longName": "Orange Line",
-                "shortName": null,
-                "textColor": "FFFFFF",
-                "type": 1
+                "color": "ED8B00",
+                "gtfs_id": "mbta-ma-us:Orange",
+                "short_name": null,
+                "long_name": "Orange Line",
+                "text_color": "FFFFFF"
               },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T15:59:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.323132,
-                "lon": -71.099592,
-                "name": "Jackson Square",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:70006",
-                  "name": "Jackson Square"
-                }
-              },
-              "transitLeg": true,
               "trip": {
-                "gtfsId": "mbta-ma-us:63145474"
-              }
+                "gtfs_id": "mbta-ma-us:64072514"
+              },
+              "distance": 5215.25,
+              "duration": 900.0,
+              "real_time": false,
+              "transit_leg": true
             },
             {
-              "agency": null,
-              "distance": 71.02,
-              "duration": 61.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:15:01-04:00"
+              "start": {
+                "scheduled_time": "2024-09-26T13:40:00-04:00",
+                "estimated": null
               },
-              "from": {
-                "lat": 42.323132,
-                "lon": -71.099592,
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T13:41:01-04:00",
+                "estimated": null
+              },
+              "to": {
                 "name": "Jackson Square",
                 "stop": {
-                  "gtfsId": "mbta-ma-us:70006",
-                  "name": "Jackson Square"
-                }
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:11531"
+                },
+                "lat": 42.323074,
+                "lon": -71.099546
               },
-              "intermediateStops": null,
-              "legGeometry": {
+              "from": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:70006"
+                },
+                "lat": 42.323132,
+                "lon": -71.099592
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 41.15,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to street"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 0.0,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to street and buses"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 9.14,
+                  "relative_direction": "CONTINUE",
+                  "street_name": "pathway"
+                },
+                {
+                  "absolute_direction": "SOUTHWEST",
+                  "distance": 8.53,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to buses, Centre Street"
+                },
+                {
+                  "absolute_direction": "EAST",
+                  "distance": 12.19,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Buses"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
                 "length": null,
                 "points": "qfiaGns}pL????????Vv@KaA"
               },
-              "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
               "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:14:00-04:00"
-              },
-              "steps": [
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 41.15,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to street"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 0.0,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to street and buses"
-                },
-                {
-                  "absoluteDirection": "SOUTH",
-                  "distance": 9.14,
-                  "relativeDirection": "CONTINUE",
-                  "streetName": "pathway"
-                },
-                {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 8.53,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Exit to buses, Centre Street"
-                },
-                {
-                  "absoluteDirection": "EAST",
-                  "distance": 12.19,
-                  "relativeDirection": "FOLLOW_SIGNS",
-                  "streetName": "Buses"
-                }
-              ],
-              "to": {
-                "lat": 42.323074,
-                "lon": -71.099546,
-                "name": "Jackson Square",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:11531",
-                  "name": "Jackson Square"
-                }
-              },
-              "transitLeg": false,
-              "trip": null
+              "trip": null,
+              "distance": 71.02,
+              "duration": 61.0,
+              "real_time": false,
+              "transit_leg": false
             },
             {
+              "start": {
+                "scheduled_time": "2024-09-26T13:47:00-04:00",
+                "estimated": null
+              },
+              "mode": "BUS",
+              "end": {
+                "scheduled_time": "2024-09-26T13:53:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Seaver St opp Elm Hill Ave",
+                "stop": {
+                  "name": "Seaver St opp Elm Hill Ave",
+                  "gtfs_id": "mbta-ma-us:17401"
+                },
+                "lat": 42.307515,
+                "lon": -71.089263
+              },
+              "from": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:11531"
+                },
+                "lat": 42.323074,
+                "lon": -71.099546
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Columbus Ave @ Dimock St",
+                  "gtfs_id": "mbta-ma-us:1265"
+                },
+                {
+                  "name": "Columbus Ave opp Bray St",
+                  "gtfs_id": "mbta-ma-us:1266"
+                },
+                {
+                  "name": "Columbus Ave @ Weld Ave - Egleston Sq",
+                  "gtfs_id": "mbta-ma-us:10413"
+                },
+                {
+                  "name": "Columbus Ave @ Walnut Ave",
+                  "gtfs_id": "mbta-ma-us:11413"
+                },
+                {
+                  "name": "Seaver St opp Harold St",
+                  "gtfs_id": "mbta-ma-us:17421"
+                },
+                {
+                  "name": "Seaver St opp Humboldt Ave",
+                  "gtfs_id": "mbta-ma-us:17411"
+                }
+              ],
+              "steps": [],
               "agency": {
                 "name": "MBTA"
               },
-              "distance": 1832.48,
+              "leg_geometry": {
+                "length": null,
+                "points": "cfiaGzr}pL`A^TqDDm@dDKH?xFGfCC??l@?fBA~BEv@A~BA??xBAzDGZ?NARCHEJGRSf@y@v@iADI????HOhAgBt@gAr@iApAsBNU????b@m@f@_ATi@XeAL]L[TUZUb@U??@?f@Mt@GrAQjA]t@_@f@c@p@s@pAgBR]????PYxB_Dv@kAxB_DhBgCFK"
+              },
+              "route": {
+                "type": 3,
+                "desc": "Key Bus",
+                "color": "FFC72C",
+                "gtfs_id": "mbta-ma-us:22",
+                "short_name": "22",
+                "long_name": "Ashmont Station - Ruggles Station via Talbot Ave",
+                "text_color": "000000"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:64464263"
+              },
+              "distance": 2101.86,
               "duration": 360.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:53:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
               "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:26:00-04:00"
+                "scheduled_time": "2024-09-26T14:01:11-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Franklin Park Zoo",
+                "stop": null,
+                "lat": 42.305067,
+                "lon": -71.090434
               },
               "from": {
-                "lat": 42.323074,
-                "lon": -71.099546,
-                "name": "Jackson Square",
+                "name": "Seaver St opp Elm Hill Ave",
                 "stop": {
-                  "gtfsId": "mbta-ma-us:11531",
-                  "name": "Jackson Square"
-                }
+                  "name": "Seaver St opp Elm Hill Ave",
+                  "gtfs_id": "mbta-ma-us:17401"
+                },
+                "lat": 42.307515,
+                "lon": -71.089263
               },
-              "intermediateStops": [
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
                 {
-                  "gtfsId": "mbta-ma-us:1265",
-                  "name": "Columbus Ave @ Dimock St"
+                  "absolute_direction": "WEST",
+                  "distance": 244.74,
+                  "relative_direction": "DEPART",
+                  "street_name": "service road"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:1266",
-                  "name": "Columbus Ave opp Bray St"
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 207.57,
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
                 },
                 {
-                  "gtfsId": "mbta-ma-us:10413",
-                  "name": "Columbus Ave @ Weld Ave - Egleston Sq"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:11413",
-                  "name": "Columbus Ave @ Walnut Ave"
-                },
-                {
-                  "gtfsId": "mbta-ma-us:17421",
-                  "name": "Seaver St opp Harold St"
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 146.96,
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
                 }
               ],
-              "legGeometry": {
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "}dfaG|r{pLMB@H?H?H?HAJCJAHEJ]bAEJEJGHGJIJEHCJEJCJCLAL?JAL?L@J@NDXJ`@^r@FJTf@v@o@H@FAFEHId@g@RS\\NJ?NANGHGLOb@a@HIFCH?J@FGXYp@u@BCp@q@RQFJNVFJDJF@"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 599.25,
+              "duration": 491.0,
+              "real_time": false,
+              "transit_leg": false
+            }
+          ],
+          "number_of_transfers": 2,
+          "walk_distance": 800.4200000000001
+        },
+        {
+          "start": "2024-09-26T13:10:00-04:00",
+          "end": "2024-09-26T14:15:19-04:00",
+          "duration": 3919,
+          "accessibility_score": null,
+          "legs": [
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:10:00-04:00",
+                "estimated": null
+              },
+              "mode": "SUBWAY",
+              "end": {
+                "scheduled_time": "2024-09-26T13:29:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70077"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "from": {
+                "name": "Alewife",
+                "stop": {
+                  "name": "Alewife",
+                  "gtfs_id": "mbta-ma-us:70061"
+                },
+                "lat": 42.396148,
+                "lon": -71.140698
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Davis",
+                  "gtfs_id": "mbta-ma-us:70063"
+                },
+                {
+                  "name": "Porter",
+                  "gtfs_id": "mbta-ma-us:70065"
+                },
+                {
+                  "name": "Harvard",
+                  "gtfs_id": "mbta-ma-us:70067"
+                },
+                {
+                  "name": "Central",
+                  "gtfs_id": "mbta-ma-us:70069"
+                },
+                {
+                  "name": "Kendall/MIT",
+                  "gtfs_id": "mbta-ma-us:70071"
+                },
+                {
+                  "name": "Charles/MGH",
+                  "gtfs_id": "mbta-ma-us:70073"
+                },
+                {
+                  "name": "Park Street",
+                  "gtfs_id": "mbta-ma-us:70075"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "aowaGjteqLCcFGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA????jByD`DoGb@eAj@cBLkAHqBLiGXcHXmJr@kR|@s^JsB@SF_B??DiAr@gJVcH^_MH{CD}AL}DP}GL{CVmIN_D?QFoAB[D_ADoA??@[Bs@BkABU@_@Fc@Lm@BGHa@La@^_AvJ_OrCwDj@iAb@aAtBsFb@iA`@aAt@qBVm@???AZu@`DgIL]"
+              },
+              "route": {
+                "type": 1,
+                "desc": "Rapid Transit",
+                "color": "DA291C",
+                "gtfs_id": "mbta-ma-us:Red",
+                "short_name": null,
+                "long_name": "Red Line",
+                "text_color": "FFFFFF"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:65190062"
+              },
+              "distance": 9820.78,
+              "duration": 1140.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:29:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T13:30:47-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70020"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "from": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70077"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 36.12,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Concourse | CharlieCard Store"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 77.57,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Orange Line - Forest Hills"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 0.0,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Orange Line - Forest Hills"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 16.46,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Orange Line - Forest Hills"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "}poaGl}upL????????"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 130.15,
+              "duration": 107.0,
+              "real_time": false,
+              "transit_leg": false
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:40:00-04:00",
+                "estimated": null
+              },
+              "mode": "SUBWAY",
+              "end": {
+                "scheduled_time": "2024-09-26T13:55:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:70006"
+                },
+                "lat": 42.323132,
+                "lon": -71.099592
+              },
+              "from": {
+                "name": "Downtown Crossing",
+                "stop": {
+                  "name": "Downtown Crossing",
+                  "gtfs_id": "mbta-ma-us:70020"
+                },
+                "lat": 42.355518,
+                "lon": -71.060225
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Chinatown",
+                  "gtfs_id": "mbta-ma-us:70018"
+                },
+                {
+                  "name": "Tufts Medical Center",
+                  "gtfs_id": "mbta-ma-us:70016"
+                },
+                {
+                  "name": "Back Bay",
+                  "gtfs_id": "mbta-ma-us:70014"
+                },
+                {
+                  "name": "Massachusetts Avenue",
+                  "gtfs_id": "mbta-ma-us:70012"
+                },
+                {
+                  "name": "Ruggles",
+                  "gtfs_id": "mbta-ma-us:70010"
+                },
+                {
+                  "name": "Roxbury Crossing",
+                  "gtfs_id": "mbta-ma-us:70008"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "iqoaG~}upL?@@@t@r@hAtAjDdDb@d@t@r@TJj@Lj@@l@Bz@H@???P@fD`@|B^XJRLx@`AzBvB^F??\\FvAVPP~GrRJb@B\\?d@OzCCbACrFAtG@jCA|FBv@@`B?jAHlAJ~AF`@??@D@@Hd@FJRb@R^x@dAzAzBdB~BlHjJ^f@xAlBJJp@v@pBdCnDlEr@fA\\d@b@n@`@l@fAvA??fB`ClN`RfAtApCrD`@j@RVRT??`C`DRVlLzNNPdEpFPN~AhBn@l@NL^Z??|@v@xAfA??jBvApAz@bAn@l@Zb@Vd@Pz@`@\\Rh@Rn@Xp@T|@R|@ZrA`@l@NZHtErAHBd@JbHtCd@R"
+              },
+              "route": {
+                "type": 1,
+                "desc": "Rapid Transit",
+                "color": "ED8B00",
+                "gtfs_id": "mbta-ma-us:Orange",
+                "short_name": null,
+                "long_name": "Orange Line",
+                "text_color": "FFFFFF"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:64072522"
+              },
+              "distance": 5215.25,
+              "duration": 900.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:55:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T13:56:01-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:11531"
+                },
+                "lat": 42.323074,
+                "lon": -71.099546
+              },
+              "from": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:70006"
+                },
+                "lat": 42.323132,
+                "lon": -71.099592
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 41.15,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to street"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 0.0,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to street and buses"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 9.14,
+                  "relative_direction": "CONTINUE",
+                  "street_name": "pathway"
+                },
+                {
+                  "absolute_direction": "SOUTHWEST",
+                  "distance": 8.53,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Exit to buses, Centre Street"
+                },
+                {
+                  "absolute_direction": "EAST",
+                  "distance": 12.19,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Buses"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "qfiaGns}pL????????Vv@KaA"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 71.02,
+              "duration": 61.0,
+              "real_time": false,
+              "transit_leg": false
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T14:00:00-04:00",
+                "estimated": null
+              },
+              "mode": "BUS",
+              "end": {
+                "scheduled_time": "2024-09-26T14:05:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Humboldt Ave @ Seaver St",
+                "stop": {
+                  "name": "Humboldt Ave @ Seaver St",
+                  "gtfs_id": "mbta-ma-us:1325"
+                },
+                "lat": 42.31045,
+                "lon": -71.091588
+              },
+              "from": {
+                "name": "Jackson Square",
+                "stop": {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:11531"
+                },
+                "lat": 42.323074,
+                "lon": -71.099546
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Columbus Ave @ Dimock St",
+                  "gtfs_id": "mbta-ma-us:1265"
+                },
+                {
+                  "name": "Columbus Ave opp Bray St",
+                  "gtfs_id": "mbta-ma-us:1266"
+                },
+                {
+                  "name": "Columbus Ave @ Weld Ave - Egleston Sq",
+                  "gtfs_id": "mbta-ma-us:10413"
+                },
+                {
+                  "name": "Columbus Ave @ Walnut Ave",
+                  "gtfs_id": "mbta-ma-us:11413"
+                },
+                {
+                  "name": "Seaver St opp Harold St",
+                  "gtfs_id": "mbta-ma-us:17421"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
                 "length": null,
                 "points": "cfiaGzr}pL`A^TqDDm@dDKH?xFGfCC??l@?fBA~BEv@A~BA??xBAzDGZ?NARCHEJGRSf@y@v@iADI????HOhAgBt@gAr@iApAsBNU????b@m@f@_ATi@XeAL]L[TUZUb@U??@?f@Mt@GrAQjA]t@_@f@c@p@s@pAgBQS}@s@k@e@"
               },
-              "mode": "BUS",
-              "realTime": false,
-              "realtimeState": null,
               "route": {
-                "color": "FFC72C",
+                "type": 3,
                 "desc": "Local Bus",
-                "gtfsId": "mbta-ma-us:44",
-                "longName": "Jackson Square Station - Ruggles Station",
-                "shortName": "44",
-                "textColor": "000000",
-                "type": 3
+                "color": "FFC72C",
+                "gtfs_id": "mbta-ma-us:44",
+                "short_name": "44",
+                "long_name": "Jackson Square Station - Ruggles Station",
+                "text_color": "000000"
               },
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:20:00-04:00"
-              },
-              "steps": [],
-              "to": {
-                "lat": 42.31045,
-                "lon": -71.091588,
-                "name": "Humboldt Ave @ Seaver St",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:1325",
-                  "name": "Humboldt Ave @ Seaver St"
-                }
-              },
-              "transitLeg": true,
               "trip": {
-                "gtfsId": "mbta-ma-us:63071722"
-              }
+                "gtfs_id": "mbta-ma-us:64459635"
+              },
+              "distance": 1832.48,
+              "duration": 300.0,
+              "real_time": false,
+              "transit_leg": true
             },
             {
-              "agency": null,
-              "distance": 743.37,
-              "duration": 619.0,
-              "end": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:36:19-04:00"
-              },
-              "from": {
-                "lat": 42.31045,
-                "lon": -71.091588,
-                "name": "Humboldt Ave @ Seaver St",
-                "stop": {
-                  "gtfsId": "mbta-ma-us:1325",
-                  "name": "Humboldt Ave @ Seaver St"
-                }
-              },
-              "intermediateStops": null,
-              "legGeometry": {
-                "length": null,
-                "points": "iwfaGla|pLCJb@\\b@\\FFFFFFFJFL\\g@Zc@HLJNDBD@F?@E@GBER]r@u@NQTQp@S\\GTBTHPHRN^r@@BZn@v@o@H@FAFEHId@g@RS\\NJ?NANGHGLOb@a@HIFCH?J@FGXYp@u@BCp@q@RQFJNVFJDJF@"
+              "start": {
+                "scheduled_time": "2024-09-26T14:05:00-04:00",
+                "estimated": null
               },
               "mode": "WALK",
-              "realTime": false,
-              "realtimeState": null,
-              "route": null,
-              "start": {
-                "estimated": null,
-                "scheduledTime": "2024-07-05T16:26:00-04:00"
+              "end": {
+                "scheduled_time": "2024-09-26T14:15:19-04:00",
+                "estimated": null
               },
+              "to": {
+                "name": "Franklin Park Zoo",
+                "stop": null,
+                "lat": 42.305067,
+                "lon": -71.090434
+              },
+              "from": {
+                "name": "Humboldt Ave @ Seaver St",
+                "stop": {
+                  "name": "Humboldt Ave @ Seaver St",
+                  "gtfs_id": "mbta-ma-us:1325"
+                },
+                "lat": 42.31045,
+                "lon": -71.091588
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
               "steps": [
                 {
-                  "absoluteDirection": "SOUTHWEST",
-                  "distance": 77.85,
-                  "relativeDirection": "DEPART",
-                  "streetName": "Humboldt Avenue"
+                  "absolute_direction": "SOUTHWEST",
+                  "distance": 77.84,
+                  "relative_direction": "DEPART",
+                  "street_name": "Humboldt Avenue"
                 },
                 {
-                  "absoluteDirection": "SOUTHEAST",
+                  "absolute_direction": "SOUTHEAST",
                   "distance": 44.31,
-                  "relativeDirection": "LEFT",
-                  "streetName": "Seaver Street"
+                  "relative_direction": "LEFT",
+                  "street_name": "Seaver Street"
                 },
                 {
-                  "absoluteDirection": "SOUTHWEST",
+                  "absolute_direction": "SOUTHWEST",
                   "distance": 28.85,
-                  "relativeDirection": "RIGHT",
-                  "streetName": "bike path"
+                  "relative_direction": "RIGHT",
+                  "street_name": "bike path"
                 },
                 {
-                  "absoluteDirection": "SOUTHEAST",
-                  "distance": 237.86,
-                  "relativeDirection": "LEFT",
-                  "streetName": "service road"
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 237.9,
+                  "relative_direction": "LEFT",
+                  "street_name": "service road"
                 },
                 {
-                  "absoluteDirection": "SOUTHEAST",
+                  "absolute_direction": "SOUTHEAST",
                   "distance": 207.57,
-                  "relativeDirection": "LEFT",
-                  "streetName": "path"
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
                 },
                 {
-                  "absoluteDirection": "SOUTHEAST",
+                  "absolute_direction": "SOUTHEAST",
                   "distance": 146.96,
-                  "relativeDirection": "LEFT",
-                  "streetName": "path"
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
                 }
               ],
-              "to": {
-                "lat": 42.305067,
-                "lon": -71.090434,
-                "name": "Franklin Park Zoo",
-                "stop": null
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "iwfaGla|pLCJb@\\b@\\FFDBHJFJFLT[FKZc@HLJNDBD@F?@E@GBER]r@u@NQTQp@S\\GTBTHPHRN^r@FJTf@v@o@H@FAFEHId@g@RS\\NJ?NANGHGLOb@a@HIFCH?J@FGXYp@u@BCp@q@RQFJNVFJDJF@"
               },
-              "transitLeg": false,
-              "trip": null
+              "route": null,
+              "trip": null,
+              "distance": 743.4,
+              "duration": 619.0,
+              "real_time": false,
+              "transit_leg": false
             }
           ],
-          "numberOfTransfers": 2,
-          "start": "2024-07-05T15:26:00-04:00",
-          "tag": null,
-          "walkDistance": 944.54
+          "number_of_transfers": 2,
+          "walk_distance": 944.5699999999999
+        },
+        {
+          "start": "2024-09-26T13:33:00-04:00",
+          "end": "2024-09-26T14:39:11-04:00",
+          "duration": 3971,
+          "accessibility_score": null,
+          "legs": [
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:33:00-04:00",
+                "estimated": null
+              },
+              "mode": "SUBWAY",
+              "end": {
+                "scheduled_time": "2024-09-26T13:43:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Central",
+                "stop": {
+                  "name": "Central",
+                  "gtfs_id": "mbta-ma-us:70069"
+                },
+                "lat": 42.365304,
+                "lon": -71.103621
+              },
+              "from": {
+                "name": "Alewife",
+                "stop": {
+                  "name": "Alewife",
+                  "gtfs_id": "mbta-ma-us:70061"
+                },
+                "lat": 42.396148,
+                "lon": -71.140698
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Davis",
+                  "gtfs_id": "mbta-ma-us:70063"
+                },
+                {
+                  "name": "Porter",
+                  "gtfs_id": "mbta-ma-us:70065"
+                },
+                {
+                  "name": "Harvard",
+                  "gtfs_id": "mbta-ma-us:70067"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "aowaGjteqLCcFGsACa@SaC?CYu@e@}@u@k@u@Yu@OMEKOGQSkAMcAGw@UoDHmCd@sUZcJJsEPwHPkEPsCJmB^mDl@}DDYTgA@???Ly@\\iAt@qB`AwBn@aAl@m@b@Yn@SrBCrCMzQ_AzLT??T?R@~l@fD`Np@lAHz@CbBa@fBi@n@q@d@iAb@}@Z_@PM\\Il@@dBHnB\\tAP|@J^@JCBC??HIHULa@vCyNBILOvG_IdCiD`@e@Xa@d@qAhEcPtBcGfAuCtMqVn@qA??"
+              },
+              "route": {
+                "type": 1,
+                "desc": "Rapid Transit",
+                "color": "DA291C",
+                "gtfs_id": "mbta-ma-us:Red",
+                "short_name": null,
+                "long_name": "Red Line",
+                "text_color": "FFFFFF"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:65190065"
+              },
+              "distance": 5957.77,
+              "duration": 600.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:43:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T13:45:26-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Green St @ Magazine St",
+                "stop": {
+                  "name": "Green St @ Magazine St",
+                  "gtfs_id": "mbta-ma-us:1123"
+                },
+                "lat": 42.364935,
+                "lon": -71.104405
+              },
+              "from": {
+                "name": "Central",
+                "stop": {
+                  "name": "Central",
+                  "gtfs_id": "mbta-ma-us:70069"
+                },
+                "lat": 42.365304,
+                "lon": -71.103621
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "NORTHWEST",
+                  "distance": 32.31,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Massachusetts Avenue, buses"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 0.0,
+                  "relative_direction": "HARD_LEFT",
+                  "street_name": "pathway"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 4.88,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "To buses"
+                },
+                {
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 38.58,
+                  "relative_direction": "FOLLOW_SIGNS",
+                  "street_name": "Massachusetts Avenue, buses"
+                },
+                {
+                  "absolute_direction": "SOUTHWEST",
+                  "distance": 0.0,
+                  "relative_direction": "EXIT_STATION",
+                  "street_name": "Central - Mass Ave"
+                },
+                {
+                  "absolute_direction": "NORTHWEST",
+                  "distance": 17.62,
+                  "relative_direction": "RIGHT",
+                  "street_name": "sidewalk"
+                },
+                {
+                  "absolute_direction": "WEST",
+                  "distance": 71.9,
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
+                },
+                {
+                  "absolute_direction": "SOUTH",
+                  "distance": 2.92,
+                  "relative_direction": "LEFT",
+                  "street_name": "sidewalk"
+                },
+                {
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 2.17,
+                  "relative_direction": "LEFT",
+                  "street_name": "sidewalk"
+                },
+                {
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 6.69,
+                  "relative_direction": "CONTINUE",
+                  "street_name": "Platform 3"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "cnqaGtl~pLc@b@????x@q@BBS`@F~ALPDDBBRT??@?@???@C@@DK"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 177.07,
+              "duration": 146.0,
+              "real_time": false,
+              "transit_leg": false
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T13:50:00-04:00",
+                "estimated": null
+              },
+              "mode": "BUS",
+              "end": {
+                "scheduled_time": "2024-09-26T14:17:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Ruggles",
+                "stop": {
+                  "name": "Ruggles",
+                  "gtfs_id": "mbta-ma-us:17862"
+                },
+                "lat": 42.336489,
+                "lon": -71.089085
+              },
+              "from": {
+                "name": "Green St @ Magazine St",
+                "stop": {
+                  "name": "Green St @ Magazine St",
+                  "gtfs_id": "mbta-ma-us:1123"
+                },
+                "lat": 42.364935,
+                "lon": -71.104405
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Pearl St @ William St",
+                  "gtfs_id": "mbta-ma-us:1764"
+                },
+                {
+                  "name": "Pearl St @ Erie St",
+                  "gtfs_id": "mbta-ma-us:1766"
+                },
+                {
+                  "name": "Pearl St @ Putnam Ave",
+                  "gtfs_id": "mbta-ma-us:11767"
+                },
+                {
+                  "name": "Granite St @ Pearl St",
+                  "gtfs_id": "mbta-ma-us:1771"
+                },
+                {
+                  "name": "Granite St @ Brookline St",
+                  "gtfs_id": "mbta-ma-us:1772"
+                },
+                {
+                  "name": "Mountfort St @ Lenox St",
+                  "gtfs_id": "mbta-ma-us:1773"
+                },
+                {
+                  "name": "Park Dr @ Beacon St",
+                  "gtfs_id": "mbta-ma-us:1775"
+                },
+                {
+                  "name": "Park Dr @ Fenway Sta",
+                  "gtfs_id": "mbta-ma-us:9434"
+                },
+                {
+                  "name": "Brookline Ave @ Pilgrim Rd",
+                  "gtfs_id": "mbta-ma-us:1777"
+                },
+                {
+                  "name": "Brookline Ave @ Short St",
+                  "gtfs_id": "mbta-ma-us:1778"
+                },
+                {
+                  "name": "Longwood Ave @ Brookline Ave",
+                  "gtfs_id": "mbta-ma-us:1779"
+                },
+                {
+                  "name": "Longwood Ave @ Blackfan St",
+                  "gtfs_id": "mbta-ma-us:1780"
+                },
+                {
+                  "name": "Ave Louis Pasteur @ Longwood Ave",
+                  "gtfs_id": "mbta-ma-us:11780"
+                },
+                {
+                  "name": "Ave Louis Pasteur @ The Fenway",
+                  "gtfs_id": "mbta-ma-us:11781"
+                },
+                {
+                  "name": "Ruggles St @ Huntington Ave",
+                  "gtfs_id": "mbta-ma-us:1784"
+                },
+                {
+                  "name": "Ruggles St @ Annunciation Rd",
+                  "gtfs_id": "mbta-ma-us:1785"
+                },
+                {
+                  "name": "Ruggles",
+                  "gtfs_id": "mbta-ma-us:17861"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "skqaGvq~pLS\\dBlBjDwGdBpBvA`Bd@d@??@Bt@z@l@p@`@b@l@p@TXnAvAl@r@t@z@TRz@~@????VXdBnBlBtBrCxCTX????xB`CdBnBj@j@|@~@`AlA`@b@P_@??|@qBpAmCH]??@]p@P\\`@N\\Lh@BRN\\LLF@L@FAVKPQJQXWJMR_@FKJELEh@Cx@JpAHn@FrDVtALnAJf@Fd@DLBPCNELIHIVe@fA}BJU????LYnAoCD[FaAj@wIBM`@aDXQhAe@hAe@nAe@jAa@??NGVMjDwAt@MRI????@Al@Wz@_@TGb@KX?J@JBVJJBVFZDVBNALGJIt@aA`B{BVZz@~@????p@t@lBnB~A`BzBbC????DDZ\\xB~BjCvC`@{@????fBuDt@_BRg@Pq@l@uBAAHY??d@cBd@eBX}@OKOIOAGDGHeAo@k@a@[S????uCgBiBeAeDwB??CAKIEICICQAWlA}An@eAf@y@f@aA^{@Xs@ZeALc@DW@WPy@FSHMT[h@}Ab@uA`@iAZ_AFOLa@Ps@Hc@????BIr@uCn@uBb@}A????HYBMd@_Bd@aB|@}CNc@Ro@P_@[SuCkD??kCaDUa@S]EQCO@QFYHOJGNCN?NHj@^JRJZT\\z@fA"
+              },
+              "route": {
+                "type": 3,
+                "desc": "Local Bus",
+                "color": "FFC72C",
+                "gtfs_id": "mbta-ma-us:47",
+                "short_name": "47",
+                "long_name": "Central Square, Cambridge - Broadway Station",
+                "text_color": "000000"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:64465746"
+              },
+              "distance": 6095.64,
+              "duration": 1620.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T14:19:00-04:00",
+                "estimated": null
+              },
+              "mode": "BUS",
+              "end": {
+                "scheduled_time": "2024-09-26T14:31:00-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Seaver St opp Elm Hill Ave",
+                "stop": {
+                  "name": "Seaver St opp Elm Hill Ave",
+                  "gtfs_id": "mbta-ma-us:17401"
+                },
+                "lat": 42.307515,
+                "lon": -71.089263
+              },
+              "from": {
+                "name": "Ruggles",
+                "stop": {
+                  "name": "Ruggles",
+                  "gtfs_id": "mbta-ma-us:17862"
+                },
+                "lat": 42.336489,
+                "lon": -71.089085
+              },
+              "realtime_state": null,
+              "intermediate_stops": [
+                {
+                  "name": "Tremont St @ Prentiss St",
+                  "gtfs_id": "mbta-ma-us:1257"
+                },
+                {
+                  "name": "Tremont St @ Roxbury Crossing Station",
+                  "gtfs_id": "mbta-ma-us:1258"
+                },
+                {
+                  "name": "Columbus Ave @ New Cedar St",
+                  "gtfs_id": "mbta-ma-us:1260"
+                },
+                {
+                  "name": "Columbus Ave @ Heath St",
+                  "gtfs_id": "mbta-ma-us:1262"
+                },
+                {
+                  "name": "Jackson Square",
+                  "gtfs_id": "mbta-ma-us:11531"
+                },
+                {
+                  "name": "Columbus Ave @ Dimock St",
+                  "gtfs_id": "mbta-ma-us:1265"
+                },
+                {
+                  "name": "Columbus Ave opp Bray St",
+                  "gtfs_id": "mbta-ma-us:1266"
+                },
+                {
+                  "name": "Columbus Ave @ Weld Ave - Egleston Sq",
+                  "gtfs_id": "mbta-ma-us:10413"
+                },
+                {
+                  "name": "Columbus Ave @ Walnut Ave",
+                  "gtfs_id": "mbta-ma-us:11413"
+                },
+                {
+                  "name": "Seaver St opp Harold St",
+                  "gtfs_id": "mbta-ma-us:17421"
+                },
+                {
+                  "name": "Seaver St opp Humboldt Ave",
+                  "gtfs_id": "mbta-ma-us:17411"
+                }
+              ],
+              "steps": [],
+              "agency": {
+                "name": "MBTA"
+              },
+              "leg_geometry": {
+                "length": null,
+                "points": "uykaGfq{pLjAxA\\^fA~AXb@dCkBj@g@Zv@h@hAbCbFpBxEL\\@@???@zAhD\\l@R\\`@f@nBvB\\\\????v@v@~@bAd@d@h@d@j@b@n@`@rAv@vAt@~@f@bAf@??TJ`Br@zCbA~Bl@|FvA????PDpAVb@JZDN@@J@VJPXLl@PXj@b@Pr@TD@??`A^TqDDm@dDKH?xFGfCC??l@?fBA~BEv@A~BA??xBAzDGZ?NARCHEJGRSf@y@v@iADI????HOhAgBt@gAr@iApAsBNU????b@m@f@_ATi@XeAL]L[TUZUb@U??@?f@Mt@GrAQjA]t@_@f@c@p@s@pAgBR]????PYxB_Dv@kAxB_DhBgCFK"
+              },
+              "route": {
+                "type": 3,
+                "desc": "Key Bus",
+                "color": "FFC72C",
+                "gtfs_id": "mbta-ma-us:22",
+                "short_name": "22",
+                "long_name": "Ashmont Station - Ruggles Station via Talbot Ave",
+                "text_color": "000000"
+              },
+              "trip": {
+                "gtfs_id": "mbta-ma-us:64464273"
+              },
+              "distance": 3950.31,
+              "duration": 720.0,
+              "real_time": false,
+              "transit_leg": true
+            },
+            {
+              "start": {
+                "scheduled_time": "2024-09-26T14:31:00-04:00",
+                "estimated": null
+              },
+              "mode": "WALK",
+              "end": {
+                "scheduled_time": "2024-09-26T14:39:11-04:00",
+                "estimated": null
+              },
+              "to": {
+                "name": "Franklin Park Zoo",
+                "stop": null,
+                "lat": 42.305067,
+                "lon": -71.090434
+              },
+              "from": {
+                "name": "Seaver St opp Elm Hill Ave",
+                "stop": {
+                  "name": "Seaver St opp Elm Hill Ave",
+                  "gtfs_id": "mbta-ma-us:17401"
+                },
+                "lat": 42.307515,
+                "lon": -71.089263
+              },
+              "realtime_state": null,
+              "intermediate_stops": [],
+              "steps": [
+                {
+                  "absolute_direction": "WEST",
+                  "distance": 244.74,
+                  "relative_direction": "DEPART",
+                  "street_name": "service road"
+                },
+                {
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 207.57,
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
+                },
+                {
+                  "absolute_direction": "SOUTHEAST",
+                  "distance": 146.96,
+                  "relative_direction": "LEFT",
+                  "street_name": "path"
+                }
+              ],
+              "agency": null,
+              "leg_geometry": {
+                "length": null,
+                "points": "}dfaG|r{pLMB@H?H?H?HAJCJAHEJ]bAEJEJGHGJIJEHCJEJCJCLAL?JAL?L@J@NDXJ`@^r@FJTf@v@o@H@FAFEHId@g@RS\\NJ?NANGHGLOb@a@HIFCH?J@FGXYp@u@BCp@q@RQFJNVFJDJF@"
+              },
+              "route": null,
+              "trip": null,
+              "distance": 599.25,
+              "duration": 491.0,
+              "real_time": false,
+              "transit_leg": false
+            }
+          ],
+          "number_of_transfers": 2,
+          "walk_distance": 776.3199999999999
         }
       ],
-      "routing_errors": []
+      "search_window_used": 7200
     }
   }
 }
