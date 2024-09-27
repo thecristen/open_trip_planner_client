@@ -27,6 +27,12 @@ defmodule OpenTripPlannerClient.Util do
     )
   end
 
+  @spec local_now :: DateTime.t()
+  def local_now do
+    Application.fetch_env!(:open_trip_planner_client, :timezone)
+    |> Timex.now()
+  end
+
   @doc """
   A safe version of String.to_existing_atom/1 ensuring atoms are already loaded
   """

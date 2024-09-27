@@ -61,12 +61,8 @@ defmodule OpenTripPlannerClient.Schema do
     # credo:disable-for-next-line
     def decode_fields_hint(_, _, value) do
       case Timex.parse(value, "{ISO:Extended}") do
-        {:ok, date_time} ->
-          {:ok,
-           Timex.to_datetime(
-             date_time,
-             Application.fetch_env!(:open_trip_planner_client, :timezone)
-           )}
+        {:ok, dt} ->
+          {:ok, OpenTripPlannerClient.Util.to_local_time(dt)}
 
         error ->
           error

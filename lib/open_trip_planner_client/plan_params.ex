@@ -113,8 +113,8 @@ defmodule OpenTripPlannerClient.PlanParams do
   @spec new(map()) :: t()
   def new(params \\ %{}) do
     %__MODULE__{}
-    |> Map.put(:date, to_date_param(Timex.local()))
-    |> Map.put(:time, to_time_param(Timex.local()))
+    |> Map.put(:date, to_date_param(OpenTripPlannerClient.Util.local_now()))
+    |> Map.put(:time, to_time_param(OpenTripPlannerClient.Util.local_now()))
     |> struct(params)
   end
 
@@ -144,9 +144,6 @@ defmodule OpenTripPlannerClient.PlanParams do
   end
 
   defp format_datetime(datetime, formatter) do
-    case Timex.format(datetime, formatter) do
-      {:ok, formatted} -> formatted
-      _ -> format_datetime(Timex.local(), formatter)
-    end
+    Timex.format!(datetime, formatter)
   end
 end
