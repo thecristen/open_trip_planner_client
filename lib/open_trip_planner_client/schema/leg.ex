@@ -49,6 +49,7 @@ defmodule OpenTripPlannerClient.Schema.Leg do
       updated_map =
         map
         |> update_in([:intermediate_stops], &replace_nil_with_list/1)
+        |> update_in([:next_legs], &replace_nil_with_list/1)
         |> update_in([:steps], &replace_nil_with_list/1)
 
       {:ok, updated_map}
@@ -66,6 +67,7 @@ defmodule OpenTripPlannerClient.Schema.Leg do
              intermediate_stops: [Stop],
              leg_geometry: Geometry,
              mode: &__MODULE__.to_atom/1,
+             next_legs: [__MODULE__],
              realtime_state: &__MODULE__.to_atom/1,
              route: Route,
              start: LegTime,
@@ -82,6 +84,7 @@ defmodule OpenTripPlannerClient.Schema.Leg do
     field(:intermediate_stops, [Stop.t()])
     field(:leg_geometry, Geometry.t())
     field(:mode, PlanParams.mode_t())
+    field(:next_legs, [__MODULE__.t()])
     field(:real_time, boolean())
     field(:realtime_state, realtime_state())
     field(:route, Route.t())

@@ -42,44 +42,51 @@ query TripPlan(
       duration
       end
       legs {
-        agency { name }
-        distance
-        duration
-        end { ...TimeInfo }
-        from { ...PlaceInfo }
-        intermediateStops { 
-          gtfsId,
-          name
+        ...LegInfo
+        nextLegs(numberOfLegs: 2, destinationModesWithParentStation: [RAIL, SUBWAY, TRAM, BUS], originModesWithParentStation: [RAIL, SUBWAY, TRAM, BUS]) {
+          ...LegInfo
         }
-        legGeometry { points }
-        mode
-        realTime
-        realtimeState
-        route { 
-          gtfsId
-          shortName
-          longName
-          type
-          color
-          textColor
-          desc
-        }
-        start { ...TimeInfo }
-        steps {
-          distance
-          streetName
-          absoluteDirection
-          relativeDirection
-        }
-        to { ...PlaceInfo }
-        transitLeg
-        trip { gtfsId }
       }
       numberOfTransfers
       start
       walkDistance
     }
   }
+}
+
+fragment LegInfo on Leg {
+  agency { name }
+  distance
+  duration
+  end { ...TimeInfo }
+  from { ...PlaceInfo }
+  intermediateStops { 
+    gtfsId,
+    name
+  }
+  legGeometry { points }
+  mode
+  realTime
+  realtimeState
+  route { 
+    gtfsId
+    shortName
+    longName
+    type
+    color
+    textColor
+    desc
+  }
+  start { ...TimeInfo }
+  steps {
+    distance
+    streetName
+    absoluteDirection
+    relativeDirection
+  }
+  to { ...PlaceInfo }
+  transitLeg
+  trip { gtfsId }
 }
 
 fragment PlaceInfo on Place {
