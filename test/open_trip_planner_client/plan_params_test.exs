@@ -33,8 +33,14 @@ defmodule OpenTripPlannerClient.PlanParamsTest do
     assert to_place_param(%{name: name, latitude: lat, longitude: lon}) == expected
   end
 
-  test "to_modes_param/1" do
-    assert [%{mode: :TRANSIT}] = to_modes_param([:TRANSIT])
+  describe "to_modes_param/1" do
+    test "converts to maps" do
+      assert [%{mode: :TRANSIT}] = to_modes_param([:TRANSIT])
+    end
+
+    test "adds tram mode when subway is requested" do
+      assert [%{mode: :TRAM}, %{mode: :BUS}, %{mode: :SUBWAY}] = to_modes_param([:BUS, :SUBWAY])
+    end
   end
 
   test "to_date_param/1" do

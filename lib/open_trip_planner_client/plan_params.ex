@@ -130,7 +130,15 @@ defmodule OpenTripPlannerClient.PlanParams do
 
   @spec to_modes_param([mode_t()]) :: transport_modes()
   def to_modes_param(modes) do
-    Enum.map(modes, &Map.new(mode: &1))
+    modes
+    |> then(fn modes ->
+      if :SUBWAY in modes do
+        [:TRAM | modes]
+      else
+        modes
+      end
+    end)
+    |> Enum.map(&Map.new(mode: &1))
   end
 
   @spec to_date_param(DateTime.t()) :: date()
