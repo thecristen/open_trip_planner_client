@@ -14,7 +14,8 @@ defmodule OpenTripPlannerClient.PlanParams do
     :time,
     arriveBy: false,
     transportModes: [%{mode: :WALK}, %{mode: :TRANSIT}],
-    wheelchair: false
+    wheelchair: false,
+    numItineraries: 5
   ]
 
   @typedoc """

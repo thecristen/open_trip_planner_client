@@ -18,6 +18,18 @@ defmodule OpenTripPlannerClient.PlanParamsTest do
     assert to_time_param(now) == time
   end
 
+  test "new/1 defaults to having 5 itineraries" do
+    assert %OpenTripPlannerClient.PlanParams{
+             numItineraries: 5
+           } = new()
+  end
+
+  test "new/1 allows a customizable number of itineraries" do
+    assert %OpenTripPlannerClient.PlanParams{
+             numItineraries: 42
+           } = new(%{numItineraries: 42})
+  end
+
   test "to_place_param/1 with stop" do
     name = Faker.App.name()
     stop_id = Faker.Internet.slug()
