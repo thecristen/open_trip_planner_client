@@ -9,6 +9,8 @@ defmodule OpenTripPlannerClient.Parser do
   @type parse_error ::
           :graphql_field_error | :graphql_request_error | OpenTripPlannerClient.Behaviour.error()
 
+  @walking_better_than_transit "WALKING_BETTER_THAN_TRANSIT"
+
   @doc """
   The errors entry in the response is a non-empty list of errors raised during
   the request, where each error is a map of data described by the error result
@@ -48,20 +50,16 @@ defmodule OpenTripPlannerClient.Parser do
 
   defp validate_graphql(body), do: body
 
-  @walking_better_than_transit "WALKING_BETTER_THAN_TRANSIT"
-
-  defp drop_walking_errors(%{data: %{plan: %{routing_errors: [_ | _]}}} = body) do
-    body
-    |> Map.update!(:data, fn data ->
-      data
-      |> Map.update!(:plan, fn plan ->
-        plan
-        |> Map.update!(:routing_errors, fn routing_errors ->
-          routing_errors
-          |> Enum.filter(fn %{code: code} -> code != @walking_better_than_transit end)
-        end)
-      end)
-    end)
+  defp drop_walking_errors(%{data: %{plan: %{routing_errors: routing_errors}}} = body)
+       when is_list(routing_errors) do
+    update_in(
+      body,
+      [:data, :plan, :routing_errors],
+      fn routing_errors ->
+        routing_errors
+        |> Enum.reject(fn %{code: code} -> code == @walking_better_than_transit end)
+      end
+    )
   end
 
   defp drop_walking_errors(body), do: body
