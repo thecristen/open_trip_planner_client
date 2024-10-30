@@ -52,17 +52,15 @@ defmodule OpenTripPlannerClient.Parser do
 
   defp drop_walking_errors(%{data: %{plan: %{routing_errors: routing_errors}}} = body)
        when is_list(routing_errors) do
-    update_in(
-      body,
-      [:data, :plan, :routing_errors],
-      fn routing_errors ->
-        routing_errors
-        |> Enum.reject(fn %{code: code} -> code == @walking_better_than_transit end)
-      end
-    )
+    update_in(body, [:data, :plan, :routing_errors], &reject_walking_errors/1)
   end
 
   defp drop_walking_errors(body), do: body
+
+  defp reject_walking_errors(routing_errors) do
+    Enum.reject(routing_errors, &(&1.code == @walking_better_than_transit))
+  end
+
 
   defp validate_routing(%{
          data: %{plan: %{routing_errors: [%{code: code} | _] = routing_errors}}
