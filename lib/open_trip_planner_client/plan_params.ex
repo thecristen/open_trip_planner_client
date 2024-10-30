@@ -13,9 +13,9 @@ defmodule OpenTripPlannerClient.PlanParams do
     :date,
     :time,
     arriveBy: false,
+    numItineraries: 5,
     transportModes: [%{mode: :WALK}, %{mode: :TRANSIT}],
-    wheelchair: false,
-    numItineraries: 5
+    wheelchair: false
   ]
 
   @typedoc """
@@ -102,6 +102,7 @@ defmodule OpenTripPlannerClient.PlanParams do
           arriveBy: arrive_by(),
           fromPlace: place(),
           date: date(),
+          numItineraries: integer(),
           time: time(),
           toPlace: place(),
           transportModes: transport_modes(),
