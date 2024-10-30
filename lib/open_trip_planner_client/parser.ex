@@ -30,6 +30,7 @@ defmodule OpenTripPlannerClient.Parser do
   def validate_body(body) do
     body
     |> validate_graphql()
+    |> drop_walking_errors()
     |> validate_routing()
   end
 
@@ -46,6 +47,24 @@ defmodule OpenTripPlannerClient.Parser do
   end
 
   defp validate_graphql(body), do: body
+
+  @walking_better_than_transit "WALKING_BETTER_THAN_TRANSIT"
+
+  defp drop_walking_errors(%{data: %{plan: %{routing_errors: [_ | _]}}} = body) do
+    body
+    |> Map.update!(:data, fn data ->
+      data
+      |> Map.update!(:plan, fn plan ->
+        plan
+        |> Map.update!(:routing_errors, fn routing_errors ->
+          routing_errors
+          |> Enum.filter(fn %{code: code} -> code != @walking_better_than_transit end)
+        end)
+      end)
+    end)
+  end
+
+  defp drop_walking_errors(body), do: body
 
   defp validate_routing(%{
          data: %{plan: %{routing_errors: [%{code: code} | _] = routing_errors}}

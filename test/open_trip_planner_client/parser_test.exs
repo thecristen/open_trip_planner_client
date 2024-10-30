@@ -80,5 +80,12 @@ defmodule OpenTripPlannerClient.ParserTest do
 
       assert log =~ "PATH_NOT_FOUND"
     end
+
+    test "does not treat 'WALKING_BETTER_THAN_TRANSIT' as a fatal error" do
+      assert {:ok, %OpenTripPlannerClient.Plan{}} =
+               validate_body(%{
+                 data: %{plan: %{routing_errors: [%{code: "WALKING_BETTER_THAN_TRANSIT"}]}}
+               })
+    end
   end
 end
