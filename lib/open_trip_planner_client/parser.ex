@@ -61,7 +61,6 @@ defmodule OpenTripPlannerClient.Parser do
     Enum.reject(routing_errors, &(&1.code == @walking_better_than_transit))
   end
 
-
   defp validate_routing(%{
          data: %{plan: %{routing_errors: [%{code: code} | _] = routing_errors}}
        }) do

@@ -6,7 +6,7 @@ defmodule OpenTripPlannerClient.PlanParamsTest do
   @time_regex ~r/^\d?\d:\d{2}(am|pm)$/
 
   test "new/1 defaults to leaving now" do
-    now = Timex.local()
+    now = OpenTripPlannerClient.Util.local_now()
 
     assert %OpenTripPlannerClient.PlanParams{
              date: date,
