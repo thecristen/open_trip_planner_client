@@ -21,6 +21,9 @@ defmodule OpenTripPlannerClient.ItineraryTag do
                       ]
                       |> Enum.map(& &1.tag())
 
+  @spec tag_priority_order() :: [atom()]
+  def tag_priority_order, do: @tag_priority_order
+
   @spec default_arriving() :: [Behaviour.t()]
   def default_arriving, do: [ShortestTrip, MostDirect, LeastWalking]
 
